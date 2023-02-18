@@ -1,6 +1,6 @@
 // Vitest Snapshot v1
 
-exports[`[Store] Wallet > setPrivateKeys 1`] = `
+exports[`[Store] privateKeys > privateKeys set 1`] = `
 [
   Uint8Array [
     130,
@@ -107,7 +107,7 @@ exports[`[Store] Wallet > setPrivateKeys 1`] = `
 ]
 `;
 
-exports[`[Store] Wallet > setPrivateKeys 2`] = `
+exports[`[Store] privateKeys > privateKeys set 2`] = `
 [
   {
     "array": [

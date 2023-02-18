@@ -1,9 +1,11 @@
 import { getAddress } from "micro-btc-signer";
 import { NETWORK, TEST_NETWORK } from "micro-btc-signer";
+import type AddressFormat from "@/libs/Address/types/AddressFormat";
+
 export default function getAddresses(
   privateKey: Uint8Array,
   isTestnet = false
-) {
+): Record<AddressFormat, string> {
   const cache: any = {};
 
   const network = isTestnet ? TEST_NETWORK : NETWORK;
