@@ -13,7 +13,7 @@ import PageHeader from "@/components/PageHeader/PageHeader.vue";
         <div class="wrapper">
           <nav>
             <RouterLink to="/">Home</RouterLink>
-            <RouterLink to="/about">About</RouterLink>
+            <RouterLink to="/create-wallet">About</RouterLink>
           </nav>
         </div>
       </header>
