@@ -30,7 +30,9 @@ function handleForm() {
         <n-input-number v-model:value="count" :min="1" size="small" />
       </n-space>
     </n-form-item>
-    <n-button type="primary" @click="handleForm">Generate tokens</n-button>
+    <n-button type="primary" @click="handleForm">
+      Generate new addresses
+    </n-button>
   </n-form>
 </template>
 

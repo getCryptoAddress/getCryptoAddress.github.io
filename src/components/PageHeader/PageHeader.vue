@@ -21,8 +21,8 @@ import IconLogo from "@/components/icons/IconLogo.vue";
 
 .page-header__logo {
   margin: 0 auto;
-  /*fill: var(--cui-body-color);*/
-  fill: rgba(255, 255, 255, 0.87);
+  fill: var(--textColor1);
+  opacity: 0.85;
   animation: rotation 30s infinite linear;
 }
 
