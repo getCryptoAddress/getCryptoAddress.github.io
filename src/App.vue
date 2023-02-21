@@ -5,12 +5,18 @@ import PageHeaderDescription from "@/components/PageHeaderDescription/PageHeader
 import { computed } from "vue";
 import { darkTheme, NConfigProvider } from "naive-ui";
 
-import { useDark } from "@vueuse/core";
+import { useDark, useToggle } from "@vueuse/core";
 import PageHeaderWrapper from "@/components/PageHeaderWrapper/PageHeaderWrapper.vue";
 import PageHeaderLogo from "@/components/PageHeaderLogo/PageHeaderLogo.vue";
+import ThemeSwitcher from "@/components/ThemeSwitcher/ThemeSwitcher.vue";
 
 const isDark = useDark();
 const themeProvider = computed(() => (isDark.value ? darkTheme : null));
+const toggleDark = useToggle(isDark);
+
+function switchTheme() {
+  toggleDark();
+}
 </script>
 
 <template>
@@ -25,6 +31,7 @@ const themeProvider = computed(() => (isDark.value ? darkTheme : null));
             |
             <RouterLink to="/create-wallet">Create Wallet</RouterLink>
           </nav>
+          <ThemeSwitcher :is-dark="isDark" @switch="switchTheme" />
         </PageHeaderWrapper>
       </template>
       <template #page>
