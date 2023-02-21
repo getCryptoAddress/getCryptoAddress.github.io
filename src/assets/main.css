@@ -1,5 +1,5 @@
+@import "normalize.css/normalize.css";
 @import './theme.css';
-
 
 *,
 *::before,
@@ -34,4 +34,8 @@ a {
         color: var(--successColorPressed);
         text-decoration: underline;
     }
+}
+
+p {
+    margin-bottom: 1rem;
 }

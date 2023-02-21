@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
 import PageTemplate from "@/components/PageTemplate/PageTemplate.vue";
-import PageHeader from "@/components/PageHeader/PageHeader.vue";
+import PageHeaderDescription from "@/components/PageHeaderDescription/PageHeaderDescription.vue";
 import { computed } from "vue";
 import { darkTheme, NConfigProvider } from "naive-ui";
 
 import { useDark } from "@vueuse/core";
+import PageHeaderWrapper from "@/components/PageHeaderWrapper/PageHeaderWrapper.vue";
+import PageHeaderLogo from "@/components/PageHeaderLogo/PageHeaderLogo.vue";
 
 const isDark = useDark();
 const themeProvider = computed(() => (isDark.value ? darkTheme : null));
@@ -15,14 +17,15 @@ const themeProvider = computed(() => (isDark.value ? darkTheme : null));
   <n-config-provider :theme="themeProvider">
     <PageTemplate>
       <template #navigation>
-        <PageHeader />
-
-        <div class="wrapper">
+        <PageHeaderWrapper>
+          <PageHeaderLogo />
+          <PageHeaderDescription />
           <nav>
             <RouterLink to="/">Home</RouterLink>
-            <RouterLink to="/create-wallet">About</RouterLink>
+            |
+            <RouterLink to="/create-wallet">Create Wallet</RouterLink>
           </nav>
-        </div>
+        </PageHeaderWrapper>
       </template>
       <template #page>
         <RouterView />

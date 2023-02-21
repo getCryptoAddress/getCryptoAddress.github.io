@@ -13,7 +13,7 @@
 .page-template {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 3rem;
+  padding: 30px 3rem;
   display: grid;
   grid-template-columns: 1fr;
   gap: 3rem;
@@ -27,11 +27,5 @@
 
 .page-template__content {
   position: relative;
-
-  @media (min-width: 1024px) {
-    & {
-      min-height: 100vh;
-    }
-  }
 }
 </style>
