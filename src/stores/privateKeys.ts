@@ -26,9 +26,11 @@ export const usePrivateKeysStore = defineStore("privateKeys", () => {
   }
 
   async function generatePrivatesKeys(count: number) {
-    privateKeys.value = await Promise.all(
-      Array.from({ length: count }, () => generatePrivateKey())
-    );
+    const keys = [];
+    for (let i = 0; i < count; i += 1) {
+      keys.push(await generatePrivateKey());
+    }
+    privateKeys.value = keys;
     await _generatePrivateKeys();
   }
 
