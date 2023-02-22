@@ -6,12 +6,14 @@ const emit = defineEmits(["switch"]);
 defineProps<{
   isDark: boolean;
 }>();
+
+const { SSR } = import.meta.env;
 </script>
 
 <template>
   <div class="theme-switcher">
     <NButton @click="emit('switch')">
-      <NIcon>
+      <NIcon v-if="!SSR">
         <WeatherMoon24Regular v-show="!isDark" />
         <WeatherSunny24Regular v-show="isDark" />
       </NIcon>

@@ -14,6 +14,8 @@ const isDark = useDark();
 const themeProvider = computed(() => (isDark.value ? darkTheme : null));
 const toggleDark = useToggle(isDark);
 
+const { SSR } = import.meta.env;
+
 function switchTheme() {
   toggleDark();
 }
@@ -24,7 +26,7 @@ function switchTheme() {
     <PageTemplate>
       <template #navigation>
         <PageHeaderWrapper>
-          <PageHeaderLogo />
+          <PageHeaderLogo v-if="!SSR" />
           <PageHeaderDescription />
           <nav>
             <RouterLink to="/">Home</RouterLink>
