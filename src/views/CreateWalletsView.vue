@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import FormCreateWallets from "@/components/FormCreateWallets/FormCreateWallets.vue";
 import { usePrivateKeysStore } from "@/stores/privateKeys";
-// import { useAddressStore } from "@/stores/address";
+import { useAddressStore } from "@/stores/address";
 
 const privateKeysStore = usePrivateKeysStore();
 
-// const addressStore = useAddressStore();
+const addressStore = useAddressStore();
 
 function handleForm({ count }: { count: number }) {
   privateKeysStore.generatePrivatesKeys(count);
@@ -16,8 +16,8 @@ function handleForm({ count }: { count: number }) {
   <FormCreateWallets @submit="handleForm" />
 
   WIP code:
-  <pre>
-  {{ privateKeysStore.formattedPrivateKeys }}
-  </pre>
+  <div v-for="key in privateKeysStore.formattedPrivateKeys" :key="key.hex">
+    {{ key.hex }}: {{ addressStore.address.get(key.uint8Array) }}
+  </div>
   <pre></pre>
 </template>

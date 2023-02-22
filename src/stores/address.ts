@@ -7,10 +7,16 @@ export const useAddressStore = defineStore("address", () => {
   const privateKeysStore = usePrivateKeysStore();
 
   const address = computed(() =>
-    privateKeysStore.privateKeys.map((key) => getAddresses(key, false))
+    privateKeysStore.privateKeys.reduce((result, key) => {
+      result.set(key, getAddresses(key, false));
+      return result;
+    }, new Map())
   );
   const testAddress = computed(() =>
-    privateKeysStore.privateKeys.map((key) => getAddresses(key, true))
+    privateKeysStore.privateKeys.reduce((result, key) => {
+      result.set(key, getAddresses(key, true));
+      return result;
+    }, new Map())
   );
 
   return {
