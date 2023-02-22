@@ -44,8 +44,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 60px);
   vertical-align: middle;
+
+  @media (min-width: 1024px) {
+    & {
+      min-height: calc(100vh - 60px);
+    }
+  }
 }
 
 .page-description__content {
