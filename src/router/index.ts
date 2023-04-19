@@ -19,6 +19,9 @@ const router = createRouter({
       path: "/create-wallet",
       name: "CreateWallet",
       component: () => import("../views/CreateWalletsView.vue"),
+      meta: {
+        withParanoidMode: true,
+      },
     },
   ],
 });
