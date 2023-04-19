@@ -9,6 +9,7 @@ const emit = defineEmits<{
     e: "update",
     payload: {
       isTestNet: boolean;
+      isShownQRCode: boolean;
       isPaper: boolean;
       selectedKeyFormats: keyof PrivateKeyFormatted;
       selectedAddressFormats: AddressFormat;
@@ -17,6 +18,7 @@ const emit = defineEmits<{
 }>();
 
 const isTestNet = ref(false);
+const isShownQRCode = ref(false);
 const isPaper = ref(false);
 const keyFormatOptions = [
   { value: "hex", label: "hex" },
@@ -46,6 +48,7 @@ watchEffect(() => {
   emit("update", {
     isTestNet: isTestNet.value,
     isPaper: isPaper.value,
+    isShownQRCode: isShownQRCode.value,
     // todo fix types
     selectedKeyFormats: nextSelectedKeyFormats as keyof PrivateKeyFormatted,
     // todo fix types
@@ -62,6 +65,9 @@ watchEffect(() => {
   >
     <n-form-item label="Is Testnet" path="createWallets.isTestNet">
       <n-switch v-model:value="isTestNet" />
+    </n-form-item>
+    <n-form-item label="Show QR code" path="createWallets.isShownQRCode">
+      <n-switch v-model:value="isShownQRCode" />
     </n-form-item>
     <!--    <n-form-item label="Is Paper Wallet" path="createWallets.isPaper">-->
     <!--      <n-switch v-model:value="isPaper" />-->

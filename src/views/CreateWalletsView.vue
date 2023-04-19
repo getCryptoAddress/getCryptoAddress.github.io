@@ -24,12 +24,14 @@ const result = ref<
 
 type Filter = {
   isTestNet: boolean;
+  isShownQRCode: boolean;
   isPaper: boolean;
   selectedKeyFormats: keyof PrivateKeyFormatted;
   selectedAddressFormats: AddressFormat;
 };
 const filter = ref<Filter>({
   isTestNet: false,
+  isShownQRCode: false,
   isPaper: false,
   selectedKeyFormats: "wifMainnet",
   selectedAddressFormats: "tr",
@@ -81,6 +83,7 @@ function getAddresses(
       :key="keyAddress.keyFormatted.hex"
       :key-formatted="getKeyFormatted(keyAddress.keyFormatted)"
       :address="getAddresses(keyAddress.address, keyAddress.testAddress)"
+      :is-shown-qr-code="filter.isShownQRCode"
     />
   </n-list>
 </template>
