@@ -11,9 +11,12 @@ const key2 = new Uint8Array([
 ]);
 
 describe("[PrivateKeys][Util] getFormattedPrivateKey", () => {
-  it("validate keys", async () => {
+  it("Should return correct formats for key1", async () => {
     const formattedKey1 = await getFormattedPrivateKey(key1);
     expect(JSON.stringify(formattedKey1)).toMatchSnapshot();
+  });
+
+  it("Should return correct formats for key2", async () => {
     const formattedKey2 = await getFormattedPrivateKey(key2);
     expect(JSON.stringify(formattedKey2)).toMatchSnapshot();
   });

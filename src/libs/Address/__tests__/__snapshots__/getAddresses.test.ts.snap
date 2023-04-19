@@ -1,9 +1,9 @@
 // Vitest Snapshot v1
 
-exports[`[Address][Util] getAddresses > Main-net 1`] = `"{\\"tr\\":\\"bc1pdwq0u7qr2stgygm4ncqhyve4m06zm0czelvyhpwcesxsdj3hkqvq9me9wc\\",\\"pkh\\":\\"1E8VuVzEnUECHU1rHvhB8mabrxiNt5BN32\\",\\"wpkh\\":\\"bc1qjqz2el2le7zqj7jsns4ndcmqfnkgwux3rjhsdv\\"}"`;
+exports[`[Address][Util] getAddresses > Main-net > Should return correct addresses for key1 1`] = `"{\\"tr\\":\\"bc1pdwq0u7qr2stgygm4ncqhyve4m06zm0czelvyhpwcesxsdj3hkqvq9me9wc\\",\\"pkh\\":\\"1E8VuVzEnUECHU1rHvhB8mabrxiNt5BN32\\",\\"wpkh\\":\\"bc1qjqz2el2le7zqj7jsns4ndcmqfnkgwux3rjhsdv\\"}"`;
 
-exports[`[Address][Util] getAddresses > Main-net 2`] = `"{\\"tr\\":\\"bc1p2l8c6wap8c93726006v44sdmmv566mvrez7483pda0ylrg6fnaasuj6uzu\\",\\"pkh\\":\\"1NUmDDtSvxiRpjouKP9Ft99ZhSw1pqDCCn\\",\\"wpkh\\":\\"bc1qawdvw9jjf6jql4y7gtv8pfrq3zhmemx9cegmwr\\"}"`;
+exports[`[Address][Util] getAddresses > Main-net > Should return correct addresses for key2 1`] = `"{\\"tr\\":\\"bc1p2l8c6wap8c93726006v44sdmmv566mvrez7483pda0ylrg6fnaasuj6uzu\\",\\"pkh\\":\\"1NUmDDtSvxiRpjouKP9Ft99ZhSw1pqDCCn\\",\\"wpkh\\":\\"bc1qawdvw9jjf6jql4y7gtv8pfrq3zhmemx9cegmwr\\"}"`;
 
-exports[`[Address][Util] getAddresses > Test-net 1`] = `"{\\"tr\\":\\"tb1pdwq0u7qr2stgygm4ncqhyve4m06zm0czelvyhpwcesxsdj3hkqvqjn025h\\",\\"pkh\\":\\"mteTCZ5DbVfT4aVU1VfYxgnvixK5kpoEpi\\",\\"wpkh\\":\\"tb1qjqz2el2le7zqj7jsns4ndcmqfnkgwux3f5vrkl\\"}"`;
+exports[`[Address][Util] getAddresses > Test-net > Should return correct test-net addresses for key1 1`] = `"{\\"tr\\":\\"tb1pdwq0u7qr2stgygm4ncqhyve4m06zm0czelvyhpwcesxsdj3hkqvqjn025h\\",\\"pkh\\":\\"mteTCZ5DbVfT4aVU1VfYxgnvixK5kpoEpi\\",\\"wpkh\\":\\"tb1qjqz2el2le7zqj7jsns4ndcmqfnkgwux3f5vrkl\\"}"`;
 
-exports[`[Address][Util] getAddresses > Test-net 2`] = `"{\\"tr\\":\\"tb1p2l8c6wap8c93726006v44sdmmv566mvrez7483pda0ylrg6fnaast6vncn\\",\\"pkh\\":\\"n2ziWGyRjz9gbrHX2x7di4MtZSXiefQ4nr\\",\\"wpkh\\":\\"tb1qawdvw9jjf6jql4y7gtv8pfrq3zhmemx9jlng4s\\"}"`;
+exports[`[Address][Util] getAddresses > Test-net > Should return correct test-net addresses for key2 1`] = `"{\\"tr\\":\\"tb1p2l8c6wap8c93726006v44sdmmv566mvrez7483pda0ylrg6fnaast6vncn\\",\\"pkh\\":\\"n2ziWGyRjz9gbrHX2x7di4MtZSXiefQ4nr\\",\\"wpkh\\":\\"tb1qawdvw9jjf6jql4y7gtv8pfrq3zhmemx9jlng4s\\"}"`;

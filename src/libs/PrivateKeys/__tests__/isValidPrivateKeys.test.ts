@@ -22,26 +22,26 @@ const notValidKey2 = new Uint8Array([
 ]);
 
 describe("[PrivateKeys][Util] isValidPrivateKeys", () => {
-  it("validate keys", async () => {
+  it("Validate keys", async () => {
     assert.isTrue(
       await validatePrivateKeys([validKey1]),
-      "[validKey1] is not valid"
+      "[validKey1] should be valid"
     );
     assert.isTrue(
       await validatePrivateKeys([validKey1, validKey2]),
-      "[validKey1,validKey2] is valid"
+      "[validKey1,validKey2] should be valid"
     );
     assert.isFalse(
       await validatePrivateKeys([notValidKey1]),
-      "[notValidKey1] is not valid"
+      "[notValidKey1] should be invalid"
     );
     assert.isFalse(
       await validatePrivateKeys([notValidKey2]),
-      "[notValidKey2] is not valid"
+      "[notValidKey2] should be invalid"
     );
     assert.isFalse(
       await validatePrivateKeys([validKey1, notValidKey1]),
-      "[validKey1, notValidKey1] is not valid"
+      "[validKey1, notValidKey1] should be invalid"
     );
   });
 });

@@ -10,12 +10,23 @@ const key2 = new Uint8Array([
   131, 14, 18, 196, 57, 9, 203, 64, 196, 19, 26, 73, 35, 126, 80,
 ]);
 describe("[Address][Util] getAddresses", () => {
-  it("Main-net", async () => {
-    expect(JSON.stringify(getAddresses(key1))).toMatchSnapshot();
-    expect(JSON.stringify(getAddresses(key2))).toMatchSnapshot();
+  describe("Main-net", () => {
+    it("Should return correct addresses for key1", async () => {
+      expect(JSON.stringify(getAddresses(key1))).toMatchSnapshot();
+    });
+
+    it("Should return correct addresses for key2", async () => {
+      expect(JSON.stringify(getAddresses(key2))).toMatchSnapshot();
+    });
   });
-  it("Test-net", async () => {
-    expect(JSON.stringify(getAddresses(key1, true))).toMatchSnapshot();
-    expect(JSON.stringify(getAddresses(key2, true))).toMatchSnapshot();
+
+  describe("Test-net", () => {
+    it("Should return correct test-net addresses for key1", async () => {
+      expect(JSON.stringify(getAddresses(key1, true))).toMatchSnapshot();
+    });
+
+    it("Should return correct test-net addresses for key2", async () => {
+      expect(JSON.stringify(getAddresses(key2, true))).toMatchSnapshot();
+    });
   });
 });
