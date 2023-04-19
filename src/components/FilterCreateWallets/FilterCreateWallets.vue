@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { ref, watchEffect } from "vue";
 import { NSwitch, NForm, NFormItem, NSelect } from "naive-ui";
+import type AddressFormat from "@/libs/Address/types/AddressFormat";
+import type PrivateKeyFormatted from "@/libs/PrivateKeys/types/PrivateKeyFormatted";
 
 const emit = defineEmits<{
   (
@@ -8,8 +10,8 @@ const emit = defineEmits<{
     payload: {
       isTestNet: boolean;
       isPaper: boolean;
-      selectedKeyFormats: string;
-      selectedAddressFormats: string;
+      selectedKeyFormats: keyof PrivateKeyFormatted;
+      selectedAddressFormats: AddressFormat;
     }
   ): void;
 }>();
@@ -44,8 +46,10 @@ watchEffect(() => {
   emit("update", {
     isTestNet: isTestNet.value,
     isPaper: isPaper.value,
-    selectedKeyFormats: nextSelectedKeyFormats,
-    selectedAddressFormats: selectedAddressFormats.value,
+    // todo fix types
+    selectedKeyFormats: nextSelectedKeyFormats as keyof PrivateKeyFormatted,
+    // todo fix types
+    selectedAddressFormats: selectedAddressFormats.value as AddressFormat,
   });
 });
 </script>
