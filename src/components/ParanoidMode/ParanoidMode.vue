@@ -11,10 +11,12 @@ defineProps<{
   showParanoidMode?: boolean;
 }>();
 
+const { SSR } = import.meta.env;
+
 const isParanoidMode = ref(false);
 const isTrustDevice = ref(false);
 const isIncognito = ref(false);
-const isOffline = ref(!navigator.onLine);
+const isOffline = ref(SSR ? false : !navigator.onLine);
 
 const isParanoidModeEnabled = computed(() => {
   return (
