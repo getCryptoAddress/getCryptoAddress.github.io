@@ -1,17 +1,19 @@
 <script lang="ts" setup>
-import { NListItem } from "naive-ui";
-import type AddressFormat from "@/libs/Address/types/AddressFormat";
-import type PrivateKeyFormatted from "@/libs/PrivateKeys/types/PrivateKeyFormatted";
+import { NListItem, NTimeline, NTimelineItem } from "naive-ui";
 
 defineProps<{
-  address: Record<AddressFormat, string>;
-  keyFormatted: PrivateKeyFormatted;
+  address: string;
+  keyFormatted: string;
 }>();
 </script>
 
 <template>
   <n-list-item>
-    {{ keyFormatted.hex }}:
-    {{ address }}
+    <n-timeline>
+      <n-timeline-item title="Private Key" :content="keyFormatted" />
+      <n-timeline-item type="success" title="Address">
+        {{ address }}
+      </n-timeline-item>
+    </n-timeline>
   </n-list-item>
 </template>
