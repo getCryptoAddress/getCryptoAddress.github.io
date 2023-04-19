@@ -16,7 +16,7 @@ const themeProvider = computed(() => (isDark.value ? darkTheme : null));
 const toggleDark = useToggle(isDark);
 
 const route = useRoute();
-const showParanoidMode = computed(() => route.meta.withParanoidMode);
+const showParanoidMode = computed(() => !!route.meta.withParanoidMode);
 const isParanoidMode = ref(false);
 const isParanoidModeEnabled = ref(false);
 

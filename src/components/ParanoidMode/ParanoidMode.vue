@@ -47,7 +47,7 @@ onUnmounted(() => {
 });
 </script>
 <template>
-  <n-collapse-transition :show="!!showParanoidMode">
+  <n-collapse-transition :show="showParanoidMode">
     <n-space vertical :size="12">
       <div>
         <n-switch v-model:value="isParanoidMode" size="large">
