@@ -3,7 +3,7 @@ import FormCreateWallets from "@/components/FormCreateWallets/FormCreateWallets.
 import { usePrivateKeysStore } from "@/stores/privateKeys";
 import { useAddressStore } from "@/stores/address";
 import KeyAddressItem from "@/components/KeyAddressItem/KeyAddressItem.vue";
-import { NList, NDivider } from "naive-ui";
+import { NList, NDivider, NCollapseTransition } from "naive-ui";
 import { nextTick, ref } from "vue";
 import type AddressFormat from "@/libs/Address/types/AddressFormat";
 import type PrivateKeyFormatted from "@/libs/PrivateKeys/types/PrivateKeyFormatted";
@@ -74,16 +74,18 @@ function getAddresses(
 
 <template>
   <FormCreateWallets @submit="handleForm" />
-  <n-divider />
-  <FilterCreateWallets :results-count="result.length" @update="setFilter" />
+  <n-collapse-transition v-if="!SSR" :show="result.length > 0">
+    <n-divider />
+    <FilterCreateWallets :results-count="result.length" @update="setFilter" />
 
-  <n-list v-if="!SSR" hoverable>
-    <KeyAddressItem
-      v-for="keyAddress in result"
-      :key="keyAddress.keyFormatted.hex"
-      :key-formatted="getKeyFormatted(keyAddress.keyFormatted)"
-      :address="getAddresses(keyAddress.address, keyAddress.testAddress)"
-      :is-shown-qr-code="filter.isShownQRCode"
-    />
-  </n-list>
+    <n-list hoverable>
+      <KeyAddressItem
+        v-for="keyAddress in result"
+        :key="keyAddress.keyFormatted.hex"
+        :key-formatted="getKeyFormatted(keyAddress.keyFormatted)"
+        :address="getAddresses(keyAddress.address, keyAddress.testAddress)"
+        :is-shown-qr-code="filter.isShownQRCode"
+      />
+    </n-list>
+  </n-collapse-transition>
 </template>
