@@ -11,5 +11,5 @@ export default async function generatePrivateKey(): Promise<Uint8Array> {
   if (!secp256k1.validatePrivateKey(randomArray)) {
     return generatePrivateKey();
   }
-  return Object.seal(randomArray);
+  return randomArray;
 }

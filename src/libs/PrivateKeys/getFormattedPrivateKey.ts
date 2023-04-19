@@ -11,7 +11,7 @@ export default async function getFormattedPrivateKey(
   return Object.freeze({
     get uint8Array() {
       if (!cache["uint8Array"]) {
-        cache["uint8Array"] = Object.seal(randomArray);
+        cache["uint8Array"] = randomArray;
       }
       return cache["uint8Array"];
     },
