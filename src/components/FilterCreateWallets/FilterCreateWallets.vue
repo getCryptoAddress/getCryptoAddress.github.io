@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, watchEffect } from "vue";
+import { ref, watch, watchEffect } from "vue";
 import { NSwitch, NForm, NFormItem, NSelect } from "naive-ui";
 import type AddressFormat from "@/libs/Address/types/AddressFormat";
 import type PrivateKeyFormatted from "@/libs/PrivateKeys/types/PrivateKeyFormatted";
@@ -15,6 +15,10 @@ const emit = defineEmits<{
       selectedAddressFormats: AddressFormat;
     }
   ): void;
+}>();
+
+const props = defineProps<{
+  resultsCount: number;
 }>();
 
 const isTestNet = ref(false);
@@ -55,6 +59,13 @@ watchEffect(() => {
     selectedAddressFormats: selectedAddressFormats.value as AddressFormat,
   });
 });
+
+watch(
+  () => props.resultsCount,
+  (next) => {
+    isShownQRCode.value = next <= 80 ? isShownQRCode.value : false;
+  }
+);
 </script>
 
 <template>
@@ -67,7 +78,7 @@ watchEffect(() => {
       <n-switch v-model:value="isTestNet" />
     </n-form-item>
     <n-form-item label="Show QR code" path="createWallets.isShownQRCode">
-      <n-switch v-model:value="isShownQRCode" />
+      <n-switch :disabled="resultsCount > 80" v-model:value="isShownQRCode" />
     </n-form-item>
     <!--    <n-form-item label="Is Paper Wallet" path="createWallets.isPaper">-->
     <!--      <n-switch v-model:value="isPaper" />-->

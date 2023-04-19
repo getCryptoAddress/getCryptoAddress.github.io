@@ -75,7 +75,7 @@ function getAddresses(
 <template>
   <FormCreateWallets @submit="handleForm" />
   <n-divider />
-  <FilterCreateWallets @update="setFilter" />
+  <FilterCreateWallets :results-count="result.length" @update="setFilter" />
 
   <n-list v-if="!SSR" hoverable>
     <KeyAddressItem
