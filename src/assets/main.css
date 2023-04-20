@@ -1,5 +1,6 @@
 @import "normalize.css/normalize.css";
 @import './theme.css';
+@import './print.css';
 
 body {
     min-height: 100vh;

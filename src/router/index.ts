@@ -3,7 +3,8 @@ import {
   createRouter,
   createWebHistory,
 } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import CreateWalletsView from "../views/CreateWalletsView.vue";
+import PaperWalletsView from "../views/PaperWalletsView.vue";
 
 const router = createRouter({
   history: import.meta.env.SSR
@@ -13,12 +14,20 @@ const router = createRouter({
     {
       path: "/",
       name: "home",
-      component: HomeView,
+      component: import("../views/HomeView.vue"),
     },
     {
       path: "/create-wallet",
       name: "CreateWallet",
-      component: () => import("../views/CreateWalletsView.vue"),
+      component: CreateWalletsView,
+      meta: {
+        withParanoidMode: true,
+      },
+    },
+    {
+      path: "/create-paper-wallets",
+      name: "PaperWallets",
+      component: PaperWalletsView,
       meta: {
         withParanoidMode: true,
       },

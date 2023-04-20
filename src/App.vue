@@ -41,6 +41,10 @@ function switchTheme() {
             <RouterLink to="/">Home</RouterLink>
             |
             <RouterLink to="/create-wallet">Create Wallet</RouterLink>
+            |
+            <RouterLink to="/create-paper-wallets">
+              Create Paper Wallet
+            </RouterLink>
           </nav>
           <ThemeSwitcher :is-dark="isDark" @switch="switchTheme" />
           <ParanoidMode
