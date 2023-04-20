@@ -73,6 +73,7 @@ function getAddresses(
 </script>
 
 <template>
+  <h1>Generate Secret keys and Address</h1>
   <FormCreateWallets @submit="handleForm" />
   <n-collapse-transition v-if="!SSR" :show="result.length > 0">
     <n-divider />
