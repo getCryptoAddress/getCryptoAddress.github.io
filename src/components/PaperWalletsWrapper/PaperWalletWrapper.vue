@@ -55,22 +55,35 @@ async function downloadPNG() {
 </script>
 
 <template>
-  <n-space vertical :size="12">
-    <div class="paper-wallet-wrapper" ref="svgRef">
-      <slot />
-    </div>
-    <n-space :size="5">
-      <n-button @click="downloadSVG">Download SVG</n-button>
-      <n-button @click="downloadPNG">Download PNG</n-button>
+  <div class="paper-wallet-wrapper">
+    <n-space vertical :size="12">
+      <div class="paper-wallet-wrapper__image" ref="svgRef">
+        <slot />
+      </div>
+      <n-space :size="5">
+        <n-button @click="downloadSVG">Download SVG</n-button>
+        <n-button @click="downloadPNG">Download PNG</n-button>
+      </n-space>
     </n-space>
-  </n-space>
+  </div>
 </template>
 
 <style lang="scss" scoped>
 .paper-wallet-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.paper-wallet-wrapper__image {
   display: inline-block;
   background: white;
   border: 1px dashed #ccc;
-  border-radius: 2px;
+  border-radius: 4px;
+}
+
+html.dark {
+  .paper-wallet-wrapper__image {
+    border: none;
+  }
 }
 </style>

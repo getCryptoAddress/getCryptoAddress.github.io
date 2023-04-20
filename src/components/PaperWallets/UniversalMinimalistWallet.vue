@@ -12,14 +12,16 @@ watch(
   () => props.address,
   async (secret) => {
     QRAddress.value = await QRCode.toDataURL(secret);
-  }
+  },
+  { immediate: true }
 );
 const QRSecret = ref("");
 watch(
   () => props.secret,
   async (secret) => {
     QRSecret.value = await QRCode.toDataURL(secret);
-  }
+  },
+  { immediate: true }
 );
 
 // todo move to utils and add tests
