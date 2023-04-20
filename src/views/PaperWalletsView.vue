@@ -13,8 +13,10 @@ import {
 import UniversalMinimalistWallet from "@/components/PaperWallets/UniversalMinimalistWallet.vue";
 import PaperWalletWrapper from "@/components/PaperWalletsWrapper/PaperWalletWrapper.vue";
 
-const secret = ref("");
-const address = ref("");
+const secret = ref((history.state.secret as string) || "");
+const address = ref((history.state.address as string) || "");
+
+history.replaceState({ ...history.state, address: null, secret: null }, "");
 
 const formRef = ref<FormInst | null>(null);
 

@@ -65,10 +65,10 @@ function generateTextSVG(
 }
 
 const secretSVG = computed(() =>
-  generateTextSVG(props.secret, 185, 18, 220, 10, "#414141")
+  generateTextSVG(props.secret, 185, 18, 200, 10, "#414141")
 );
 const addressSVG = computed(() =>
-  generateTextSVG(props.address, 185, 348, 220, 10, "#414141")
+  generateTextSVG(props.address, 185, 348, 200, 10, "#414141")
 );
 </script>
 <template>
@@ -79,7 +79,7 @@ const addressSVG = computed(() =>
     fill="#FFFFFF"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink"
-    style="max-width: 100%"
+    style="max-width: 100%; height: auto"
   >
     <text
       x="40"

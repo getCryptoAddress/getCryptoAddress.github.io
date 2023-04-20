@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-import { NListItem, NSpace, NTimeline, NTimelineItem } from "naive-ui";
+import { NButton, NListItem, NSpace, NTimeline, NTimelineItem } from "naive-ui";
 import { onMounted, ref, watch } from "vue";
 import QRCode from "qrcode";
+import { useRouter } from "vue-router";
 
 const canvasAddress = ref();
 const canvasPrivateKey = ref();
@@ -10,6 +11,8 @@ const props = defineProps<{
   keyFormatted: string;
   isShownQrCode?: boolean;
 }>();
+
+const router = useRouter();
 
 function generateCanvasAddress() {
   if (!props.isShownQrCode) {
@@ -26,6 +29,17 @@ function generateCanvasPrivateKey() {
   }
   QRCode.toCanvas(canvasPrivateKey.value, props.keyFormatted, function (error) {
     if (error) console.error(error);
+  });
+}
+
+function handleGeneratePaperWallets() {
+  router.push({
+    name: "PaperWallets",
+    state: {
+      address: props.address,
+      secret: props.keyFormatted,
+      type: "Bitcoin", // todo
+    },
   });
 }
 
@@ -77,5 +91,10 @@ watch(
         </n-space>
       </n-timeline-item>
     </n-timeline>
+    <n-space :size="5">
+      <n-button @click="handleGeneratePaperWallets">
+        Generate paper wallet
+      </n-button>
+    </n-space>
   </n-list-item>
 </template>
