@@ -49,11 +49,13 @@ function switchTheme() {
             </RouterLink>
           </nav>
           <ThemeSwitcher :is-dark="isDark" @switch="switchTheme" />
-          <ParanoidMode
-            :showParanoidMode="showParanoidMode"
-            @is-paranoid-mode="isParanoidMode = $event"
-            @is-paranoid-mode-enabled="isParanoidModeEnabled = $event"
-          />
+          <div>
+            <ParanoidMode
+              :showParanoidMode="showParanoidMode"
+              @is-paranoid-mode="isParanoidMode = $event"
+              @is-paranoid-mode-enabled="isParanoidModeEnabled = $event"
+            />
+          </div>
         </PageHeaderWrapper>
       </template>
       <template #page>
