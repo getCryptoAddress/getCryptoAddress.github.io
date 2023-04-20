@@ -38,11 +38,13 @@ function switchTheme() {
           />
           <PageHeaderDescription />
           <nav>
-            <RouterLink to="/">Home</RouterLink>
+            <RouterLink :to="{ name: 'Home' }">Home</RouterLink>
             |
-            <RouterLink to="/create-wallet">Create Wallet</RouterLink>
+            <RouterLink :to="{ name: 'CreateWallet' }">
+              Create Wallet
+            </RouterLink>
             |
-            <RouterLink to="/create-paper-wallets">
+            <RouterLink :to="{ name: 'PaperWallets' }">
               Create Paper Wallet
             </RouterLink>
           </nav>

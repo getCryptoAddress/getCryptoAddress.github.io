@@ -13,7 +13,7 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      name: "home",
+      name: "Home",
       component: () => import("../views/HomeView.vue"),
     },
     {
@@ -25,7 +25,7 @@ const router = createRouter({
       },
     },
     {
-      path: "/create-paper-wallets",
+      path: "/create-paper-wallet",
       name: "PaperWallets",
       component: PaperWalletsView,
       meta: {
