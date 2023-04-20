@@ -68,7 +68,7 @@ function handleKeydown(e: KeyboardEvent) {
     <n-form-item label="Secret key" path="secret">
       <n-input
         v-model:value="formValue.secret"
-        placeholder="type secret key"
+        placeholder="Input secret key"
         type="textarea"
         :autosize="{
           minRows: 1,
@@ -81,7 +81,7 @@ function handleKeydown(e: KeyboardEvent) {
     <n-form-item label="Address" path="address">
       <n-input
         v-model:value="formValue.address"
-        placeholder="Type address"
+        placeholder="Input address"
         type="textarea"
         @keydown.enter.space.prevent="handleKeydown"
         :autosize="{
