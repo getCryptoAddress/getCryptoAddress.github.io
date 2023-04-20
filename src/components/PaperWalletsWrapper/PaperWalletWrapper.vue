@@ -41,9 +41,9 @@ async function downloadPNG() {
     img.onload = () => {
       const canvas = document.createElement("canvas");
       const ctx = canvas.getContext("2d");
-      canvas.width = svgElement.clientWidth;
-      canvas.height = svgElement.clientHeight;
-      ctx?.drawImage(img, 0, 0);
+      canvas.width = svgElement.clientWidth * 2;
+      canvas.height = svgElement.clientHeight * 2;
+      ctx?.drawImage(img, 0, 0, canvas.width, canvas.height);
 
       const pngData = canvas.toDataURL("image/png");
 
