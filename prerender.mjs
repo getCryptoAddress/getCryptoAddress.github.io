@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const routes = ["/", "/create-wallet"];
+const routes = ["/", "/create-wallet", "/create-paper-wallet"];
 
 import { createServer } from "vite";
 
