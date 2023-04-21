@@ -13,10 +13,16 @@ import {
 import UniversalMinimalistWallet from "@/components/PaperWallets/UniversalMinimalistWallet.vue";
 import PaperWalletWrapper from "@/components/PaperWalletsWrapper/PaperWalletWrapper.vue";
 
-const secret = ref((history.state.secret as string) || "");
-const address = ref((history.state.address as string) || "");
+const { SSR } = import.meta.env;
 
-history.replaceState({ ...history.state, address: null, secret: null }, "");
+const secret = ref("");
+const address = ref("");
+
+if (!SSR) {
+  secret.value = history.state.secret || secret.value;
+  address.value = history.state.address || address.value;
+  history.replaceState({ ...history.state, address: null, secret: null }, "");
+}
 
 const formRef = ref<FormInst | null>(null);
 
@@ -98,12 +104,12 @@ function handleKeydown(e: KeyboardEvent) {
     </n-button>
   </n-form>
 
-  <n-divider />
-  <div class="print-block">
-    <n-collapse-transition :show="!!(secret && address)">
+  <n-collapse-transition :show="!!(secret && address)">
+    <n-divider />
+    <div class="print-block">
       <PaperWalletWrapper>
         <UniversalMinimalistWallet :secret="secret" :address="address" />
       </PaperWalletWrapper>
-    </n-collapse-transition>
-  </div>
+    </div>
+  </n-collapse-transition>
 </template>
