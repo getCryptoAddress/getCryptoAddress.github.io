@@ -7,10 +7,14 @@ defineProps<{
   type: "svg" | "png";
 }>();
 
-const svgRef = ref();
+const walletElementRef = ref();
 
 function getSvgElement() {
-  return svgRef.value.querySelector("svg");
+  return walletElementRef.value.querySelector("svg");
+}
+
+function getCanvasElement() {
+  return walletElementRef.value.querySelector("canvas");
 }
 
 function getSvgObjectURL(svgElement: SVGElement) {
@@ -34,7 +38,7 @@ function downloadSVG() {
   download(svgURL, "wallet.svg");
 }
 
-async function downloadPNG() {
+async function downloadPngFromSvg() {
   const svgElement = getSvgElement();
   const svgURL = getSvgObjectURL(svgElement);
 
@@ -57,19 +61,28 @@ async function downloadPNG() {
     };
   });
 }
+
+function downloadPngFromCanvas() {
+  const canvas = getCanvasElement();
+  const pngData = canvas?.toDataURL("image/png");
+  download(pngData, "wallet.png");
+}
 </script>
 
 <template>
   <div class="paper-wallet-wrapper print-block">
     <n-space vertical :size="12">
-      <div class="paper-wallet-wrapper__image" ref="svgRef">
+      <div class="paper-wallet-wrapper__image" ref="walletElementRef">
         <slot />
       </div>
       <n-space vertical :size="5">
         <div>{{ title }}</div>
         <n-space v-if="type === 'svg'" :size="5">
           <n-button @click="downloadSVG">Download SVG</n-button>
-          <n-button @click="downloadPNG">Download PNG</n-button>
+          <n-button @click="downloadPngFromSvg">Download PNG</n-button>
+        </n-space>
+        <n-space v-if="type === 'png'" :size="5">
+          <n-button @click="downloadPngFromCanvas">Download PNG</n-button>
         </n-space>
       </n-space>
     </n-space>

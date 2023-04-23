@@ -9,8 +9,10 @@ import {
   NForm,
   NFormItem,
   NInput,
+  NSpace,
 } from "naive-ui";
 import UniversalMinimalistWalletPreview from "@/components/PaperWallets/UniversalMinimalistWallet/UniversalMinimalistWalletPreview.vue";
+import BitAddressBitcoinWalletPreview from "@/components/PaperWallets/BitAddressBitcoinWallet/BitAddressBitcoinWalletPreview.vue";
 
 const { SSR } = import.meta.env;
 
@@ -105,6 +107,9 @@ function handleKeydown(e: KeyboardEvent) {
 
   <n-collapse-transition :show="!!(secret && address)">
     <n-divider />
-    <UniversalMinimalistWalletPreview :address="address" :secret="secret" />
+    <n-space vertical :size="24">
+      <UniversalMinimalistWalletPreview :address="address" :secret="secret" />
+      <BitAddressBitcoinWalletPreview :address="address" :secret="secret" />
+    </n-space>
   </n-collapse-transition>
 </template>
