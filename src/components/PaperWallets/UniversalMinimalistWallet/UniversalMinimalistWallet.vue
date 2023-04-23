@@ -1,7 +1,7 @@
 <script setup lang="ts">
 /* eslint-disable vue/no-v-text-v-html-on-component */
 import { computed, ref, watch } from "vue";
-import InterFonts from "./fonts/Inter";
+import InterFonts from "../fonts/Inter";
 import QRCode from "qrcode";
 
 const props = defineProps<{

@@ -2,6 +2,11 @@
 import { NButton, NSpace } from "naive-ui";
 import { ref } from "vue";
 
+defineProps<{
+  title: string;
+  type: "svg" | "png";
+}>();
+
 const svgRef = ref();
 
 function getSvgElement() {
@@ -55,14 +60,17 @@ async function downloadPNG() {
 </script>
 
 <template>
-  <div class="paper-wallet-wrapper">
+  <div class="paper-wallet-wrapper print-block">
     <n-space vertical :size="12">
       <div class="paper-wallet-wrapper__image" ref="svgRef">
         <slot />
       </div>
-      <n-space :size="5">
-        <n-button @click="downloadSVG">Download SVG</n-button>
-        <n-button @click="downloadPNG">Download PNG</n-button>
+      <n-space vertical :size="5">
+        <div>{{ title }}</div>
+        <n-space v-if="type === 'svg'" :size="5">
+          <n-button @click="downloadSVG">Download SVG</n-button>
+          <n-button @click="downloadPNG">Download PNG</n-button>
+        </n-space>
       </n-space>
     </n-space>
   </div>

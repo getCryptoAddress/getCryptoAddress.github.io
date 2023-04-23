@@ -10,8 +10,7 @@ import {
   NFormItem,
   NInput,
 } from "naive-ui";
-import UniversalMinimalistWallet from "@/components/PaperWallets/UniversalMinimalistWallet.vue";
-import PaperWalletWrapper from "@/components/PaperWalletsWrapper/PaperWalletWrapper.vue";
+import UniversalMinimalistWalletPreview from "@/components/PaperWallets/UniversalMinimalistWallet/UniversalMinimalistWalletPreview.vue";
 
 const { SSR } = import.meta.env;
 
@@ -106,10 +105,6 @@ function handleKeydown(e: KeyboardEvent) {
 
   <n-collapse-transition :show="!!(secret && address)">
     <n-divider />
-    <div class="print-block">
-      <PaperWalletWrapper>
-        <UniversalMinimalistWallet :secret="secret" :address="address" />
-      </PaperWalletWrapper>
-    </div>
+    <UniversalMinimalistWalletPreview :address="address" :secret="secret" />
   </n-collapse-transition>
 </template>
