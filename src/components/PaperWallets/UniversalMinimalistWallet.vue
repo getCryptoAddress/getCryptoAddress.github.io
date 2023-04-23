@@ -1,5 +1,7 @@
 <script setup lang="ts">
+/* eslint-disable vue/no-v-text-v-html-on-component */
 import { computed, ref, watch } from "vue";
+import InterFonts from "./fonts/Inter";
 import QRCode from "qrcode";
 
 const props = defineProps<{
@@ -84,6 +86,9 @@ const addressSVG = computed(() =>
     xmlns="http://www.w3.org/2000/svg"
     style="max-width: 100%; height: auto"
   >
+    <defs>
+      <component :is="'style'" v-html="InterFonts" />
+    </defs>
     <text
       x="40"
       y="40"
