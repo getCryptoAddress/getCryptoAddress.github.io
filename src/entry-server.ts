@@ -2,7 +2,7 @@ import { createSSRApp } from "vue";
 import { renderToString } from "@vue/server-renderer";
 import { setup } from "@css-render/vue3-ssr";
 import App from "./App.vue";
-import router from "./router";
+import router from "./app/router";
 import { createPinia } from "pinia";
 
 export const render = async (url: string) => {

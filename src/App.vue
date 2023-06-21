@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import { RouterLink, RouterView, useRoute } from "vue-router";
-import PageTemplate from "@/components/PageTemplate/PageTemplate.vue";
-import PageHeaderDescription from "@/components/PageHeaderDescription/PageHeaderDescription.vue";
-import { computed, ref } from "vue";
+import PageTemplate from "@/shared/ui/PageTemplate/PageTemplate.vue";
+import PageHeaderDescription from "@/old/components/PageHeaderDescription/PageHeaderDescription.vue";
+import { computed, Ref, ref } from "vue";
 import { darkTheme, NConfigProvider } from "naive-ui";
 
 import { useDark, useToggle } from "@vueuse/core";
-import PageHeaderWrapper from "@/components/PageHeaderWrapper/PageHeaderWrapper.vue";
-import PageHeaderLogo from "@/components/PageHeaderLogo/PageHeaderLogo.vue";
-import ThemeSwitcher from "@/components/ThemeSwitcher/ThemeSwitcher.vue";
-import ParanoidMode from "@/components/ParanoidMode/ParanoidMode.vue";
+import PageHeaderWrapper from "@/old/components/PageHeaderWrapper/PageHeaderWrapper.vue";
+import PageHeaderLogo from "@/old/components/PageHeaderLogo/PageHeaderLogo.vue";
+import ThemeSwitcher from "@/entities/ThemeSwitcher/ThemeSwitcher.vue";
+import ParanoidMode from "@/old/components/ParanoidMode/ParanoidMode.vue";
 
-const isDark = useDark();
+const isDark = useDark() as Ref<boolean>;
 const themeProvider = computed(() => (isDark.value ? darkTheme : null));
 const toggleDark = useToggle(isDark);
 
