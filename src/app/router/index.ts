@@ -3,8 +3,8 @@ import {
   createRouter,
   createWebHistory,
 } from "vue-router";
-import CreateWalletsView from "../../pages/CreateWalletsView.vue";
-import PaperWalletsView from "../../pages/PaperWalletsView.vue";
+import CreateWalletsView from "../../pages/CreateWalletsPage/CreateWalletsPage.vue";
+import PaperWalletsView from "../../pages/PaperWalletsPage/PaperWalletsPage.vue";
 
 const router = createRouter({
   history: import.meta.env.SSR
@@ -14,7 +14,7 @@ const router = createRouter({
     {
       path: "/",
       name: "Home",
-      component: () => import("../../pages/HomeView.vue"),
+      component: () => import("@/pages/HomePage/HomePage.vue"),
     },
     {
       path: "/create-wallet",
