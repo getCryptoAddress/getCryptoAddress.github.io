@@ -1,7 +1,7 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import { mount } from "@vue/test-utils";
-import PageHeader from "../PageHeaderDescription/PageHeaderDescription.vue";
+import PageHeader from "@/entities/PageHeader/ui/PageHeaderDescription/PageHeaderDescription.vue";
 
 describe("HelloWorld", () => {
   it("renders properly", () => {
