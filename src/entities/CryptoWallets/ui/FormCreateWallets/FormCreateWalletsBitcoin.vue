@@ -1,16 +1,22 @@
 <script lang="ts" setup>
 import { computed, ref, watchEffect } from "vue";
-import { NSwitch, NFormItem, NSelect } from "naive-ui";
+import { NFormItem, NSelect, NSwitch } from "naive-ui";
 import type {
   BitcoinAddressFormat,
   BitcoinPrivateKeyFormat,
   BitcoinWalletPayload,
 } from "@/entities/CryptoWallets/lib/Wallets/walletsBitcoin/WalletsBitcoin.types";
 
+// todo need to refactor this component
+
 type PrivateKeyFormat = "hex" | "wif" | "wifUncompressed";
 
 const emit = defineEmits<{
   update: [BitcoinWalletPayload];
+}>();
+
+const props = defineProps<{
+  payload: BitcoinWalletPayload | null;
 }>();
 
 const keyFormatOptions = [
@@ -25,9 +31,28 @@ const addressFormatOptions = [
   { value: "wpkh", label: "wpkh" },
 ];
 
-const isTestNet = ref(false);
-const selectedKeyFormats = ref<PrivateKeyFormat>("wif");
-const selectedAddressFormats = ref<BitcoinAddressFormat>("tr");
+function convertKeyFormat(
+  format: BitcoinPrivateKeyFormat | undefined
+): PrivateKeyFormat | null {
+  if (!format) {
+    return null;
+  }
+  if (format === "mainnet" || format === "testnet") {
+    return "wif";
+  }
+  if (format === "mainnet-uncompressed" || format === "testnet-uncompressed") {
+    return "wifUncompressed";
+  }
+  return format;
+}
+
+const isTestNet = ref(props.payload?.isTestnet || false);
+const selectedKeyFormats = ref<PrivateKeyFormat>(
+  convertKeyFormat(props.payload?.formatPrivateKey) || "wif"
+);
+const selectedAddressFormats = ref<BitcoinAddressFormat>(
+  props.payload?.formatAddress || "tr"
+);
 
 const formattedSelectedKeyFormat = computed<BitcoinPrivateKeyFormat>(() => {
   if (selectedKeyFormats.value === "wif") {

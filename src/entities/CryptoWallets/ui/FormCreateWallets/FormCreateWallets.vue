@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import {
   NButton,
+  NCheckbox,
+  NCollapseTransition,
   NForm,
   NFormItem,
   NInputNumber,
@@ -8,14 +10,15 @@ import {
   NSlider,
   NSpace,
 } from "naive-ui";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import type FormCreateWalletsPayload from "@/entities/CryptoWallets/ui/FormCreateWallets/types/FormCreateWalletsPayload.type";
 import FormCreateWalletsBitcoin from "@/entities/CryptoWallets/ui/FormCreateWallets/FormCreateWalletsBitcoin.vue";
 import type { BitcoinWalletPayload } from "@/entities/CryptoWallets/lib/Wallets/walletsBitcoin/WalletsBitcoin.types";
 import type { WalletFactoryCryptoPlatform } from "@/entities/CryptoWallets/lib/Wallets/WalletFactory.types";
 
+// todo need to refactor this component
 const count = ref(20);
-const platform = ref<WalletFactoryCryptoPlatform>("Ethereum");
+const platform = ref<WalletFactoryCryptoPlatform>("Bitcoin");
 const platforms: { label: string; value: WalletFactoryCryptoPlatform }[] = [
   {
     label: "Bitcoin",
@@ -27,6 +30,8 @@ const platforms: { label: string; value: WalletFactoryCryptoPlatform }[] = [
   },
 ];
 const bitcoinPayload = ref<BitcoinWalletPayload | null>(null);
+const showAdvanced = ref(false);
+const isAdvancedPlatform = computed(() => ["Bitcoin"].includes(platform.value));
 
 const emit = defineEmits<{
   submit: [FormCreateWalletsPayload];
@@ -71,10 +76,20 @@ function updateBitcoinPayload(data: BitcoinWalletPayload) {
         <n-input-number v-model:value="count" :min="1" size="small" />
       </n-space>
     </n-form-item>
-    <FormCreateWalletsBitcoin
-      v-if="platform === 'Bitcoin'"
-      @update="updateBitcoinPayload"
-    />
+    <n-collapse-transition :show="isAdvancedPlatform">
+      <n-form-item :show-label="false">
+        <n-checkbox v-model:checked="showAdvanced">
+          Show advanced settings
+        </n-checkbox>
+      </n-form-item>
+    </n-collapse-transition>
+    <n-collapse-transition :show="showAdvanced && isAdvancedPlatform">
+      <FormCreateWalletsBitcoin
+        v-if="platform === 'Bitcoin'"
+        :payload="bitcoinPayload"
+        @update="updateBitcoinPayload"
+      />
+    </n-collapse-transition>
     <n-button type="primary" @click="handleForm">
       Generate new addresses
     </n-button>

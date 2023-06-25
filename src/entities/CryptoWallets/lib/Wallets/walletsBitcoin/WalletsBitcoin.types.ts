@@ -2,7 +2,7 @@ import type { WalletImportFormatType } from "@bitauth/libauth/build/module/lib/k
 
 export type CryptoPlatformBitcoin = "Bitcoin";
 export type BitcoinPrivateKey = Uint8Array;
-export type BitcoinPrivateKeyFormat = "array" | "hex" | WalletImportFormatType;
+export type BitcoinPrivateKeyFormat = "hex" | WalletImportFormatType;
 export type BitcoinAddressFormat = "tr" | "pkh" | "wpkh";
 
 export type BitcoinWalletPayload = {
