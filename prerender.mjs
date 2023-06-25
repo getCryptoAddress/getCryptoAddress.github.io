@@ -6,7 +6,7 @@ const routes = ["/", "/create-wallet", "/create-paper-wallet"];
 import { createServer } from "vite";
 
 const vite = await createServer({
-  server: { middlewareMode: "custom" }
+  server: { middlewareMode: "custom" },
 });
 
 const template = fs.readFileSync("dist/index.html", "utf-8");
@@ -17,7 +17,7 @@ for (const route of routes) {
   const pageHtml = template.replace("<!--app-html-->", appHtml);
   const pageFolder = path.join("dist", route);
   fs.mkdirSync(pageFolder, {
-    recursive: true
+    recursive: true,
   });
   fs.writeFileSync(path.join(pageFolder, "index.html"), pageHtml);
 }

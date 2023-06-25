@@ -1,0 +1,33 @@
+@import "../../../node_modules/normalize.css/normalize.css";
+@import 'theme.css';
+@import 'print.css';
+
+body {
+    min-height: 100vh;
+    color: var(--textColor1);
+    background: var(--bodyColor);
+    transition: color 0.3s, background-color 0.3s;
+    line-height: 1.6;
+    font-family: var(--fontFamily);
+    font-size: var(--fontSize);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    text-decoration: none;
+    color: var(--successColor);
+    transition: 0.4s;
+}
+
+@media (hover: hover) {
+    a:hover {
+        color: var(--successColorPressed);
+        text-decoration: underline;
+    }
+}
+
+p {
+    margin-bottom: 1rem;
+}
