@@ -51,9 +51,6 @@ export default class WalletsBitcoin extends WalletsAbstract<
     key: Uint8Array,
     format: BitcoinPrivateKeyFormat
   ): Promise<string> {
-    if (format === "array") {
-      return Array.from(key).toString();
-    }
     if (format === "hex") {
       return convertUint8ArrayToHex(key);
     }

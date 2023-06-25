@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterView, useRoute } from "vue-router";
 import PageTemplate from "@/shared/ui/PageTemplate/PageTemplate.vue";
-import { computed, Ref, ref } from "vue";
+import { computed, type Ref, ref } from "vue";
 import { darkTheme, NConfigProvider } from "naive-ui";
 
 import { useDark, useToggle } from "@vueuse/core";
