@@ -6,7 +6,7 @@ import { darkTheme, NConfigProvider } from "naive-ui";
 
 import { useDark, useToggle } from "@vueuse/core";
 import ThemeSwitcher from "@/entities/ThemeSwitcher/ThemeSwitcher.vue";
-import ParanoidMode from "@/old/components/ParanoidMode/ParanoidMode.vue";
+import ParanoidMode from "@/entities/ParanoidMode/ui/ParanoidMode.vue";
 import { PageHeader } from "@/entities/PageHeader";
 
 const isDark = useDark() as Ref<boolean>;

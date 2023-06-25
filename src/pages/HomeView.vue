@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TheWelcome from "@/old/components/CryptoDescription/CryptoDescription.vue";
+import TheWelcome from "@/pages/Home/ui/CryptoDescription/CryptoDescription.vue";
 </script>
 
 <template>
