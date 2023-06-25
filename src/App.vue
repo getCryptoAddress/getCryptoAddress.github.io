@@ -2,7 +2,7 @@
 import { RouterView, useRoute } from "vue-router";
 import PageTemplate from "@/shared/ui/PageTemplate/PageTemplate.vue";
 import { computed, type Ref, ref } from "vue";
-import { darkTheme, NConfigProvider } from "naive-ui";
+import { darkTheme, NConfigProvider, NMessageProvider } from "naive-ui";
 
 import { useDark, useToggle } from "@vueuse/core";
 import ThemeSwitcher from "@/entities/ThemeSwitcher/ThemeSwitcher.vue";
@@ -25,22 +25,24 @@ function switchTheme() {
 
 <template>
   <n-config-provider :theme="themeProvider">
-    <PageTemplate>
-      <template #navigation>
-        <PageHeader :is-paranoid-mode="isParanoidModeEnabled">
-          <ThemeSwitcher :is-dark="isDark" @switch="switchTheme" />
-          <div>
-            <ParanoidMode
-              :showParanoidMode="showParanoidMode"
-              @is-paranoid-mode="isParanoidMode = $event"
-              @is-paranoid-mode-enabled="isParanoidModeEnabled = $event"
-            />
-          </div>
-        </PageHeader>
-      </template>
-      <template #page>
-        <RouterView />
-      </template>
-    </PageTemplate>
+    <n-message-provider>
+      <PageTemplate>
+        <template #navigation>
+          <PageHeader :is-paranoid-mode="isParanoidModeEnabled">
+            <ThemeSwitcher :is-dark="isDark" @switch="switchTheme" />
+            <div>
+              <ParanoidMode
+                :showParanoidMode="showParanoidMode"
+                @is-paranoid-mode="isParanoidMode = $event"
+                @is-paranoid-mode-enabled="isParanoidModeEnabled = $event"
+              />
+            </div>
+          </PageHeader>
+        </template>
+        <template #page>
+          <RouterView />
+        </template>
+      </PageTemplate>
+    </n-message-provider>
   </n-config-provider>
 </template>

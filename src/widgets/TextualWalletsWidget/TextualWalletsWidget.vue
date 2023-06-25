@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import { NList, NDivider } from "naive-ui";
+import { NDivider, NList } from "naive-ui";
 import SimpleProgress from "@/shared/ui/SimpleProgress/SimpleProgress.vue";
 import CollapseTransition from "@/shared/ui/CollapseTransition/CollapseTransition.vue";
 import {
-  useWallet,
-  KeyAddressItem,
   FormCreateWallets,
   type FormCreateWalletsPayload,
+  KeyAddressItem,
+  useWallet,
 } from "@/entities/CryptoWallets";
+import { CopyWalletToClipboard } from "@/features/CopyWalletToClipboard";
 
 const { SSR } = import.meta.env;
 
@@ -36,7 +37,11 @@ function handleForm({ count, payload }: FormCreateWalletsPayload) {
         :key-formatted="wallet.privateKey"
         :address="wallet.address"
         :is-shown-qr-code="false"
-      />
+      >
+        <template #actions>
+          <CopyWalletToClipboard :wallet="wallet" />
+        </template>
+      </KeyAddressItem>
     </n-list>
   </CollapseTransition>
 </template>
