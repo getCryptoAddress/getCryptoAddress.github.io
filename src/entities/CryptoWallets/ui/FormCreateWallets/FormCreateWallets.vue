@@ -29,7 +29,11 @@ const platforms: { label: string; value: WalletFactoryCryptoPlatform }[] = [
     value: "Ethereum",
   },
 ];
-const bitcoinPayload = ref<BitcoinWalletPayload | null>(null);
+const bitcoinPayload = ref<BitcoinWalletPayload>({
+  isTestnet: false,
+  formatPrivateKey: "mainnet",
+  formatAddress: "tr",
+});
 const showAdvanced = ref(false);
 const isAdvancedPlatform = computed(() => ["Bitcoin"].includes(platform.value));
 

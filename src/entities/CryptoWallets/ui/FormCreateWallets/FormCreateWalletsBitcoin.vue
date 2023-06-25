@@ -16,7 +16,7 @@ const emit = defineEmits<{
 }>();
 
 const props = defineProps<{
-  payload: BitcoinWalletPayload | null;
+  payload: BitcoinWalletPayload;
 }>();
 
 const keyFormatOptions = [
@@ -31,12 +31,7 @@ const addressFormatOptions = [
   { value: "wpkh", label: "wpkh" },
 ];
 
-function convertKeyFormat(
-  format: BitcoinPrivateKeyFormat | undefined
-): PrivateKeyFormat | null {
-  if (!format) {
-    return null;
-  }
+function convertKeyFormat(format: BitcoinPrivateKeyFormat): PrivateKeyFormat {
   if (format === "mainnet" || format === "testnet") {
     return "wif";
   }
@@ -46,12 +41,12 @@ function convertKeyFormat(
   return format;
 }
 
-const isTestNet = ref(props.payload?.isTestnet || false);
+const isTestNet = ref(props.payload.isTestnet);
 const selectedKeyFormats = ref<PrivateKeyFormat>(
-  convertKeyFormat(props.payload?.formatPrivateKey) || "wif"
+  convertKeyFormat(props.payload.formatPrivateKey)
 );
 const selectedAddressFormats = ref<BitcoinAddressFormat>(
-  props.payload?.formatAddress || "tr"
+  props.payload.formatAddress
 );
 
 const formattedSelectedKeyFormat = computed<BitcoinPrivateKeyFormat>(() => {
