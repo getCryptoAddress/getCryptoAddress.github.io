@@ -3,20 +3,29 @@ import {
   NButton,
   NForm,
   NFormItem,
-  NInput,
   NInputNumber,
+  NSelect,
   NSlider,
   NSpace,
 } from "naive-ui";
 import { ref } from "vue";
 import type FormCreateWalletsPayload from "@/entities/CryptoWallets/ui/FormCreateWallets/types/FormCreateWalletsPayload.type";
-import type CryptoPlatform from "@/entities/CryptoWallets/lib/Wallets/types/CryptoPlatform.type";
 import FormCreateWalletsBitcoin from "@/entities/CryptoWallets/ui/FormCreateWallets/FormCreateWalletsBitcoin.vue";
 import type { BitcoinWalletPayload } from "@/entities/CryptoWallets/lib/Wallets/walletsBitcoin/WalletsBitcoin.types";
+import type { WalletFactoryCryptoPlatform } from "@/entities/CryptoWallets/lib/Wallets/WalletFactory.types";
 
 const count = ref(20);
-const platform = ref<CryptoPlatform>("Bitcoin");
-const platforms: CryptoPlatform[] = ["Bitcoin"];
+const platform = ref<WalletFactoryCryptoPlatform>("Ethereum");
+const platforms: { label: string; value: WalletFactoryCryptoPlatform }[] = [
+  {
+    label: "Bitcoin",
+    value: "Bitcoin",
+  },
+  {
+    label: "Ethereum",
+    value: "Ethereum",
+  },
+];
 const bitcoinPayload = ref<BitcoinWalletPayload | null>(null);
 
 const emit = defineEmits<{
@@ -33,6 +42,15 @@ function handleForm() {
       },
     });
   }
+  if (platform.value === "Ethereum") {
+    emit("submit", {
+      count: count.value,
+      payload: {
+        platform: platform.value,
+        payload: null,
+      },
+    });
+  }
 }
 
 function updateBitcoinPayload(data: BitcoinWalletPayload) {
@@ -43,12 +61,9 @@ function updateBitcoinPayload(data: BitcoinWalletPayload) {
 <template>
   <n-form>
     <n-form-item label="Crypto wallet" path="type">
-      <n-input
-        v-for="platform in platforms"
-        :key="platform"
-        :value="platform"
-        disabled
-      />
+      <n-space class="form-create-wallets__space" vertical>
+        <n-select v-model:value="platform" :options="platforms" />
+      </n-space>
     </n-form-item>
     <n-form-item label="Count tokens" path="count">
       <n-space class="form-create-wallets__space" vertical>
@@ -56,7 +71,10 @@ function updateBitcoinPayload(data: BitcoinWalletPayload) {
         <n-input-number v-model:value="count" :min="1" size="small" />
       </n-space>
     </n-form-item>
-    <FormCreateWalletsBitcoin @update="updateBitcoinPayload" />
+    <FormCreateWalletsBitcoin
+      v-if="platform === 'Bitcoin'"
+      @update="updateBitcoinPayload"
+    />
     <n-button type="primary" @click="handleForm">
       Generate new addresses
     </n-button>

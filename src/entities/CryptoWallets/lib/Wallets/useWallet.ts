@@ -1,14 +1,8 @@
 import { ref } from "vue";
-import type WalletPayload from "@/entities/CryptoWallets/lib/Wallets/types/WalletPayload.type";
-import type Wallet from "@/entities/CryptoWallets/lib/Wallets/types/Wallet.type";
-import WalletsBitcoin from "@/entities/CryptoWallets/lib/Wallets/walletsBitcoin/WalletsBitcoin";
+import type { WalletFactoryPayload } from "@/entities/CryptoWallets/lib/Wallets/WalletFactory.types";
+import type Wallet from "@/entities/CryptoWallets/lib/Wallets/useWallet.types";
+import WalletFactory from "@/entities/CryptoWallets/lib/Wallets/WalletFactory";
 
-function makeInstance(walletPayload: WalletPayload) {
-  if (walletPayload.platform === "Bitcoin") {
-    return new WalletsBitcoin();
-  }
-  throw new Error("Invalid platform");
-}
 export default function useBitcoinWallet() {
   const wallets = ref<Wallet[]>([]);
   const totalCount = ref(0);
@@ -17,14 +11,14 @@ export default function useBitcoinWallet() {
 
   async function makeWallets(
     countWallets: number,
-    walletPayload: WalletPayload
+    walletPayload: WalletFactoryPayload
   ) {
     if (isLoading.value) {
       return;
     }
     totalCount.value = countWallets;
     isLoading.value = true;
-    const instance = makeInstance(walletPayload);
+    const instance = WalletFactory(walletPayload);
 
     return instance
       .makeWallets(countWallets, walletPayload.payload, (nextCount) => {

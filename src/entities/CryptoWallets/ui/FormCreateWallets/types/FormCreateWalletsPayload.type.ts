@@ -1,7 +1,7 @@
-import type WalletPayload from "@/entities/CryptoWallets/lib/Wallets/types/WalletPayload.type";
+import type { WalletFactoryPayload } from "@/entities/CryptoWallets/lib/Wallets/WalletFactory.types";
 
 type FormCreateWalletsPayload = {
   count: number;
-  payload: WalletPayload;
+  payload: WalletFactoryPayload;
 };
 export default FormCreateWalletsPayload;
