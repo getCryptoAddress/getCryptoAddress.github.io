@@ -1,5 +1,5 @@
 import { createSSRApp } from "vue";
-import { renderToString } from "@vue/server-renderer";
+import { renderToString, type SSRContext } from "@vue/server-renderer";
 import { setup } from "@css-render/vue3-ssr";
 import App from "./App.vue";
 import router from "./app/router";
@@ -13,8 +13,11 @@ export const render = async (url: string) => {
   app.use(createPinia());
   app.use(router);
   setup(app);
-  const appHtml = await renderToString(app);
+
+  const ctx: SSRContext = {};
+  const appHtml = await renderToString(app, ctx);
   return {
     appHtml,
+    ctx,
   };
 };

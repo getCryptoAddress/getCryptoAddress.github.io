@@ -8,6 +8,7 @@ import { useDark, useToggle } from "@vueuse/core";
 import ThemeSwitcher from "@/entities/ThemeSwitcher/ThemeSwitcher.vue";
 import ParanoidMode from "@/entities/ParanoidMode/ui/ParanoidMode.vue";
 import { PageHeader } from "@/entities/PageHeader";
+import { HeaderMetadata } from "@/entities/HeaderMetadata";
 
 const isDark = useDark() as Ref<boolean>;
 const themeProvider = computed(() => (isDark.value ? darkTheme : null));
@@ -21,9 +22,20 @@ const isParanoidModeEnabled = ref(false);
 function switchTheme() {
   toggleDark();
 }
+
+const metaDataProvider = computed(() => ({
+  title: route.meta.title
+    ? `${route.meta.title} - Get Crypto Address`
+    : "Get Crypto Address",
+  description: route.meta.description as string | undefined,
+}));
 </script>
 
 <template>
+  <HeaderMetadata
+    :title="metaDataProvider.title"
+    :description="metaDataProvider.description"
+  />
   <n-config-provider :theme="themeProvider">
     <n-message-provider>
       <PageTemplate>

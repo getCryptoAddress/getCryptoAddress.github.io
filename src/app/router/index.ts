@@ -15,12 +15,18 @@ const router = createRouter({
       path: "/",
       name: "Home",
       component: () => import("@/pages/HomePage/HomePage.vue"),
+      meta: {
+        title: "Home",
+        description: "Home page",
+      },
     },
     {
       path: "/create-wallet",
       name: "CreateWallet",
       component: CreateWalletsView,
       meta: {
+        title: "Create Wallet",
+        description: "Create Wallet",
         withParanoidMode: true,
       },
     },
@@ -29,6 +35,8 @@ const router = createRouter({
       name: "PaperWallets",
       component: PaperWalletsView,
       meta: {
+        title: "Create Paper Wallet",
+        description: "Create Paper Wallet",
         withParanoidMode: true,
       },
     },
