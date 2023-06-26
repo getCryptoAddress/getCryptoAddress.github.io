@@ -21,9 +21,25 @@ const isParanoidModeEnabled = ref(false);
 function switchTheme() {
   toggleDark();
 }
+
+const metaDataProvider = computed(() => ({
+  title: route.meta.title
+    ? `${route.meta.title} - Get Crypto Address`
+    : "Get Crypto Address",
+  description: route.meta.description as string,
+}));
 </script>
 
 <template>
+  <Teleport to="head">
+    <title>{{ metaDataProvider.title }}</title>
+    <meta
+      v-if="metaDataProvider.description"
+      name="description"
+      :content="metaDataProvider.description"
+    />
+  </Teleport>
+
   <n-config-provider :theme="themeProvider">
     <n-message-provider>
       <PageTemplate>
