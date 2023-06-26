@@ -8,6 +8,7 @@ import { useDark, useToggle } from "@vueuse/core";
 import ThemeSwitcher from "@/entities/ThemeSwitcher/ThemeSwitcher.vue";
 import ParanoidMode from "@/entities/ParanoidMode/ui/ParanoidMode.vue";
 import { PageHeader } from "@/entities/PageHeader";
+import { HeaderMetadata } from "@/entities/HeaderMetadata";
 
 const isDark = useDark() as Ref<boolean>;
 const themeProvider = computed(() => (isDark.value ? darkTheme : null));
@@ -26,20 +27,15 @@ const metaDataProvider = computed(() => ({
   title: route.meta.title
     ? `${route.meta.title} - Get Crypto Address`
     : "Get Crypto Address",
-  description: route.meta.description as string,
+  description: route.meta.description as string | undefined,
 }));
 </script>
 
 <template>
-  <Teleport to="head">
-    <title>{{ metaDataProvider.title }}</title>
-    <meta
-      v-if="metaDataProvider.description"
-      name="description"
-      :content="metaDataProvider.description"
-    />
-  </Teleport>
-
+  <HeaderMetadata
+    :title="metaDataProvider.title"
+    :description="metaDataProvider.description"
+  />
   <n-config-provider :theme="themeProvider">
     <n-message-provider>
       <PageTemplate>
