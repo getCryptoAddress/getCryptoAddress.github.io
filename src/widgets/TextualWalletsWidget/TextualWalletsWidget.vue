@@ -9,13 +9,17 @@ import {
   useWallet,
 } from "@/entities/CryptoWallets";
 import { CopyWalletToClipboard } from "@/features/CopyWalletToClipboard";
+import { RedirectWalletToPaperWallet } from "@/features/RedirectWalletToPaperWallet";
+import { ref } from "vue";
 
 const { SSR } = import.meta.env;
 
 const { wallets, makeWallets, isLoading, count, totalCount } = useWallet();
+const selectedPlatform = ref("");
 
 function handleForm({ count, payload }: FormCreateWalletsPayload) {
   makeWallets(count, payload);
+  selectedPlatform.value = payload.platform;
 }
 </script>
 
@@ -40,6 +44,11 @@ function handleForm({ count, payload }: FormCreateWalletsPayload) {
       >
         <template #actions>
           <CopyWalletToClipboard :wallet="wallet" />
+          <RedirectWalletToPaperWallet
+            :private-key="wallet.privateKey"
+            :address="wallet.address"
+            :platform="selectedPlatform"
+          />
         </template>
       </KeyAddressItem>
     </n-list>
