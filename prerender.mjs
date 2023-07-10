@@ -17,10 +17,10 @@ for (const route of routes) {
   const { appHtml, ctx } = await render(route);
 
   const pageHtml = template
-    .replace("<!--app-head-->", ctx?.teleports?.head || '')
+    .replace("<!--app-head-->", ctx?.teleports?.head || "")
     .replace("<!--app-html-->", appHtml)
-    .replace(/<!--.*?-->/g, '')
-    .replaceAll(' data-vm-ssr="true"', '');
+    .replace(/<!--.*?-->/g, "")
+    .replaceAll(' data-vm-ssr="true"', "");
 
   const pageFolder = path.join("dist", route);
   fs.mkdirSync(pageFolder, {

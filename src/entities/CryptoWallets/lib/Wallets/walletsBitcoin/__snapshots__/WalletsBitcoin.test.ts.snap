@@ -1,89 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`WalletsBitcoin > should generate wallet correctly with payload: {
-  formatAddress: 'pkh',
-  formatPrivateKey: 'mainnet-uncompressed',
-  isTestnet: false
-} 1`] = `"{\\"privateKey\\":\\"5JpmqxVfUkujA3LbVUZqqKjhUTUQVKHnzCob2Lv3qsTv3Vwc6fX\\",\\"address\\":\\"1BvrfZfJQQisjzEwWxQHiAMm8b9xCrGn8c\\"}"`;
-
-exports[`WalletsBitcoin > should generate wallet correctly with payload: {
-  formatAddress: 'pkh',
-  formatPrivateKey: 'mainnet-uncompressed',
-  isTestnet: false
-} 2`] = `"{\\"privateKey\\":\\"5JqDPVMqTN87dwQaX3Ki8XpNAYFrhvZquQ3spAXYpWYSwoT78oT\\",\\"address\\":\\"133eaAGCnPwPF54o4i37DyNLWgLjgrt96K\\"}"`;
-
-exports[`WalletsBitcoin > should generate wallet correctly with payload: {
-  formatAddress: 'pkh',
-  formatPrivateKey: 'testnet-uncompressed',
-  isTestnet: true
-} 1`] = `"{\\"privateKey\\":\\"92bQRhKD4yys86qt7pTkhvHf87q7eUpzL9fY6yGZBcCxpZPvMn5\\",\\"address\\":\\"mrSoxckHDSA8X6iZEXNfY5a5zakf7rvdFU\\"}"`;
-
-exports[`WalletsBitcoin > should generate wallet correctly with payload: {
-  formatAddress: 'pkh',
-  formatPrivateKey: 'testnet-uncompressed',
-  isTestnet: true
-} 2`] = `"{\\"privateKey\\":\\"92bqyEBP3bCFbzus9PDd18NKpCcZs673FLuptnt4AFHViqoxxEx\\",\\"address\\":\\"mhZbsDMBbRNe2BYQnH1V3tafNfwSY2AcCK\\"}"`;
-
-exports[`WalletsBitcoin > should generate wallet correctly with payload: {
-  formatAddress: 'tr',
-  formatPrivateKey: 'mainnet-uncompressed',
-  isTestnet: false
-} 1`] = `"{\\"privateKey\\":\\"5JpmqxVfUkujA3LbVUZqqKjhUTUQVKHnzCob2Lv3qsTv3Vwc6fX\\",\\"address\\":\\"bc1pgfd8hvk80u8ys3yphs48wfa8a7rldjckhatcs5dhk0a9q7dr7zqsmknvf0\\"}"`;
-
-exports[`WalletsBitcoin > should generate wallet correctly with payload: {
-  formatAddress: 'tr',
-  formatPrivateKey: 'mainnet-uncompressed',
-  isTestnet: false
-} 2`] = `"{\\"privateKey\\":\\"5JqDPVMqTN87dwQaX3Ki8XpNAYFrhvZquQ3spAXYpWYSwoT78oT\\",\\"address\\":\\"bc1pflrar9kaegyee05fa7d5r3jqufl22q03xd6hmyxsr89s7dfrmkvslna73e\\"}"`;
-
-exports[`WalletsBitcoin > should generate wallet correctly with payload: {
-  formatAddress: 'tr',
-  formatPrivateKey: 'testnet-uncompressed',
-  isTestnet: true
-} 1`] = `"{\\"privateKey\\":\\"92bQRhKD4yys86qt7pTkhvHf87q7eUpzL9fY6yGZBcCxpZPvMn5\\",\\"address\\":\\"tb1pgfd8hvk80u8ys3yphs48wfa8a7rldjckhatcs5dhk0a9q7dr7zqsv79rnq\\"}"`;
-
-exports[`WalletsBitcoin > should generate wallet correctly with payload: {
-  formatAddress: 'tr',
-  formatPrivateKey: 'testnet-uncompressed',
-  isTestnet: true
-} 2`] = `"{\\"privateKey\\":\\"92bqyEBP3bCFbzus9PDd18NKpCcZs673FLuptnt4AFHViqoxxEx\\",\\"address\\":\\"tb1pflrar9kaegyee05fa7d5r3jqufl22q03xd6hmyxsr89s7dfrmkvsgmt3tk\\"}"`;
-
-exports[`WalletsBitcoin > should generate wallet correctly with payload: {
-  formatAddress: 'wpkh',
-  formatPrivateKey: 'mainnet',
-  isTestnet: false
-} 1`] = `"{\\"privateKey\\":\\"L1frw5wWqWoj4uKVEgfxYHhTeBqxfyj7yV6dAvu9Yhjo816Es5PS\\",\\"address\\":\\"bc1qwlsvxyz08qe6h5pxe9q0n2ucwy8d3zzs3j53eh\\"}"`;
-
-exports[`WalletsBitcoin > should generate wallet correctly with payload: {
-  formatAddress: 'wpkh',
-  formatPrivateKey: 'mainnet',
-  isTestnet: false
-} 2`] = `"{\\"privateKey\\":\\"L1hogGAxsNEQJ394wbFaYF24R6xaPdRxrGjhHB3qShPoWVg4XUCk\\",\\"address\\":\\"bc1qzec8yczhjvsnhfhd3f6lgsqzehnv86r6uqjqzp\\"}"`;
-
-exports[`WalletsBitcoin > should generate wallet correctly with payload: {
-  formatAddress: 'wpkh',
-  formatPrivateKey: 'mainnet-uncompressed',
-  isTestnet: false
-} 1`] = `"{\\"privateKey\\":\\"5JpmqxVfUkujA3LbVUZqqKjhUTUQVKHnzCob2Lv3qsTv3Vwc6fX\\",\\"address\\":\\"bc1qwlsvxyz08qe6h5pxe9q0n2ucwy8d3zzs3j53eh\\"}"`;
-
-exports[`WalletsBitcoin > should generate wallet correctly with payload: {
-  formatAddress: 'wpkh',
-  formatPrivateKey: 'mainnet-uncompressed',
-  isTestnet: false
-} 2`] = `"{\\"privateKey\\":\\"5JqDPVMqTN87dwQaX3Ki8XpNAYFrhvZquQ3spAXYpWYSwoT78oT\\",\\"address\\":\\"bc1qzec8yczhjvsnhfhd3f6lgsqzehnv86r6uqjqzp\\"}"`;
-
-exports[`WalletsBitcoin > should generate wallet correctly with payload: {
-  formatAddress: 'wpkh',
-  formatPrivateKey: 'testnet-uncompressed',
-  isTestnet: true
-} 1`] = `"{\\"privateKey\\":\\"92bQRhKD4yys86qt7pTkhvHf87q7eUpzL9fY6yGZBcCxpZPvMn5\\",\\"address\\":\\"tb1qwlsvxyz08qe6h5pxe9q0n2ucwy8d3zzsm50zzy\\"}"`;
-
-exports[`WalletsBitcoin > should generate wallet correctly with payload: {
-  formatAddress: 'wpkh',
-  formatPrivateKey: 'testnet-uncompressed',
-  isTestnet: true
-} 2`] = `"{\\"privateKey\\":\\"92bqyEBP3bCFbzus9PDd18NKpCcZs673FLuptnt4AFHViqoxxEx\\",\\"address\\":\\"tb1qzec8yczhjvsnhfhd3f6lgsqzehnv86r6kxfnej\\"}"`;
-
 exports[`WalletsBitcoin > should generate wallet correctly with payload: { formatAddress: 'pkh', formatPrivateKey: 'array', isTestnet: false } 1`] = `"{\\"privateKey\\":\\"92bQRhKD4yys86qt7pTkhvHf87q7eUpzL9fY6yGZBcCxpZPvMn5\\",\\"address\\":\\"1BvrfZfJQQisjzEwWxQHiAMm8b9xCrGn8c\\"}"`;
 
 exports[`WalletsBitcoin > should generate wallet correctly with payload: { formatAddress: 'pkh', formatPrivateKey: 'array', isTestnet: false } 2`] = `"{\\"privateKey\\":\\"92bqyEBP3bCFbzus9PDd18NKpCcZs673FLuptnt4AFHViqoxxEx\\",\\"address\\":\\"133eaAGCnPwPF54o4i37DyNLWgLjgrt96K\\"}"`;
@@ -104,9 +20,17 @@ exports[`WalletsBitcoin > should generate wallet correctly with payload: { forma
 
 exports[`WalletsBitcoin > should generate wallet correctly with payload: { formatAddress: 'pkh', formatPrivateKey: 'mainnet', isTestnet: false } 2`] = `"{\\"privateKey\\":\\"L1hogGAxsNEQJ394wbFaYF24R6xaPdRxrGjhHB3qShPoWVg4XUCk\\",\\"address\\":\\"133eaAGCnPwPF54o4i37DyNLWgLjgrt96K\\"}"`;
 
+exports[`WalletsBitcoin > should generate wallet correctly with payload: { formatAddress: 'pkh', formatPrivateKey: 'mainnet-uncompressed', isTestnet: false } 1`] = `"{\\"privateKey\\":\\"5JpmqxVfUkujA3LbVUZqqKjhUTUQVKHnzCob2Lv3qsTv3Vwc6fX\\",\\"address\\":\\"1BvrfZfJQQisjzEwWxQHiAMm8b9xCrGn8c\\"}"`;
+
+exports[`WalletsBitcoin > should generate wallet correctly with payload: { formatAddress: 'pkh', formatPrivateKey: 'mainnet-uncompressed', isTestnet: false } 2`] = `"{\\"privateKey\\":\\"5JqDPVMqTN87dwQaX3Ki8XpNAYFrhvZquQ3spAXYpWYSwoT78oT\\",\\"address\\":\\"133eaAGCnPwPF54o4i37DyNLWgLjgrt96K\\"}"`;
+
 exports[`WalletsBitcoin > should generate wallet correctly with payload: { formatAddress: 'pkh', formatPrivateKey: 'testnet', isTestnet: true } 1`] = `"{\\"privateKey\\":\\"cS2rPzwNGaVzELnkd6V5ucCXGR9NLRpp3XF6HMMf3pPoNk79beKj\\",\\"address\\":\\"mrSoxckHDSA8X6iZEXNfY5a5zakf7rvdFU\\"}"`;
 
 exports[`WalletsBitcoin > should generate wallet correctly with payload: { formatAddress: 'pkh', formatPrivateKey: 'testnet', isTestnet: true } 2`] = `"{\\"privateKey\\":\\"cS4o9BApJRvfTUcLL14huZX83LFz45XevJtAPbWLwp3omEnmXVXU\\",\\"address\\":\\"mhZbsDMBbRNe2BYQnH1V3tafNfwSY2AcCK\\"}"`;
+
+exports[`WalletsBitcoin > should generate wallet correctly with payload: { formatAddress: 'pkh', formatPrivateKey: 'testnet-uncompressed', isTestnet: true } 1`] = `"{\\"privateKey\\":\\"92bQRhKD4yys86qt7pTkhvHf87q7eUpzL9fY6yGZBcCxpZPvMn5\\",\\"address\\":\\"mrSoxckHDSA8X6iZEXNfY5a5zakf7rvdFU\\"}"`;
+
+exports[`WalletsBitcoin > should generate wallet correctly with payload: { formatAddress: 'pkh', formatPrivateKey: 'testnet-uncompressed', isTestnet: true } 2`] = `"{\\"privateKey\\":\\"92bqyEBP3bCFbzus9PDd18NKpCcZs673FLuptnt4AFHViqoxxEx\\",\\"address\\":\\"mhZbsDMBbRNe2BYQnH1V3tafNfwSY2AcCK\\"}"`;
 
 exports[`WalletsBitcoin > should generate wallet correctly with payload: { formatAddress: 'tr', formatPrivateKey: 'array', isTestnet: false } 1`] = `"{\\"privateKey\\":\\"92bQRhKD4yys86qt7pTkhvHf87q7eUpzL9fY6yGZBcCxpZPvMn5\\",\\"address\\":\\"bc1pgfd8hvk80u8ys3yphs48wfa8a7rldjckhatcs5dhk0a9q7dr7zqsmknvf0\\"}"`;
 
@@ -128,9 +52,17 @@ exports[`WalletsBitcoin > should generate wallet correctly with payload: { forma
 
 exports[`WalletsBitcoin > should generate wallet correctly with payload: { formatAddress: 'tr', formatPrivateKey: 'mainnet', isTestnet: false } 2`] = `"{\\"privateKey\\":\\"L1hogGAxsNEQJ394wbFaYF24R6xaPdRxrGjhHB3qShPoWVg4XUCk\\",\\"address\\":\\"bc1pflrar9kaegyee05fa7d5r3jqufl22q03xd6hmyxsr89s7dfrmkvslna73e\\"}"`;
 
+exports[`WalletsBitcoin > should generate wallet correctly with payload: { formatAddress: 'tr', formatPrivateKey: 'mainnet-uncompressed', isTestnet: false } 1`] = `"{\\"privateKey\\":\\"5JpmqxVfUkujA3LbVUZqqKjhUTUQVKHnzCob2Lv3qsTv3Vwc6fX\\",\\"address\\":\\"bc1pgfd8hvk80u8ys3yphs48wfa8a7rldjckhatcs5dhk0a9q7dr7zqsmknvf0\\"}"`;
+
+exports[`WalletsBitcoin > should generate wallet correctly with payload: { formatAddress: 'tr', formatPrivateKey: 'mainnet-uncompressed', isTestnet: false } 2`] = `"{\\"privateKey\\":\\"5JqDPVMqTN87dwQaX3Ki8XpNAYFrhvZquQ3spAXYpWYSwoT78oT\\",\\"address\\":\\"bc1pflrar9kaegyee05fa7d5r3jqufl22q03xd6hmyxsr89s7dfrmkvslna73e\\"}"`;
+
 exports[`WalletsBitcoin > should generate wallet correctly with payload: { formatAddress: 'tr', formatPrivateKey: 'testnet', isTestnet: true } 1`] = `"{\\"privateKey\\":\\"cS2rPzwNGaVzELnkd6V5ucCXGR9NLRpp3XF6HMMf3pPoNk79beKj\\",\\"address\\":\\"tb1pgfd8hvk80u8ys3yphs48wfa8a7rldjckhatcs5dhk0a9q7dr7zqsv79rnq\\"}"`;
 
 exports[`WalletsBitcoin > should generate wallet correctly with payload: { formatAddress: 'tr', formatPrivateKey: 'testnet', isTestnet: true } 2`] = `"{\\"privateKey\\":\\"cS4o9BApJRvfTUcLL14huZX83LFz45XevJtAPbWLwp3omEnmXVXU\\",\\"address\\":\\"tb1pflrar9kaegyee05fa7d5r3jqufl22q03xd6hmyxsr89s7dfrmkvsgmt3tk\\"}"`;
+
+exports[`WalletsBitcoin > should generate wallet correctly with payload: { formatAddress: 'tr', formatPrivateKey: 'testnet-uncompressed', isTestnet: true } 1`] = `"{\\"privateKey\\":\\"92bQRhKD4yys86qt7pTkhvHf87q7eUpzL9fY6yGZBcCxpZPvMn5\\",\\"address\\":\\"tb1pgfd8hvk80u8ys3yphs48wfa8a7rldjckhatcs5dhk0a9q7dr7zqsv79rnq\\"}"`;
+
+exports[`WalletsBitcoin > should generate wallet correctly with payload: { formatAddress: 'tr', formatPrivateKey: 'testnet-uncompressed', isTestnet: true } 2`] = `"{\\"privateKey\\":\\"92bqyEBP3bCFbzus9PDd18NKpCcZs673FLuptnt4AFHViqoxxEx\\",\\"address\\":\\"tb1pflrar9kaegyee05fa7d5r3jqufl22q03xd6hmyxsr89s7dfrmkvsgmt3tk\\"}"`;
 
 exports[`WalletsBitcoin > should generate wallet correctly with payload: { formatAddress: 'wpkh', formatPrivateKey: 'array', isTestnet: false } 1`] = `"{\\"privateKey\\":\\"92bQRhKD4yys86qt7pTkhvHf87q7eUpzL9fY6yGZBcCxpZPvMn5\\",\\"address\\":\\"bc1qwlsvxyz08qe6h5pxe9q0n2ucwy8d3zzs3j53eh\\"}"`;
 
@@ -148,6 +80,18 @@ exports[`WalletsBitcoin > should generate wallet correctly with payload: { forma
 
 exports[`WalletsBitcoin > should generate wallet correctly with payload: { formatAddress: 'wpkh', formatPrivateKey: 'hex', isTestnet: true } 2`] = `"{\\"privateKey\\":\\"85cd752cb471f5c8d51361bb469d566f13830e12c43909cb40c4131a49237e50\\",\\"address\\":\\"tb1qzec8yczhjvsnhfhd3f6lgsqzehnv86r6kxfnej\\"}"`;
 
+exports[`WalletsBitcoin > should generate wallet correctly with payload: { formatAddress: 'wpkh', formatPrivateKey: 'mainnet', isTestnet: false } 1`] = `"{\\"privateKey\\":\\"L1frw5wWqWoj4uKVEgfxYHhTeBqxfyj7yV6dAvu9Yhjo816Es5PS\\",\\"address\\":\\"bc1qwlsvxyz08qe6h5pxe9q0n2ucwy8d3zzs3j53eh\\"}"`;
+
+exports[`WalletsBitcoin > should generate wallet correctly with payload: { formatAddress: 'wpkh', formatPrivateKey: 'mainnet', isTestnet: false } 2`] = `"{\\"privateKey\\":\\"L1hogGAxsNEQJ394wbFaYF24R6xaPdRxrGjhHB3qShPoWVg4XUCk\\",\\"address\\":\\"bc1qzec8yczhjvsnhfhd3f6lgsqzehnv86r6uqjqzp\\"}"`;
+
+exports[`WalletsBitcoin > should generate wallet correctly with payload: { formatAddress: 'wpkh', formatPrivateKey: 'mainnet-uncompressed', isTestnet: false } 1`] = `"{\\"privateKey\\":\\"5JpmqxVfUkujA3LbVUZqqKjhUTUQVKHnzCob2Lv3qsTv3Vwc6fX\\",\\"address\\":\\"bc1qwlsvxyz08qe6h5pxe9q0n2ucwy8d3zzs3j53eh\\"}"`;
+
+exports[`WalletsBitcoin > should generate wallet correctly with payload: { formatAddress: 'wpkh', formatPrivateKey: 'mainnet-uncompressed', isTestnet: false } 2`] = `"{\\"privateKey\\":\\"5JqDPVMqTN87dwQaX3Ki8XpNAYFrhvZquQ3spAXYpWYSwoT78oT\\",\\"address\\":\\"bc1qzec8yczhjvsnhfhd3f6lgsqzehnv86r6uqjqzp\\"}"`;
+
 exports[`WalletsBitcoin > should generate wallet correctly with payload: { formatAddress: 'wpkh', formatPrivateKey: 'testnet', isTestnet: true } 1`] = `"{\\"privateKey\\":\\"cS2rPzwNGaVzELnkd6V5ucCXGR9NLRpp3XF6HMMf3pPoNk79beKj\\",\\"address\\":\\"tb1qwlsvxyz08qe6h5pxe9q0n2ucwy8d3zzsm50zzy\\"}"`;
 
 exports[`WalletsBitcoin > should generate wallet correctly with payload: { formatAddress: 'wpkh', formatPrivateKey: 'testnet', isTestnet: true } 2`] = `"{\\"privateKey\\":\\"cS4o9BApJRvfTUcLL14huZX83LFz45XevJtAPbWLwp3omEnmXVXU\\",\\"address\\":\\"tb1qzec8yczhjvsnhfhd3f6lgsqzehnv86r6kxfnej\\"}"`;
+
+exports[`WalletsBitcoin > should generate wallet correctly with payload: { formatAddress: 'wpkh', formatPrivateKey: 'testnet-uncompressed', isTestnet: true } 1`] = `"{\\"privateKey\\":\\"92bQRhKD4yys86qt7pTkhvHf87q7eUpzL9fY6yGZBcCxpZPvMn5\\",\\"address\\":\\"tb1qwlsvxyz08qe6h5pxe9q0n2ucwy8d3zzsm50zzy\\"}"`;
+
+exports[`WalletsBitcoin > should generate wallet correctly with payload: { formatAddress: 'wpkh', formatPrivateKey: 'testnet-uncompressed', isTestnet: true } 2`] = `"{\\"privateKey\\":\\"92bqyEBP3bCFbzus9PDd18NKpCcZs673FLuptnt4AFHViqoxxEx\\",\\"address\\":\\"tb1qzec8yczhjvsnhfhd3f6lgsqzehnv86r6kxfnej\\"}"`;
