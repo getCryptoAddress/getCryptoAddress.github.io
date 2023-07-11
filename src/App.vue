@@ -9,6 +9,7 @@ import ThemeSwitcher from "@/entities/ThemeSwitcher/ThemeSwitcher.vue";
 import ParanoidMode from "@/entities/ParanoidMode/ui/ParanoidMode.vue";
 import { PageHeader } from "@/entities/PageHeader";
 import { HeaderMetadata } from "@/entities/HeaderMetadata";
+import initTracker from "@/shared/lib/tracker/initTracker";
 
 const isDark = useDark() as Ref<boolean>;
 const themeProvider = computed(() => (isDark.value ? darkTheme : null));
@@ -29,6 +30,8 @@ const metaDataProvider = computed(() => ({
     : "Get Crypto Address",
   description: route.meta.description as string | undefined,
 }));
+
+initTracker();
 </script>
 
 <template>
