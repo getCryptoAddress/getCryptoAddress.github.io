@@ -93,7 +93,7 @@ function printPaperWallet() {
   if (!canvasEl.value) {
     return;
   }
-  debugger;
+
   const data = window.document.querySelector(
     "#paper-wallet-canvas"
   ) as HTMLElement;
@@ -122,6 +122,7 @@ function printPaperWallet() {
         :items="items"
         ref="canvasEl"
         id="paper-wallet-canvas"
+        @update="items = $event"
       />
     </div>
   </div>
