@@ -31,3 +31,8 @@ a {
 p {
     margin-bottom: 1rem;
 }
+
+.drawer-fixed {
+    position: fixed;
+    -webkit-backface-visibility: hidden;
+}

@@ -11,8 +11,8 @@ import {
   NInput,
   NSpace,
 } from "naive-ui";
-import UniversalMinimalistWalletPreview from "@/entities/PaperWallets/ui/PaperWallets/UniversalMinimalistWallet/UniversalMinimalistWalletPreview.vue";
-import BitAddressBitcoinWalletPreview from "@/entities/PaperWallets/ui/PaperWallets/BitAddressBitcoinWallet/BitAddressBitcoinWalletPreview.vue";
+import UniversalMinimalistWalletPreview from "@/entities/PaperWallets/ui/PaperWalletsOld/UniversalMinimalistWallet/UniversalMinimalistWalletPreview.vue";
+import BitAddressBitcoinWalletPreview from "@/entities/PaperWallets/ui/PaperWalletsOld/BitAddressBitcoinWallet/BitAddressBitcoinWalletPreview.vue";
 
 const { SSR } = import.meta.env;
 

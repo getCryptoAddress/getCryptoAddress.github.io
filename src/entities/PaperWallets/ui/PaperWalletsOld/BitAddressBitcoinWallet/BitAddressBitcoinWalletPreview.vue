@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import PaperWalletWrapper from "@/entities/PaperWallets/ui/PaperWalletsWrapper/PaperWalletWrapper.vue";
-import BitAddressBitcoinWallet from "@/entities/PaperWallets/ui/PaperWallets/BitAddressBitcoinWallet/BitAddressBitcoinWallet.vue";
+import PaperWalletWrapper from "@/entities/PaperWallets/ui/PaperWalletsWrapperOld/PaperWalletWrapper.vue";
+import BitAddressBitcoinWallet from "@/entities/PaperWallets/ui/PaperWalletsOld/BitAddressBitcoinWallet/BitAddressBitcoinWallet.vue";
 
 defineProps<{
   secret: string;

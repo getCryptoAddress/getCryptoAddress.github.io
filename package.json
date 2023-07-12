@@ -19,10 +19,12 @@
     "@scure/btc-signer": "^1.0.1",
     "@vueuse/core": "^9.13.0",
     "ethereum-cryptography": "^2.0.0",
+    "html2canvas": "^1.4.1",
     "normalize.css": "^8.0.1",
     "pinia": "^2.1.4",
     "qrcode": "^1.5.3",
     "vue": "^3.3.4",
+    "vue-draggable-next": "^2.2.1",
     "vue-router": "^4.2.4"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import PaperWalletWrapper from "@/entities/PaperWallets/ui/PaperWalletsWrapper/PaperWalletWrapper.vue";
-import UniversalMinimalistWallet from "@/entities/PaperWallets/ui/PaperWallets/UniversalMinimalistWallet/UniversalMinimalistWallet.vue";
+import PaperWalletWrapper from "@/entities/PaperWallets/ui/PaperWalletsWrapperOld/PaperWalletWrapper.vue";
+import UniversalMinimalistWallet from "@/entities/PaperWallets/ui/PaperWalletsOld/UniversalMinimalistWallet/UniversalMinimalistWallet.vue";
 
 defineProps<{
   secret: string;
