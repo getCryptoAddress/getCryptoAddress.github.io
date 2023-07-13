@@ -25,40 +25,24 @@ function handleUpdateValue(item: PaperWalletItem) {
   emit("update", nextItems);
 }
 
-function availableDraggable(element: Element): boolean {
-  if (element.getAttribute("data-drag") !== null) {
-    return true;
-  }
-  if (element.parentElement) {
-    return availableDraggable(element.parentElement);
-  }
-  return false;
-}
-
-function handleSelectedDragElement(event: any) {
-  const originalEvent: PointerEvent = event.originalEvent;
-  if (availableDraggable(originalEvent.target as Element)) {
-    return;
-  }
-
-  originalEvent.preventDefault();
-  originalEvent.stopImmediatePropagation();
-}
-
 function removeItem(item: PaperWalletItem) {
   emit(
     "update",
     props.items.filter((currentItem) => currentItem.id !== item.id)
   );
 }
+
+function handleChangeListOrder(items: PaperWalletItem[]) {
+  emit("update", items);
+}
 </script>
 
 <template>
   <div class="paper-wallet-canvas">
     <Draggable
-      :list="items"
-      @choose="handleSelectedDragElement"
-      @start="handleSelectedDragElement"
+      :model-value="items"
+      @update:model-value="handleChangeListOrder"
+      handle="[data-drag]"
     >
       <template v-for="item in items" :key="item.id">
         <PaperWalletItemText
