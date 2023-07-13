@@ -4,27 +4,32 @@ import { onMounted, ref, watch } from "vue";
 
 const props = defineProps<{
   text: string;
+  width?: number;
+  color?: string;
+  background?: string;
 }>();
 
-const canvasQRCode = ref();
+const QRCodeEl = ref();
 
 function generateCanvasAddress() {
   if (!props.text) {
     return;
   }
 
-  // todo or better svg?
-  // QRCode.toString(props.text, { type: "svg" })
-  //   .then((url) => {
-  //     console.log(url);
-  //   })
-  //   .catch((err) => {
-  //     console.error(err);
-  //   });
-
-  QRCode.toCanvas(canvasQRCode.value, props.text, function (error) {
-    if (error) console.error(error);
-  });
+  QRCode.toString(props.text, {
+    type: "svg",
+    width: props.width,
+    color: {
+      dark: props.color,
+      light: props.background,
+    },
+  })
+    .then((url) => {
+      QRCodeEl.value.innerHTML = url;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 }
 
 onMounted(() => {
@@ -40,5 +45,5 @@ watch(
 </script>
 
 <template>
-  <canvas ref="canvasQRCode" />
+  <div ref="QRCodeEl" />
 </template>
