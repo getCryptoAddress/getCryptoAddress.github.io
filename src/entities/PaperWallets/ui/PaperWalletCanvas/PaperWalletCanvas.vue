@@ -5,6 +5,7 @@ import { onUnmounted } from "vue";
 
 const emit = defineEmits<{
   update: [PaperWalletItem[]];
+  select: [PaperWalletItem];
 }>();
 
 const props = defineProps<{
@@ -71,6 +72,7 @@ function updatePositionInItem(x: number, y: number, item: PaperWalletItem) {
   <div class="paper-wallet-canvas" @mousemove="handleMouseMove">
     <template v-for="item in items" :key="item.id">
       <div
+        @dblclick="emit('select', item)"
         v-if="item.type === 'TEXT'"
         @mousedown="handleMouseDown(item, $event)"
         :style="{
@@ -83,6 +85,7 @@ function updatePositionInItem(x: number, y: number, item: PaperWalletItem) {
           top: item.position.y + 'px',
           width: item.position.width + 'px',
           overflowWrap: 'anywhere',
+          userSelect: 'none',
         }"
       >
         {{ item.text }}

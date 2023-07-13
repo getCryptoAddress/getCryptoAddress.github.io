@@ -15,6 +15,12 @@ export const usePaperWallet = defineStore("paperWallet", () => {
     );
   }
 
+  function removeItem(item: PaperWalletItem) {
+    items.value = items.value.filter(
+      (currentItem) => currentItem.id !== item.id
+    );
+  }
+
   async function addItemText(text = "Text") {
     const item: PaperWalletItem = {
       id: `${Date.now()}`,
@@ -72,5 +78,6 @@ export const usePaperWallet = defineStore("paperWallet", () => {
     addItemText,
     addItemImage,
     addItemQRCode,
+    removeItem,
   };
 });
