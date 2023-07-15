@@ -3,9 +3,12 @@ import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.
 import PaperWalletFormPosition from "@/entities/PaperWallets/ui/PaperWalletForms/PaperWalletFormPosition.vue";
 import PaperWalletFormText from "@/entities/PaperWallets/ui/PaperWalletForms/PaperWalletFormText.vue";
 import PaperWalletFormQRCode from "@/entities/PaperWallets/ui/PaperWalletForms/PaperWalletFormQRCode.vue";
+import { NButton, NIcon } from "naive-ui";
+import { Delete20Regular } from "@vicons/fluent";
 
 const emit = defineEmits<{
   updateItem: [PaperWalletItem];
+  removeItem: [PaperWalletItem];
 }>();
 
 defineProps<{
@@ -30,5 +33,13 @@ function handleUpdate(item: PaperWalletItem) {
       :item="item"
       @update="handleUpdate"
     />
+    <n-button @click="emit('removeItem', item)">
+      <template #icon>
+        <NIcon>
+          <Delete20Regular />
+        </NIcon>
+      </template>
+      Remove
+    </n-button>
   </div>
 </template>

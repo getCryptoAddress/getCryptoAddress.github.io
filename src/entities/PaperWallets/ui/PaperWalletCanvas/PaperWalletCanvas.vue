@@ -139,6 +139,7 @@ function updatePositionInItem(x: number, y: number, item: PaperWalletItem) {
   overflow: hidden;
   margin: 1px auto;
   background: white;
+  user-select: none;
 
   &--edit-mode {
     outline: 1px dashed #555;

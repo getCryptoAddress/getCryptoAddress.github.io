@@ -1,12 +1,11 @@
 <script lang="ts" setup>
-import { NButton, NIcon, NSpace, NUpload, NUploadDragger } from "naive-ui";
+import { NButton, NSpace, NUpload, NUploadDragger } from "naive-ui";
 import PaperWalletCanvas from "@/entities/PaperWallets/ui/PaperWalletCanvas/PaperWalletCanvas.vue";
 import PaperWalletItems from "@/entities/PaperWallets/ui/PaperWalletItems/PaperWalletItems.vue";
 import { computed, ref } from "vue";
 import html2canvas from "html2canvas";
 import { VueDraggableNext as Draggable } from "vue-draggable-next";
 import { usePaperWallet } from "@/entities/PaperWallets/model/paperWallet";
-import { ArrowMove20Filled, Delete20Regular } from "@vicons/fluent";
 import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
 import PaperWalletItemProps from "@/entities/PaperWallets/ui/PaperWalletItemProps/PaperWalletItemProps.vue";
 import PaperWalletWrapper from "@/entities/PaperWallets/ui/PaperWalletWrapper/PaperWalletWrapper.vue";
@@ -23,6 +22,14 @@ const currentItem = computed<PaperWalletItem | null>(() => {
     null
   );
 });
+
+function handleSelectItem(item: PaperWalletItem | null) {
+  if (!item) {
+    currentItemId.value = null;
+    return;
+  }
+  currentItemId.value = item.id;
+}
 
 function handleChange({ file }: any) {
   paperWalletStore.addItemImage(URL.createObjectURL(file.file));
@@ -64,7 +71,7 @@ function printPaperWallet() {
         ref="canvasEl"
         id="paper-wallet-canvas"
         @update="paperWalletStore.setItems($event)"
-        @select="currentItemId = $event?.id || null"
+        @select="handleSelectItem"
       />
     </template>
     <template #properties>
@@ -72,38 +79,19 @@ function printPaperWallet() {
         v-if="currentItem"
         :item="currentItem"
         @updateItem="paperWalletStore.updateItem($event)"
+        @removeItem="paperWalletStore.removeItem($event)"
       />
     </template>
     <template #items>
       <Draggable
         :model-value="paperWalletStore.items"
         @update:model-value="paperWalletStore.setItems($event)"
-        handle="[data-drag]"
       >
-        <PaperWalletItems :items="paperWalletStore.items">
-          <template #actions="{ item }">
-            <n-space size="small" style="align-items: center">
-              <n-button
-                size="small"
-                @click="paperWalletStore.removeItem(item)"
-                circle
-              >
-                <template #icon>
-                  <NIcon>
-                    <Delete20Regular />
-                  </NIcon>
-                </template>
-              </n-button>
-              <n-button size="small" circle data-drag>
-                <template #icon>
-                  <NIcon>
-                    <ArrowMove20Filled />
-                  </NIcon>
-                </template>
-              </n-button>
-            </n-space>
-          </template>
-        </PaperWalletItems>
+        <PaperWalletItems
+          :items="paperWalletStore.items"
+          :selectedItemId="currentItemId"
+          @selectItem="handleSelectItem"
+        />
       </Draggable>
       <n-space style="align-items: center">
         <n-upload
