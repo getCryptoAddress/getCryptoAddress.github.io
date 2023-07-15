@@ -14,6 +14,9 @@
       <div class="paper-wallet-wrapper__items">
         <slot name="items" />
       </div>
+      <div class="paper-wallet-wrapper__actions">
+        <slot name="actions" />
+      </div>
     </div>
   </div>
 </template>
@@ -29,6 +32,7 @@
   grid-template-rows: auto;
   grid-template-areas:
     "canvas canvas"
+    "actions actions"
     "items properties";
   grid-gap: 1rem;
 }
@@ -37,6 +41,7 @@
     grid-template-columns: 1fr;
     grid-template-areas:
       "canvas"
+      "actions"
       "properties"
       "items";
   }
@@ -58,5 +63,8 @@
 
 .paper-wallet-wrapper__items {
   grid-area: items;
+}
+.paper-wallet-wrapper__actions {
+  grid-area: actions;
 }
 </style>

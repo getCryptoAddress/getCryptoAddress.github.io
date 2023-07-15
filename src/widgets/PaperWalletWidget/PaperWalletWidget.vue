@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { NButton, NSpace, NUpload, NUploadDragger } from "naive-ui";
+import { NButton } from "naive-ui";
 import PaperWalletCanvas from "@/entities/PaperWallets/ui/PaperWalletCanvas/PaperWalletCanvas.vue";
 import PaperWalletItems from "@/entities/PaperWallets/ui/PaperWalletItems/PaperWalletItems.vue";
 import { computed, ref } from "vue";
@@ -9,6 +9,7 @@ import { usePaperWallet } from "@/entities/PaperWallets/model/paperWallet";
 import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
 import PaperWalletItemProps from "@/entities/PaperWallets/ui/PaperWalletItemProps/PaperWalletItemProps.vue";
 import PaperWalletWrapper from "@/entities/PaperWallets/ui/PaperWalletWrapper/PaperWalletWrapper.vue";
+import { AddPaperWalletItemButton } from "@/features/AddPaperWalletItemButton";
 
 const paperWalletStore = usePaperWallet();
 
@@ -31,8 +32,8 @@ function handleSelectItem(item: PaperWalletItem | null) {
   currentItemId.value = item.id;
 }
 
-function handleChange({ file }: any) {
-  paperWalletStore.addItemImage(URL.createObjectURL(file.file));
+function handleAddImage(src: string) {
+  paperWalletStore.addItemImage(src);
 }
 
 function handleAddText() {
@@ -93,17 +94,13 @@ function printPaperWallet() {
           @selectItem="handleSelectItem"
         />
       </Draggable>
-      <n-space style="align-items: center">
-        <n-upload
-          :default-upload="false"
-          :show-file-list="false"
-          @change="handleChange"
-        >
-          <n-upload-dragger> Add image </n-upload-dragger>
-        </n-upload>
-        <n-button size="large" @click="handleAddText">Add text</n-button>
-        <n-button size="large" @click="handleAddQRCode">Add QR code</n-button>
-      </n-space>
+    </template>
+    <template #actions>
+      <AddPaperWalletItemButton
+        @addImage="handleAddImage"
+        @addText="handleAddText"
+        @addQrCode="handleAddQRCode"
+      />
     </template>
   </PaperWalletWrapper>
   <n-button @click="printPaperWallet" size="large">Print</n-button>
