@@ -1,13 +1,21 @@
 import { defineStore } from "pinia";
-import { readonly, ref } from "vue";
+import { computed, readonly, ref } from "vue";
 import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
 import getImage from "@/shared/lib/utils/getImage";
 
 export const usePaperWallet = defineStore("paperWallet", () => {
   const items = ref<PaperWalletItem[]>([]);
 
+  const revertedItems = computed(() => {
+    return [...items.value].reverse();
+  });
+
   function setItems(newItems: PaperWalletItem[]) {
     items.value = [...newItems];
+  }
+
+  function setRevertedItems(newItems: PaperWalletItem[]) {
+    setItems([...newItems].reverse());
   }
   function updateItem(item: PaperWalletItem) {
     items.value = items.value.map((currentItem) =>
@@ -73,7 +81,9 @@ export const usePaperWallet = defineStore("paperWallet", () => {
 
   return {
     items: readonly(items),
+    revertedItems,
     setItems,
+    setRevertedItems,
     updateItem,
     addItemText,
     addItemImage,

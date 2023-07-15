@@ -4,12 +4,12 @@ import PaperWalletCanvas from "@/entities/PaperWallets/ui/PaperWalletCanvas/Pape
 import PaperWalletItems from "@/entities/PaperWallets/ui/PaperWalletItems/PaperWalletItems.vue";
 import { computed, ref } from "vue";
 import html2canvas from "html2canvas";
-import { VueDraggableNext as Draggable } from "vue-draggable-next";
 import { usePaperWallet } from "@/entities/PaperWallets/model/paperWallet";
 import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
 import PaperWalletItemProps from "@/entities/PaperWallets/ui/PaperWalletItemProps/PaperWalletItemProps.vue";
 import PaperWalletWrapper from "@/entities/PaperWallets/ui/PaperWalletWrapper/PaperWalletWrapper.vue";
 import { AddPaperWalletItemButton } from "@/features/AddPaperWalletItemButton";
+import { ChangeOrderItemList } from "@/features/ChangeOrderItemList";
 
 const paperWalletStore = usePaperWallet();
 
@@ -84,16 +84,16 @@ function printPaperWallet() {
       />
     </template>
     <template #items>
-      <Draggable
-        :model-value="paperWalletStore.items"
-        @update:model-value="paperWalletStore.setItems($event)"
+      <ChangeOrderItemList
+        :items="paperWalletStore.revertedItems"
+        @update="paperWalletStore.setRevertedItems($event)"
       >
         <PaperWalletItems
-          :items="paperWalletStore.items"
+          :items="paperWalletStore.revertedItems"
           :selectedItemId="currentItemId"
           @selectItem="handleSelectItem"
         />
-      </Draggable>
+      </ChangeOrderItemList>
     </template>
     <template #actions>
       <AddPaperWalletItemButton
