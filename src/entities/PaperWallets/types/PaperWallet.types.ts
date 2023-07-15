@@ -11,6 +11,7 @@ export type PaperWalletItemPosition = {
   x: number;
   y: number;
   width: number;
+  rotate: number;
 };
 
 export type PaperWalletItemText = {

@@ -18,7 +18,7 @@ function handleUpdateValue(key: keyof PaperWalletItemQRCode, value: string) {
 }
 </script>
 <template>
-  <n-form
+  <NForm
     label-align="left"
     label-placement="left"
     size="small"
@@ -28,12 +28,12 @@ function handleUpdateValue(key: keyof PaperWalletItemQRCode, value: string) {
       maxWidth: '500px',
     }"
   >
-    <n-form-item label="Text">
+    <NFormItem label="Text">
       <n-input
         type="text"
         :value="item.text"
         @update:value="handleUpdateValue('text', $event)"
       />
-    </n-form-item>
-  </n-form>
+    </NFormItem>
+  </NForm>
 </template>

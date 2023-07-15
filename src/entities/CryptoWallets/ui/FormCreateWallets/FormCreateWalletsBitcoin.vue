@@ -69,16 +69,16 @@ watchEffect(() => {
 </script>
 
 <template>
-  <n-form-item label="Is Testnet">
+  <NFormItem label="Is Testnet">
     <n-switch v-model:value="isTestNet" />
-  </n-form-item>
-  <n-form-item label="Key format">
+  </NFormItem>
+  <NFormItem label="Key format">
     <n-select v-model:value="selectedKeyFormats" :options="keyFormatOptions" />
-  </n-form-item>
-  <n-form-item label="Address format">
+  </NFormItem>
+  <NFormItem label="Address format">
     <n-select
       v-model:value="selectedAddressFormats"
       :options="addressFormatOptions"
     />
-  </n-form-item>
+  </NFormItem>
 </template>

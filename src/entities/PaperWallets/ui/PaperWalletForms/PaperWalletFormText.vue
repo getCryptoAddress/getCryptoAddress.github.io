@@ -25,7 +25,7 @@ function handleUpdateValue(key: keyof PaperWalletItemText, value: string) {
 }
 </script>
 <template>
-  <n-form
+  <NForm
     label-align="left"
     label-placement="left"
     size="small"
@@ -35,7 +35,7 @@ function handleUpdateValue(key: keyof PaperWalletItemText, value: string) {
       maxWidth: '500px',
     }"
   >
-    <n-form-item label="Text">
+    <NFormItem label="Text">
       <n-input
         type="textarea"
         :value="item.text"
@@ -45,18 +45,18 @@ function handleUpdateValue(key: keyof PaperWalletItemText, value: string) {
         }"
         @update:value="handleUpdateValue('text', $event)"
       />
-    </n-form-item>
-    <n-form-item label="Font Size">
-      <n-input-number
+    </NFormItem>
+    <NFormItem label="Font Size">
+      <NInputNumber
         :value="item.size"
         :min="5"
         :max="300"
         @update:value="handleUpdateValue('size', $event)"
       >
         <template #suffix> px </template>
-      </n-input-number>
-    </n-form-item>
-    <n-form-item label="Align">
+      </NInputNumber>
+    </NFormItem>
+    <NFormItem label="Align">
       <n-select
         :value="item.align"
         :options="[
@@ -66,12 +66,12 @@ function handleUpdateValue(key: keyof PaperWalletItemText, value: string) {
         ]"
         @update:value="handleUpdateValue('align', $event)"
       />
-    </n-form-item>
-    <n-form-item label="Color">
+    </NFormItem>
+    <NFormItem label="Color">
       <n-color-picker
         :value="item.color"
         @update:value="handleUpdateValue('color', $event)"
       />
-    </n-form-item>
-  </n-form>
+    </NFormItem>
+  </NForm>
 </template>

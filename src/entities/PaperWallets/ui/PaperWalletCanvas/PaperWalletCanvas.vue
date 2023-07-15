@@ -93,6 +93,7 @@ function updatePositionInItem(x: number, y: number, item: PaperWalletItem) {
           width: item.position.width + 'px',
           overflowWrap: 'anywhere',
           userSelect: 'none',
+          transform: `rotate(${item.position.rotate}deg)`,
         }"
       >
         {{ item.text }}
@@ -111,6 +112,7 @@ function updatePositionInItem(x: number, y: number, item: PaperWalletItem) {
           top: item.position.y + 'px',
           width: item.position.width + 'px',
           height: 'auto',
+          transform: `rotate(${item.position.rotate}deg)`,
         }"
       />
       <QRCode
@@ -125,6 +127,7 @@ function updatePositionInItem(x: number, y: number, item: PaperWalletItem) {
           top: item.position.y + 'px',
           width: item.position.width + 'px',
           height: 'auto',
+          transform: `rotate(${item.position.rotate}deg)`,
         }"
       />
     </template>

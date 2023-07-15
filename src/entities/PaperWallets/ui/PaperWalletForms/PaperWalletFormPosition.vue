@@ -25,37 +25,53 @@ function handleUpdatePosition(
 }
 </script>
 <template>
-  <n-form
-    inline
+  <NForm
     size="small"
     label-width="auto"
     :style="{
       maxWidth: '500px',
     }"
+    class="paper-wallet-form-position"
   >
-    <n-form-item label="Position X">
-      <n-input-number
+    <NFormItem label="Position X">
+      <NInputNumber
         :value="item.position.x"
         @update:value="handleUpdatePosition('x', $event)"
       >
         <template #suffix> px </template>
-      </n-input-number>
-    </n-form-item>
-    <n-form-item label="Position Y">
-      <n-input-number
+      </NInputNumber>
+    </NFormItem>
+    <NFormItem label="Position Y">
+      <NInputNumber
         :value="item.position.y"
         @update:value="handleUpdatePosition('y', $event)"
       >
         <template #suffix> px </template>
-      </n-input-number>
-    </n-form-item>
-    <n-form-item label="Width">
-      <n-input-number
+      </NInputNumber>
+    </NFormItem>
+    <NFormItem label="Width">
+      <NInputNumber
         :value="item.position.width"
         @update:value="handleUpdatePosition('width', $event)"
       >
         <template #suffix> px </template>
-      </n-input-number>
-    </n-form-item>
-  </n-form>
+      </NInputNumber>
+    </NFormItem>
+    <NFormItem label="Rotate">
+      <NInputNumber
+        :value="item.position.rotate"
+        @update:value="handleUpdatePosition('rotate', $event)"
+      >
+        <template #suffix> deg </template>
+      </NInputNumber>
+    </NFormItem>
+  </NForm>
 </template>
+
+<style>
+.paper-wallet-form-position {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0 1rem;
+}
+</style>

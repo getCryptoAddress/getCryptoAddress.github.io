@@ -41,6 +41,7 @@ export const usePaperWallet = defineStore("paperWallet", () => {
         x: 10,
         y: 10,
         width: 300,
+        rotate: 0,
       },
     };
 
@@ -58,6 +59,7 @@ export const usePaperWallet = defineStore("paperWallet", () => {
         x: 0,
         y: 0,
         width,
+        rotate: 0,
       },
     };
 
@@ -73,6 +75,7 @@ export const usePaperWallet = defineStore("paperWallet", () => {
         x: 0,
         y: 0,
         width: 100,
+        rotate: 0,
       },
     };
 

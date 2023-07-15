@@ -13,6 +13,7 @@ const defaultPresetItems: PaperWalletItem[] = [
       x: 10,
       y: 10,
       width: 100,
+      rotate: 0,
     },
   },
   {
@@ -26,6 +27,7 @@ const defaultPresetItems: PaperWalletItem[] = [
       x: 100,
       y: 10,
       width: 100,
+      rotate: 0,
     },
   },
   {
@@ -36,6 +38,7 @@ const defaultPresetItems: PaperWalletItem[] = [
       x: 100,
       y: 100,
       width: 100,
+      rotate: 0,
     },
   },
 ];

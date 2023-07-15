@@ -68,24 +68,24 @@ function updateBitcoinPayload(data: BitcoinWalletPayload) {
 </script>
 
 <template>
-  <n-form>
-    <n-form-item label="Crypto wallet" path="type">
+  <NForm>
+    <NFormItem label="Crypto wallet" path="type">
       <n-space class="form-create-wallets__space" vertical>
         <n-select v-model:value="platform" :options="platforms" />
       </n-space>
-    </n-form-item>
-    <n-form-item label="Count tokens" path="count">
+    </NFormItem>
+    <NFormItem label="Count tokens" path="count">
       <n-space class="form-create-wallets__space" vertical>
         <n-slider v-model:value="count" :step="10" :min="10" />
-        <n-input-number v-model:value="count" :min="1" size="small" />
+        <NInputNumber v-model:value="count" :min="1" size="small" />
       </n-space>
-    </n-form-item>
+    </NFormItem>
     <n-collapse-transition :show="isAdvancedPlatform">
-      <n-form-item :show-label="false">
+      <NFormItem :show-label="false">
         <n-checkbox v-model:checked="showAdvanced">
           Show advanced settings
         </n-checkbox>
-      </n-form-item>
+      </NFormItem>
     </n-collapse-transition>
     <n-collapse-transition :show="showAdvanced && isAdvancedPlatform">
       <FormCreateWalletsBitcoin
@@ -97,7 +97,7 @@ function updateBitcoinPayload(data: BitcoinWalletPayload) {
     <n-button type="primary" @click="handleForm">
       Generate new addresses
     </n-button>
-  </n-form>
+  </NForm>
 </template>
 
 <style lang="scss" scoped>

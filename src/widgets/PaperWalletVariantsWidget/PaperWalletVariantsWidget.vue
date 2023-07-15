@@ -68,13 +68,13 @@ function handleKeydown(e: KeyboardEvent) {
 <template>
   <h1>Generate Paper Wallets</h1>
 
-  <n-form
+  <NForm
     @submit.prevent="handleGeneratePaperWallets"
     :model="formValue"
     :rules="rules"
     ref="formRef"
   >
-    <n-form-item label="Secret key" path="secret">
+    <NFormItem label="Secret key" path="secret">
       <n-input
         v-model:value="formValue.secret"
         placeholder="Input secret key"
@@ -86,8 +86,8 @@ function handleKeydown(e: KeyboardEvent) {
         @keydown.enter.space.prevent="handleKeydown"
         maxlength="154"
       />
-    </n-form-item>
-    <n-form-item label="Address" path="address">
+    </NFormItem>
+    <NFormItem label="Address" path="address">
       <n-input
         v-model:value="formValue.address"
         placeholder="Input address"
@@ -99,11 +99,11 @@ function handleKeydown(e: KeyboardEvent) {
         }"
         maxlength="154"
       />
-    </n-form-item>
+    </NFormItem>
     <n-button type="primary" attr-type="submit">
       Generate paper wallets
     </n-button>
-  </n-form>
+  </NForm>
 
   <n-collapse-transition :show="!!(secret && address)">
     <n-divider />
