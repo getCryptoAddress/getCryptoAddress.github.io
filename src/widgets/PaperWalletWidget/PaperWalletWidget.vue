@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { NButton } from "naive-ui";
+import { NButton, NSpace } from "naive-ui";
 import PaperWalletCanvas from "@/entities/PaperWallets/ui/PaperWalletCanvas/PaperWalletCanvas.vue";
 import PaperWalletItems from "@/entities/PaperWallets/ui/PaperWalletItems/PaperWalletItems.vue";
 import { computed, ref } from "vue";
@@ -8,11 +8,15 @@ import { usePaperWallet } from "@/entities/PaperWallets/model/paperWallet";
 import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
 import PaperWalletItemProps from "@/entities/PaperWallets/ui/PaperWalletItemProps/PaperWalletItemProps.vue";
 import PaperWalletWrapper from "@/entities/PaperWallets/ui/PaperWalletWrapper/PaperWalletWrapper.vue";
-import { AddPaperWalletItemButton } from "@/features/AddPaperWalletItemButton";
+import { AddPaperWalletItem } from "@/features/AddPaperWalletItem";
 import { ChangeOrderItemList } from "@/features/ChangeOrderItemList";
+import { ChangeEditPreviewCanvasMode } from "@/features/ChangeEditPreviewCanvasMode";
 
 const paperWalletStore = usePaperWallet();
 
+// todo move to store
+const isEditMode = ref<boolean>(true);
+// todo move to store
 const currentItemId = ref<string | null>(null);
 const currentItem = computed<PaperWalletItem | null>(() => {
   if (!currentItemId.value) {
@@ -24,6 +28,7 @@ const currentItem = computed<PaperWalletItem | null>(() => {
   );
 });
 
+// todo move to store
 function handleSelectItem(item: PaperWalletItem | null) {
   if (!item) {
     currentItemId.value = null;
@@ -68,7 +73,7 @@ function printPaperWallet() {
     <template #canvas>
       <PaperWalletCanvas
         :items="paperWalletStore.items"
-        :is-edit-mode="true"
+        :is-edit-mode="isEditMode"
         ref="canvasEl"
         id="paper-wallet-canvas"
         @update="paperWalletStore.setItems($event)"
@@ -96,11 +101,14 @@ function printPaperWallet() {
       </ChangeOrderItemList>
     </template>
     <template #actions>
-      <AddPaperWalletItemButton
-        @addImage="handleAddImage"
-        @addText="handleAddText"
-        @addQrCode="handleAddQRCode"
-      />
+      <NSpace>
+        <AddPaperWalletItem
+          @addImage="handleAddImage"
+          @addText="handleAddText"
+          @addQrCode="handleAddQRCode"
+        />
+        <ChangeEditPreviewCanvasMode v-model:is-edit-mode="isEditMode" />
+      </NSpace>
     </template>
   </PaperWalletWrapper>
   <n-button @click="printPaperWallet" size="large">Print</n-button>
