@@ -1,7 +1,9 @@
 <script lang="ts" setup>
 import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
-import QRCode from "@/shared/ui/QRCode/QRCode.vue";
 import { onUnmounted } from "vue";
+import PaperWalletCanvasText from "@/entities/PaperWallets/ui/PaperWalletCanvas/PaperWalletCanvasText.vue";
+import PaperWalletCanvasImage from "@/entities/PaperWallets/ui/PaperWalletCanvas/PaperWalletCanvasImage.vue";
+import PaperWalletCanvasQrCode from "@/entities/PaperWallets/ui/PaperWalletCanvas/PaperWalletCanvasQrCode.vue";
 
 const emit = defineEmits<{
   update: [PaperWalletItem[]];
@@ -21,6 +23,7 @@ let yPosition = 0;
 function handleMouseDown(item: PaperWalletItem, e: MouseEvent) {
   isMoving = true;
   activeItem = item;
+  emit("select", item);
   xPosition = item.position.x - e.clientX;
   yPosition = item.position.y - e.clientY;
   addEventListener("mouseup", handleMouseUp);
@@ -62,6 +65,7 @@ function updatePositionInItem(x: number, y: number, item: PaperWalletItem) {
     },
   };
 }
+
 // function updateItemPosition(item: PaperWalletItem) {
 // const index = items.findIndex((i) => i.id === item.id);
 // items.splice(index, 1, item);
@@ -78,57 +82,20 @@ function updatePositionInItem(x: number, y: number, item: PaperWalletItem) {
     }"
   >
     <template v-for="item in items" :key="item.id">
-      <div
-        @dblclick="emit('select', item)"
+      <PaperWalletCanvasText
         v-if="item.type === 'TEXT'"
+        :item="item"
         @mousedown="handleMouseDown(item, $event)"
-        :style="{
-          cursor: 'move',
-          position: 'absolute',
-          fontSize: item.size + 'px',
-          textAlign: item.align,
-          color: item.color,
-          left: item.position.x + 'px',
-          top: item.position.y + 'px',
-          width: item.position.width + 'px',
-          overflowWrap: 'anywhere',
-          userSelect: 'none',
-          transform: `rotate(${item.position.rotate}deg)`,
-        }"
-      >
-        {{ item.text }}
-      </div>
-      <img
-        v-else-if="item.type === 'IMAGE'"
-        :src="item.src"
-        alt=""
-        draggable="false"
-        @mousedown="handleMouseDown(item, $event)"
-        :style="{
-          position: 'absolute',
-          cursor: 'move',
-          display: 'block',
-          left: item.position.x + 'px',
-          top: item.position.y + 'px',
-          width: item.position.width + 'px',
-          height: 'auto',
-          transform: `rotate(${item.position.rotate}deg)`,
-        }"
       />
-      <QRCode
-        v-else-if="item.type === 'QR_CODE'"
-        :text="item.text"
+      <PaperWalletCanvasImage
+        v-if="item.type === 'IMAGE'"
+        :item="item"
         @mousedown="handleMouseDown(item, $event)"
-        :style="{
-          cursor: 'move',
-          position: 'absolute',
-          display: 'block',
-          left: item.position.x + 'px',
-          top: item.position.y + 'px',
-          width: item.position.width + 'px',
-          height: 'auto',
-          transform: `rotate(${item.position.rotate}deg)`,
-        }"
+      />
+      <PaperWalletCanvasQrCode
+        v-else-if="item.type === 'QR_CODE'"
+        :item="item"
+        @mousedown="handleMouseDown(item, $event)"
       />
     </template>
   </div>
