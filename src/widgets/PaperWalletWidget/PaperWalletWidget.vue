@@ -9,6 +9,7 @@ import { usePaperWallet } from "@/entities/PaperWallets/model/paperWallet";
 import { ArrowMove20Filled, Delete20Regular } from "@vicons/fluent";
 import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
 import PaperWalletItemProps from "@/entities/PaperWallets/ui/PaperWalletItemProps/PaperWalletItemProps.vue";
+import PaperWalletWrapper from "@/entities/PaperWallets/ui/PaperWalletWrapper/PaperWalletWrapper.vue";
 
 const paperWalletStore = usePaperWallet();
 
@@ -55,71 +56,67 @@ function printPaperWallet() {
 </script>
 
 <template>
-  <div
-    style="
-      overflow: hidden;
-      position: relative;
-      width: 100%;
-      max-width: 100%;
-      display: grid;
-    "
-  >
-    <div style="overflow-x: scroll; width: 100%">
+  <PaperWalletWrapper>
+    <template #canvas>
       <PaperWalletCanvas
         :items="paperWalletStore.items"
+        :is-edit-mode="true"
         ref="canvasEl"
         id="paper-wallet-canvas"
         @update="paperWalletStore.setItems($event)"
         @select="currentItemId = $event?.id || null"
       />
-    </div>
-  </div>
-  <PaperWalletItemProps
-    v-if="currentItem"
-    :item="currentItem"
-    @updateItem="paperWalletStore.updateItem($event)"
-  />
-  <Draggable
-    :model-value="paperWalletStore.items"
-    @update:model-value="paperWalletStore.setItems($event)"
-    handle="[data-drag]"
-  >
-    <PaperWalletItems :items="paperWalletStore.items">
-      <template #actions="{ item }">
-        <n-space size="small" style="align-items: center">
-          <n-button
-            size="small"
-            @click="paperWalletStore.removeItem(item)"
-            circle
-          >
-            <template #icon>
-              <NIcon>
-                <Delete20Regular />
-              </NIcon>
-            </template>
-          </n-button>
-          <n-button size="small" circle data-drag>
-            <template #icon>
-              <NIcon>
-                <ArrowMove20Filled />
-              </NIcon>
-            </template>
-          </n-button>
-        </n-space>
-      </template>
-    </PaperWalletItems>
-  </Draggable>
-  <n-space style="align-items: center">
-    <n-upload
-      :default-upload="false"
-      :show-file-list="false"
-      @change="handleChange"
-    >
-      <n-upload-dragger> Add image </n-upload-dragger>
-    </n-upload>
-    <n-button size="large" @click="handleAddText">Add text</n-button>
-    <n-button size="large" @click="handleAddQRCode">Add QR code</n-button>
-  </n-space>
-
+    </template>
+    <template #properties>
+      <PaperWalletItemProps
+        v-if="currentItem"
+        :item="currentItem"
+        @updateItem="paperWalletStore.updateItem($event)"
+      />
+    </template>
+    <template #items>
+      <Draggable
+        :model-value="paperWalletStore.items"
+        @update:model-value="paperWalletStore.setItems($event)"
+        handle="[data-drag]"
+      >
+        <PaperWalletItems :items="paperWalletStore.items">
+          <template #actions="{ item }">
+            <n-space size="small" style="align-items: center">
+              <n-button
+                size="small"
+                @click="paperWalletStore.removeItem(item)"
+                circle
+              >
+                <template #icon>
+                  <NIcon>
+                    <Delete20Regular />
+                  </NIcon>
+                </template>
+              </n-button>
+              <n-button size="small" circle data-drag>
+                <template #icon>
+                  <NIcon>
+                    <ArrowMove20Filled />
+                  </NIcon>
+                </template>
+              </n-button>
+            </n-space>
+          </template>
+        </PaperWalletItems>
+      </Draggable>
+      <n-space style="align-items: center">
+        <n-upload
+          :default-upload="false"
+          :show-file-list="false"
+          @change="handleChange"
+        >
+          <n-upload-dragger> Add image </n-upload-dragger>
+        </n-upload>
+        <n-button size="large" @click="handleAddText">Add text</n-button>
+        <n-button size="large" @click="handleAddQRCode">Add QR code</n-button>
+      </n-space>
+    </template>
+  </PaperWalletWrapper>
   <n-button @click="printPaperWallet" size="large">Print</n-button>
 </template>

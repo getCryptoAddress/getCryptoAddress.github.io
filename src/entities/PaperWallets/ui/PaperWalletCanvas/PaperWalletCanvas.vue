@@ -10,6 +10,7 @@ const emit = defineEmits<{
 
 const props = defineProps<{
   items: PaperWalletItem[];
+  isEditMode?: boolean;
 }>();
 
 let isMoving = false;
@@ -69,7 +70,13 @@ function updatePositionInItem(x: number, y: number, item: PaperWalletItem) {
 </script>
 
 <template>
-  <div class="paper-wallet-canvas" @mousemove="handleMouseMove">
+  <div
+    class="paper-wallet-canvas"
+    @mousemove="handleMouseMove"
+    :class="{
+      'paper-wallet-canvas--edit-mode': isEditMode,
+    }"
+  >
     <template v-for="item in items" :key="item.id">
       <div
         @dblclick="emit('select', item)"
@@ -129,7 +136,17 @@ function updatePositionInItem(x: number, y: number, item: PaperWalletItem) {
   position: relative;
   width: 480px;
   height: 260px;
-  border: 1px dashed #555;
   overflow: hidden;
+  margin: 1px auto;
+  background: white;
+
+  &--edit-mode {
+    outline: 1px dashed #555;
+    margin: 1px;
+
+    & > div {
+      outline: 1px dashed rgba(85, 85, 85, 0.5);
+    }
+  }
 }
 </style>
