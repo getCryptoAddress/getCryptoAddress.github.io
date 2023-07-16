@@ -1,12 +1,14 @@
 <script lang="ts" setup>
-import { NButton, NSpace } from "naive-ui";
-import PaperWalletCanvas from "@/entities/PaperWallets/ui/PaperWalletCanvas/PaperWalletCanvas.vue";
-import PaperWalletItems from "@/entities/PaperWallets/ui/PaperWalletItems/PaperWalletItems.vue";
 import { ref } from "vue";
+import { NButton, NSpace } from "naive-ui";
+import {
+  PaperWalletCanvas,
+  PaperWalletItemProps,
+  PaperWalletItems,
+  PaperWalletWrapper,
+  usePaperWallet,
+} from "@/entities/PaperWallets";
 import html2canvas from "html2canvas";
-import { usePaperWallet } from "@/entities/PaperWallets/model/paperWallet";
-import PaperWalletItemProps from "@/entities/PaperWallets/ui/PaperWalletItemProps/PaperWalletItemProps.vue";
-import PaperWalletWrapper from "@/entities/PaperWallets/ui/PaperWalletWrapper/PaperWalletWrapper.vue";
 import { AddPaperWalletItem } from "@/features/AddPaperWalletItem";
 import { ChangeOrderItemList } from "@/features/ChangeOrderItemList";
 import { ChangeEditPreviewCanvasMode } from "@/features/ChangeEditPreviewCanvasMode";

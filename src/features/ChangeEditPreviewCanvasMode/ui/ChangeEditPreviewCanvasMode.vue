@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { NButton } from "naive-ui";
-import { usePaperWallet } from "@/entities/PaperWallets/model/paperWallet";
+import { usePaperWallet } from "@/entities/PaperWallets";
 
 const store = usePaperWallet();
 </script>

@@ -1,10 +1,12 @@
 <script lang="ts" setup>
-import PaperWalletFormAddItem from "@/entities/PaperWallets/ui/PaperWalletForms/PaperWalletFormAddItem.vue";
-import type { PaperWalletItemType } from "@/entities/PaperWallets/types/PaperWallet.types";
-import { NDrawer, NDrawerContent } from "naive-ui";
 import { ref } from "vue";
-import PaperWalletFormAddImage from "@/entities/PaperWallets/ui/PaperWalletForms/PaperWalletFormAddImage.vue";
-import { usePaperWallet } from "@/entities/PaperWallets/model/paperWallet";
+import { NDrawer, NDrawerContent } from "naive-ui";
+import type { PaperWalletItemType } from "@/entities/PaperWallets/types/PaperWallet.types";
+import {
+  PaperWalletFormAddImage,
+  PaperWalletFormAddItem,
+  usePaperWallet,
+} from "@/entities/PaperWallets";
 
 const store = usePaperWallet();
 const isShown = ref(false);

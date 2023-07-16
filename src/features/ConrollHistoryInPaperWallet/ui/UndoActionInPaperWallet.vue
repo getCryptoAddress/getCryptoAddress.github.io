@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { NButton, NIcon } from "naive-ui";
-import { usePaperWallet } from "@/entities/PaperWallets/model/paperWallet";
+import { usePaperWallet } from "@/entities/PaperWallets";
 import { ArrowHookDownLeft16Regular } from "@vicons/fluent";
 
 const store = usePaperWallet();
