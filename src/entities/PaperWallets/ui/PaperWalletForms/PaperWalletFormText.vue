@@ -7,7 +7,7 @@ import {
   NInputNumber,
   NSelect,
 } from "naive-ui";
-import { PaperWalletItemText } from "@/entities/PaperWallets/types/PaperWallet.types";
+import type { PaperWalletItemText } from "@/entities/PaperWallets/types/PaperWallet.types";
 
 const emit = defineEmits<{
   update: [PaperWalletItemText];
@@ -17,7 +17,10 @@ const props = defineProps<{
   item: PaperWalletItemText;
 }>();
 
-function handleUpdateValue(key: keyof PaperWalletItemText, value: string) {
+function handleUpdateValue<K extends keyof PaperWalletItemText>(
+  key: K,
+  value: PaperWalletItemText[K]
+) {
   emit("update", {
     ...props.item,
     [key]: value,
@@ -51,7 +54,7 @@ function handleUpdateValue(key: keyof PaperWalletItemText, value: string) {
         :value="item.size"
         :min="5"
         :max="300"
-        @update:value="handleUpdateValue('size', $event)"
+        @update:value="handleUpdateValue('size', $event ?? 16)"
       >
         <template #suffix> px </template>
       </NInputNumber>
@@ -62,7 +65,7 @@ function handleUpdateValue(key: keyof PaperWalletItemText, value: string) {
         :min="100"
         :max="900"
         :step="100"
-        @update:value="handleUpdateValue('weight', $event)"
+        @update:value="handleUpdateValue('weight', $event ?? 400)"
       >
         <template #suffix> px </template>
       </NInputNumber>

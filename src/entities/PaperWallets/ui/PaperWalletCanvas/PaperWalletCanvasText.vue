@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 import type { PaperWalletItemText } from "@/entities/PaperWallets/types/PaperWallet.types";
-import { computed, nextTick, ref } from "vue";
+import { computed, nextTick, ref, type StyleValue } from "vue";
+
+// todo Vue.js is not supporting contenteditable="plaintext-only" yet
+const CONTENTEDITABLE_PLAINTEXT: any = "plaintext-only";
 
 const props = defineProps<{
   item: PaperWalletItemText;
@@ -10,7 +13,7 @@ const emit = defineEmits<{
   updateText: [string];
 }>();
 
-const styles = computed(() => {
+const styles = computed<StyleValue>(() => {
   return {
     cursor: "move",
     position: "absolute",
@@ -71,11 +74,18 @@ function handleCancelEdit() {
   />
   <div
     v-else
-    contenteditable="plaintext-only"
+    :contenteditable="CONTENTEDITABLE_PLAINTEXT"
     @blur="handleCancelEdit"
     @input="handleEditText"
-    :style="{ ...styles, cursor: 'text' }"
+    :style="styles"
     ref="editRef"
     v-html="localText"
+    class="paper-wallet-canvas-text__editable"
   />
 </template>
+
+<style lang="scss" scoped>
+.paper-wallet-canvas-text__editable {
+  cursor: text;
+}
+</style>

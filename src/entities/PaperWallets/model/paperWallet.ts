@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { computed, readonly, ref } from "vue";
+import { computed, ref } from "vue";
 import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
 import getImage from "@/shared/lib/utils/getImage";
 import debounce from "lodash/debounce";
@@ -165,11 +165,11 @@ export const usePaperWallet = defineStore("paperWallet", () => {
   }
 
   return {
-    items: readonly(items),
-    isEditMode: readonly(isEditMode),
-    selectedItemId: readonly(selectedItemId),
-    undoStack: readonly(undoStack),
-    redoStack: readonly(redoStack),
+    items,
+    isEditMode,
+    selectedItemId,
+    undoStack,
+    redoStack,
     selectedItem,
     revertedItems,
     setItems,

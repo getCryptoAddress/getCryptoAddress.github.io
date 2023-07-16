@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import type { PaperWalletItemImage } from "@/entities/PaperWallets/types/PaperWallet.types";
-import { computed } from "vue";
+import { computed, type StyleValue } from "vue";
 
 const props = defineProps<{
   item: PaperWalletItemImage;
 }>();
 
-const styles = computed(() => {
+const styles = computed<StyleValue>(() => {
   return {
     cursor: "move",
     position: "absolute",

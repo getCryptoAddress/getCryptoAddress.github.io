@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { NForm, NFormItem, NInputNumber } from "naive-ui";
-import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
-import { PaperWalletItemPosition } from "@/entities/PaperWallets/types/PaperWallet.types";
+import type {
+  PaperWalletItem,
+  PaperWalletItemPosition,
+} from "@/entities/PaperWallets/types/PaperWallet.types";
 
 const emit = defineEmits<{
   update: [PaperWalletItem];
@@ -36,7 +38,7 @@ function handleUpdatePosition(
     <NFormItem label="Position X">
       <NInputNumber
         :value="item.position.x"
-        @update:value="handleUpdatePosition('x', $event)"
+        @update:value="handleUpdatePosition('x', $event ?? 0)"
       >
         <template #suffix> px </template>
       </NInputNumber>
@@ -44,7 +46,7 @@ function handleUpdatePosition(
     <NFormItem label="Position Y">
       <NInputNumber
         :value="item.position.y"
-        @update:value="handleUpdatePosition('y', $event)"
+        @update:value="handleUpdatePosition('y', $event ?? 0)"
       >
         <template #suffix> px </template>
       </NInputNumber>
@@ -52,7 +54,7 @@ function handleUpdatePosition(
     <NFormItem label="Width">
       <NInputNumber
         :value="item.position.width"
-        @update:value="handleUpdatePosition('width', $event)"
+        @update:value="handleUpdatePosition('width', $event ?? 300)"
       >
         <template #suffix> px </template>
       </NInputNumber>
@@ -60,7 +62,7 @@ function handleUpdatePosition(
     <NFormItem label="Rotate">
       <NInputNumber
         :value="item.position.rotate"
-        @update:value="handleUpdatePosition('rotate', $event)"
+        @update:value="handleUpdatePosition('rotate', $event ?? 0)"
       >
         <template #suffix> deg </template>
       </NInputNumber>
