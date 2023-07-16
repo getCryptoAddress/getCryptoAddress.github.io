@@ -1,9 +1,13 @@
 <script lang="ts" setup>
 import type { PaperWalletItemText } from "@/entities/PaperWallets/types/PaperWallet.types";
-import { computed } from "vue";
+import { computed, nextTick, ref } from "vue";
 
 const props = defineProps<{
   item: PaperWalletItemText;
+}>();
+
+const emit = defineEmits<{
+  updateText: [string];
 }>();
 
 const styles = computed(() => {
@@ -21,10 +25,56 @@ const styles = computed(() => {
     transform: `rotate(${props.item.position.rotate}deg)`,
   };
 });
+
+const editRef = ref<HTMLDivElement>();
+const isEditable = ref(false);
+const localText = ref("");
+const text = computed(() => props.item.text.replace(/\n/g, "<br>"));
+
+function handleEditText(e: Event) {
+  const text = (e.target as HTMLElement)?.textContent || "";
+  emit("updateText", text);
+}
+
+function handleStartEdit() {
+  isEditable.value = true;
+  localText.value = props.item.text;
+  nextTick(() => {
+    const el = editRef.value;
+    if (!el) {
+      return;
+    }
+    el.focus();
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    range.collapse(false);
+    const sel = window.getSelection();
+    if (sel) {
+      sel.removeAllRanges();
+      sel.addRange(range);
+    }
+  });
+}
+
+function handleCancelEdit() {
+  isEditable.value = false;
+}
 </script>
 
 <template>
-  <div :style="styles">
-    {{ item.text }}
-  </div>
+  <div
+    v-if="!isEditable"
+    @dblclick="handleStartEdit"
+    :style="styles"
+    v-html="text"
+  />
+  <div
+    v-else
+    contenteditable="plaintext-only"
+    @blur="handleCancelEdit"
+    @input="handleEditText"
+    :style="{ ...styles, cursor: 'text' }"
+    ref="editRef"
+    v-html="localText"
+  />
 </template>

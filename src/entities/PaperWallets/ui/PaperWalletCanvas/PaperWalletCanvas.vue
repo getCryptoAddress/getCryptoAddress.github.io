@@ -66,6 +66,17 @@ function updatePositionInItem(x: number, y: number, item: PaperWalletItem) {
   };
 }
 
+function handleUpdateText(item: PaperWalletItem, text: string) {
+  const updatedItem = {
+    ...item,
+    text,
+  };
+  emit(
+    "update",
+    props.items.map((i) => (i.id === updatedItem.id ? updatedItem : i))
+  );
+}
+
 // function updateItemPosition(item: PaperWalletItem) {
 // const index = items.findIndex((i) => i.id === item.id);
 // items.splice(index, 1, item);
@@ -86,6 +97,7 @@ function updatePositionInItem(x: number, y: number, item: PaperWalletItem) {
         v-if="item.type === 'TEXT'"
         :item="item"
         @mousedown="handleMouseDown(item, $event)"
+        @updateText="handleUpdateText(item, $event)"
       />
       <PaperWalletCanvasImage
         v-if="item.type === 'IMAGE'"
