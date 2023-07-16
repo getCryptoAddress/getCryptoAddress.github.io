@@ -2,22 +2,32 @@ import { defineStore } from "pinia";
 import { computed, readonly, ref } from "vue";
 import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
 import getImage from "@/shared/lib/utils/getImage";
+import debounce from "lodash/debounce";
 
 export const usePaperWallet = defineStore("paperWallet", () => {
+  // todo temp place
+  const prepareForChange = debounce(_prepareForChange, 200, {
+    leading: true,
+    trailing: false,
+  });
+
   ////////// Items
   const items = ref<PaperWalletItem[]>([]);
 
   function setItems(newItems: PaperWalletItem[]) {
+    prepareForChange();
     items.value = [...newItems];
   }
 
   function updateItem(item: PaperWalletItem) {
+    prepareForChange();
     items.value = items.value.map((currentItem) =>
       currentItem.id === item.id ? item : currentItem
     );
   }
 
   function removeItem(item: PaperWalletItem) {
+    prepareForChange();
     items.value = items.value.filter(
       (currentItem) => currentItem.id !== item.id
     );
@@ -40,6 +50,7 @@ export const usePaperWallet = defineStore("paperWallet", () => {
       },
     };
 
+    prepareForChange();
     items.value.push(item);
   }
 
@@ -58,6 +69,7 @@ export const usePaperWallet = defineStore("paperWallet", () => {
       },
     };
 
+    prepareForChange();
     items.value.push(item);
   }
 
@@ -76,6 +88,7 @@ export const usePaperWallet = defineStore("paperWallet", () => {
       },
     };
 
+    prepareForChange();
     items.value.push(item);
   }
 
@@ -108,10 +121,55 @@ export const usePaperWallet = defineStore("paperWallet", () => {
     selectedItemId.value = item.id;
   }
 
+  ////////// History
+  const undoStack = ref<PaperWalletItem[][]>([]);
+  const redoStack = ref<PaperWalletItem[][]>([]);
+
+  function undo() {
+    if (!undoStack.value.length) {
+      return;
+    }
+    const lastState = undoStack.value.splice(-1)[0];
+    if (lastState) {
+      redoStack.value.push(items.value);
+      items.value = lastState;
+    }
+  }
+
+  function redo() {
+    if (!redoStack.value.length) {
+      return;
+    }
+    const lastState = redoStack.value.splice(-1)[0];
+    if (lastState) {
+      undoStack.value.push(items.value);
+      items.value = lastState;
+    }
+  }
+
+  function _pushToUndoStack() {
+    while (undoStack.value.length >= 15) {
+      undoStack.value.shift();
+    }
+    undoStack.value.push([...items.value]);
+  }
+
+  function _clearRedoStack() {
+    redoStack.value = [];
+  }
+
+  // Call this function before making any changes
+  function _prepareForChange() {
+    _pushToUndoStack();
+    _clearRedoStack();
+  }
+
   return {
     items: readonly(items),
     isEditMode: readonly(isEditMode),
     selectedItemId: readonly(selectedItemId),
+    undoStack: readonly(undoStack),
+    redoStack: readonly(redoStack),
     selectedItem,
     revertedItems,
     setItems,
@@ -123,5 +181,7 @@ export const usePaperWallet = defineStore("paperWallet", () => {
     removeItem,
     setIsEditMode,
     setSelectItem,
+    undo,
+    redo,
   };
 });

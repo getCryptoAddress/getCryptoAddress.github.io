@@ -10,6 +10,10 @@ import PaperWalletWrapper from "@/entities/PaperWallets/ui/PaperWalletWrapper/Pa
 import { AddPaperWalletItem } from "@/features/AddPaperWalletItem";
 import { ChangeOrderItemList } from "@/features/ChangeOrderItemList";
 import { ChangeEditPreviewCanvasMode } from "@/features/ChangeEditPreviewCanvasMode";
+import {
+  RedoActionInPaperWallet,
+  UndoActionInPaperWallet,
+} from "@/features/ConrollHistoryInPaperWallet/";
 
 const paperWalletStore = usePaperWallet();
 
@@ -70,6 +74,8 @@ function printPaperWallet() {
       <NSpace>
         <AddPaperWalletItem />
         <ChangeEditPreviewCanvasMode />
+        <UndoActionInPaperWallet />
+        <RedoActionInPaperWallet />
       </NSpace>
     </template>
   </PaperWalletWrapper>
