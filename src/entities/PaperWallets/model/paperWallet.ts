@@ -37,6 +37,7 @@ export const usePaperWallet = defineStore("paperWallet", () => {
       align: "center",
       color: "#333333FF",
       size: 16,
+      weight: 400,
       position: {
         x: 10,
         y: 10,

@@ -15,6 +15,7 @@ const styles = computed(() => {
     cursor: "move",
     position: "absolute",
     fontSize: props.item.size + "px",
+    fontWeight: props.item.weight,
     textAlign: props.item.align,
     color: props.item.color,
     left: props.item.position.x + "px",

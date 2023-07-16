@@ -56,6 +56,17 @@ function handleUpdateValue(key: keyof PaperWalletItemText, value: string) {
         <template #suffix> px </template>
       </NInputNumber>
     </NFormItem>
+    <NFormItem label="Font Weight">
+      <NInputNumber
+        :value="item.weight"
+        :min="100"
+        :max="900"
+        :step="100"
+        @update:value="handleUpdateValue('weight', $event)"
+      >
+        <template #suffix> px </template>
+      </NInputNumber>
+    </NFormItem>
     <NFormItem label="Align">
       <n-select
         :value="item.align"

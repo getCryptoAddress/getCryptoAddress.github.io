@@ -9,6 +9,7 @@ const defaultPresetItems: PaperWalletItem[] = [
     align: "center",
     color: "#710000FF",
     size: 15,
+    weight: 400,
     position: {
       x: 10,
       y: 10,
@@ -23,6 +24,7 @@ const defaultPresetItems: PaperWalletItem[] = [
     align: "center",
     size: 12,
     color: "#710000FF",
+    weight: 400,
     position: {
       x: 100,
       y: 10,
