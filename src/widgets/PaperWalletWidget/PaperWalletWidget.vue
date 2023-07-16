@@ -74,6 +74,7 @@ function printPaperWallet() {
       <PaperWalletCanvas
         :items="paperWalletStore.items"
         :is-edit-mode="isEditMode"
+        :selected-item="currentItem"
         ref="canvasEl"
         id="paper-wallet-canvas"
         @update="paperWalletStore.setItems($event)"

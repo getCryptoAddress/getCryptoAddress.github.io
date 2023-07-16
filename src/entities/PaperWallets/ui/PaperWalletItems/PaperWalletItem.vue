@@ -42,7 +42,10 @@ const text = computed(() => {
         </NIcon>
       </div>
       <div class="paper-wallet-item__id-container">
-        <NEllipsis style="max-width: 100%" :tooltip="{ trigger: 'click' }">
+        <NEllipsis
+          style="max-width: 100%"
+          :tooltip="{ trigger: 'click', placement: 'right' }"
+        >
           {{ text }}
         </NEllipsis>
       </div>

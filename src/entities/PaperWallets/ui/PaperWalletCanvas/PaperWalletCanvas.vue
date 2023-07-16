@@ -13,6 +13,7 @@ const emit = defineEmits<{
 const props = defineProps<{
   items: PaperWalletItem[];
   isEditMode?: boolean;
+  selectedItem: PaperWalletItem | null;
 }>();
 
 let isMoving = false;
@@ -98,16 +99,19 @@ function handleUpdateText(item: PaperWalletItem, text: string) {
         :item="item"
         @mousedown="handleMouseDown(item, $event)"
         @updateText="handleUpdateText(item, $event)"
+        :data-selected-item="selectedItem === item"
       />
       <PaperWalletCanvasImage
         v-if="item.type === 'IMAGE'"
         :item="item"
         @mousedown="handleMouseDown(item, $event)"
+        :data-selected-item="selectedItem === item"
       />
       <PaperWalletCanvasQrCode
         v-else-if="item.type === 'QR_CODE'"
         :item="item"
         @mousedown="handleMouseDown(item, $event)"
+        :data-selected-item="selectedItem === item"
       />
     </template>
   </div>
@@ -128,6 +132,10 @@ function handleUpdateText(item: PaperWalletItem, text: string) {
 
     & > div {
       outline: 1px dashed rgba(85, 85, 85, 0.5);
+      overflow: auto;
+    }
+    & > div[data-selected-item="true"] {
+      outline: 1px dashed #18a058;
     }
   }
 }
