@@ -34,6 +34,8 @@ const defaultPresetItems: PaperWalletItem[] = [
     id: `${Date.now()}`,
     type: "QR_CODE",
     text: "My text123",
+    color: "#000000FF",
+    background: "#00000000",
     position: {
       x: 100,
       y: 100,

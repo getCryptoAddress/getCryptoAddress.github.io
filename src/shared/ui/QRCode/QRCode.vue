@@ -37,7 +37,7 @@ onMounted(() => {
 });
 
 watch(
-  () => props.text,
+  () => props.text + props.width + props.color + props.background,
   () => {
     generateCanvasAddress();
   }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NForm, NFormItem, NInput } from "naive-ui";
+import { NColorPicker, NForm, NFormItem, NInput } from "naive-ui";
 import { PaperWalletItemQRCode } from "@/entities/PaperWallets/types/PaperWallet.types";
 
 const emit = defineEmits<{
@@ -32,7 +32,21 @@ function handleUpdateValue(key: keyof PaperWalletItemQRCode, value: string) {
       <n-input
         type="text"
         :value="item.text"
-        @update:value="handleUpdateValue('text', $event)"
+        @update:value="handleUpdateValue('text', $event.trim())"
+      />
+    </NFormItem>
+    <NFormItem label="Color">
+      <NColorPicker
+        :modes="['hex']"
+        :value="item.color"
+        @update:value="handleUpdateValue('color', $event)"
+      />
+    </NFormItem>
+    <NFormItem label="Background Color">
+      <NColorPicker
+        :modes="['hex']"
+        :value="item.background"
+        @update:value="handleUpdateValue('background', $event)"
       />
     </NFormItem>
   </NForm>

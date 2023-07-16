@@ -24,6 +24,7 @@
 <style scoped lang="scss">
 .paper-wallet-wrapper-container {
   container: paper-wallet-wrapper-container / inline-size;
+  min-height: 780px;
 }
 
 .paper-wallet-wrapper {

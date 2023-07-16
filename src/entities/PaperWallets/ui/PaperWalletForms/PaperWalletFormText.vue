@@ -68,7 +68,7 @@ function handleUpdateValue(key: keyof PaperWalletItemText, value: string) {
       />
     </NFormItem>
     <NFormItem label="Color">
-      <n-color-picker
+      <NColorPicker
         :value="item.color"
         @update:value="handleUpdateValue('color', $event)"
       />

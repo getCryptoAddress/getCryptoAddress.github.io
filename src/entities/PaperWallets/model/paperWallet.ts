@@ -66,11 +66,13 @@ export const usePaperWallet = defineStore("paperWallet", () => {
     items.value.push(item);
   }
 
-  async function addItemQRCode(text = " ") {
+  async function addItemQRCode(text = "QrCode") {
     const item: PaperWalletItem = {
       id: `${Date.now()}`,
       type: "QR_CODE",
       text,
+      color: "#000000FF",
+      background: "#00000000",
       position: {
         x: 0,
         y: 0,

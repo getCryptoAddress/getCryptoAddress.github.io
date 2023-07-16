@@ -17,10 +17,17 @@ const styles = computed(() => {
     overflowWrap: "anywhere",
     userSelect: "none",
     transform: `rotate(${props.item.position.rotate}deg)`,
+    lineHeight: 0,
   };
 });
 </script>
 
 <template>
-  <QRCode :text="item.text" :width="item.position.width" :style="styles" />
+  <QRCode
+    :text="item.text"
+    :width="item.position.width"
+    :style="styles"
+    :background="item.background"
+    :color="item.color"
+  />
 </template>

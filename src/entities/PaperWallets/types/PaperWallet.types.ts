@@ -35,6 +35,8 @@ export type PaperWalletItemQRCode = {
   type: PaperWalletItemTypeQRCode;
   text: string;
   position: PaperWalletItemPosition;
+  color: string;
+  background: string;
 };
 export type PaperWalletItem =
   | PaperWalletItemText
