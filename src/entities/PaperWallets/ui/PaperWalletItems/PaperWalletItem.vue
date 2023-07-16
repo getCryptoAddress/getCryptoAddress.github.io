@@ -14,7 +14,7 @@ const emit = defineEmits<{
 
 const props = defineProps<{
   item: PaperWalletItem;
-  selectedItemId: string | null;
+  isSelected: boolean;
 }>();
 
 const text = computed(() => {
@@ -29,7 +29,7 @@ const text = computed(() => {
   <NCard
     size="small"
     class="paper-wallet-item"
-    :class="{ 'paper-wallet-item--selected': selectedItemId === item.id }"
+    :class="{ 'paper-wallet-item--selected': isSelected }"
     @click="emit('selectItem', item)"
     hoverable
   >

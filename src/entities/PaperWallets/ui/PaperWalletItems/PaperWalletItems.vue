@@ -17,7 +17,7 @@ defineProps<{
     v-for="item in items"
     :key="item.id"
     :item="item"
-    :selectedItemId="selectedItemId"
+    :isSelected="selectedItemId === item.id"
     @selectItem="emit('selectItem', item)"
   />
 </template>

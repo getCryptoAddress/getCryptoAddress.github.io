@@ -13,7 +13,7 @@ const emit = defineEmits<{
 const props = defineProps<{
   items: PaperWalletItem[];
   isEditMode?: boolean;
-  selectedItem: PaperWalletItem | null;
+  selectedItemId: string | null;
 }>();
 
 let isMoving = false;
@@ -99,19 +99,19 @@ function handleUpdateText(item: PaperWalletItem, text: string) {
         :item="item"
         @mousedown="handleMouseDown(item, $event)"
         @updateText="handleUpdateText(item, $event)"
-        :data-selected-item="selectedItem === item"
+        :data-selected-item="selectedItemId === item.id"
       />
       <PaperWalletCanvasImage
         v-if="item.type === 'IMAGE'"
         :item="item"
         @mousedown="handleMouseDown(item, $event)"
-        :data-selected-item="selectedItem === item"
+        :data-selected-item="selectedItemId === item.id"
       />
       <PaperWalletCanvasQrCode
         v-else-if="item.type === 'QR_CODE'"
         :item="item"
         @mousedown="handleMouseDown(item, $event)"
-        :data-selected-item="selectedItem === item"
+        :data-selected-item="selectedItemId === item.id"
       />
     </template>
   </div>

@@ -4,19 +4,13 @@ import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.
 import getImage from "@/shared/lib/utils/getImage";
 
 export const usePaperWallet = defineStore("paperWallet", () => {
+  ////////// Items
   const items = ref<PaperWalletItem[]>([]);
-
-  const revertedItems = computed(() => {
-    return [...items.value].reverse();
-  });
 
   function setItems(newItems: PaperWalletItem[]) {
     items.value = [...newItems];
   }
 
-  function setRevertedItems(newItems: PaperWalletItem[]) {
-    setItems([...newItems].reverse());
-  }
   function updateItem(item: PaperWalletItem) {
     items.value = items.value.map((currentItem) =>
       currentItem.id === item.id ? item : currentItem
@@ -85,8 +79,40 @@ export const usePaperWallet = defineStore("paperWallet", () => {
     items.value.push(item);
   }
 
+  ////////// Reverted items
+  const revertedItems = computed(() => {
+    return [...items.value].reverse();
+  });
+  function setRevertedItems(newItems: PaperWalletItem[]) {
+    setItems([...newItems].reverse());
+  }
+
+  ////////// Edit mode
+  const isEditMode = ref(true);
+
+  function setIsEditMode(value: boolean) {
+    isEditMode.value = value;
+  }
+
+  ////////// Current item
+  const selectedItemId = ref<string | null>(null);
+
+  const selectedItem = computed<PaperWalletItem | null>(
+    () => items.value.find((item) => item.id === selectedItemId.value) || null
+  );
+  function setSelectItem(item: PaperWalletItem | null) {
+    if (!item) {
+      selectedItemId.value = null;
+      return;
+    }
+    selectedItemId.value = item.id;
+  }
+
   return {
     items: readonly(items),
+    isEditMode: readonly(isEditMode),
+    selectedItemId: readonly(selectedItemId),
+    selectedItem,
     revertedItems,
     setItems,
     setRevertedItems,
@@ -95,5 +121,7 @@ export const usePaperWallet = defineStore("paperWallet", () => {
     addItemImage,
     addItemQRCode,
     removeItem,
+    setIsEditMode,
+    setSelectItem,
   };
 });

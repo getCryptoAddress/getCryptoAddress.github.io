@@ -2,10 +2,9 @@
 import { NButton, NSpace } from "naive-ui";
 import PaperWalletCanvas from "@/entities/PaperWallets/ui/PaperWalletCanvas/PaperWalletCanvas.vue";
 import PaperWalletItems from "@/entities/PaperWallets/ui/PaperWalletItems/PaperWalletItems.vue";
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import html2canvas from "html2canvas";
 import { usePaperWallet } from "@/entities/PaperWallets/model/paperWallet";
-import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
 import PaperWalletItemProps from "@/entities/PaperWallets/ui/PaperWalletItemProps/PaperWalletItemProps.vue";
 import PaperWalletWrapper from "@/entities/PaperWallets/ui/PaperWalletWrapper/PaperWalletWrapper.vue";
 import { AddPaperWalletItem } from "@/features/AddPaperWalletItem";
@@ -13,40 +12,6 @@ import { ChangeOrderItemList } from "@/features/ChangeOrderItemList";
 import { ChangeEditPreviewCanvasMode } from "@/features/ChangeEditPreviewCanvasMode";
 
 const paperWalletStore = usePaperWallet();
-
-// todo move to store
-const isEditMode = ref<boolean>(true);
-// todo move to store
-const currentItemId = ref<string | null>(null);
-const currentItem = computed<PaperWalletItem | null>(() => {
-  if (!currentItemId.value) {
-    return null;
-  }
-  return (
-    paperWalletStore.items.find((item) => item.id === currentItemId.value) ||
-    null
-  );
-});
-
-// todo move to store
-function handleSelectItem(item: PaperWalletItem | null) {
-  if (!item) {
-    currentItemId.value = null;
-    return;
-  }
-  currentItemId.value = item.id;
-}
-
-function handleAddImage(src: string) {
-  paperWalletStore.addItemImage(src);
-}
-
-function handleAddText() {
-  paperWalletStore.addItemText();
-}
-function handleAddQRCode() {
-  paperWalletStore.addItemQRCode();
-}
 
 const canvasEl = ref();
 
@@ -73,42 +38,38 @@ function printPaperWallet() {
     <template #canvas>
       <PaperWalletCanvas
         :items="paperWalletStore.items"
-        :is-edit-mode="isEditMode"
-        :selected-item="currentItem"
+        :is-edit-mode="paperWalletStore.isEditMode"
+        :selected-item-id="paperWalletStore.selectedItemId"
         ref="canvasEl"
         id="paper-wallet-canvas"
-        @update="paperWalletStore.setItems($event)"
-        @select="handleSelectItem"
+        @update="paperWalletStore.setItems"
+        @select="paperWalletStore.setSelectItem"
       />
     </template>
     <template #properties>
       <PaperWalletItemProps
-        v-if="currentItem"
-        :item="currentItem"
-        @updateItem="paperWalletStore.updateItem($event)"
-        @removeItem="paperWalletStore.removeItem($event)"
+        v-if="paperWalletStore.selectedItem"
+        :item="paperWalletStore.selectedItem"
+        @updateItem="paperWalletStore.updateItem"
+        @removeItem="paperWalletStore.removeItem"
       />
     </template>
     <template #items>
       <ChangeOrderItemList
         :items="paperWalletStore.revertedItems"
-        @update="paperWalletStore.setRevertedItems($event)"
+        @update="paperWalletStore.setRevertedItems"
       >
         <PaperWalletItems
           :items="paperWalletStore.revertedItems"
-          :selectedItemId="currentItemId"
-          @selectItem="handleSelectItem"
+          :selectedItemId="paperWalletStore.selectedItemId"
+          @selectItem="paperWalletStore.setSelectItem"
         />
       </ChangeOrderItemList>
     </template>
     <template #actions>
       <NSpace>
-        <AddPaperWalletItem
-          @addImage="handleAddImage"
-          @addText="handleAddText"
-          @addQrCode="handleAddQRCode"
-        />
-        <ChangeEditPreviewCanvasMode v-model:is-edit-mode="isEditMode" />
+        <AddPaperWalletItem />
+        <ChangeEditPreviewCanvasMode />
       </NSpace>
     </template>
   </PaperWalletWrapper>

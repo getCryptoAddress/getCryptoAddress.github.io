@@ -4,18 +4,10 @@ import type { PaperWalletItemType } from "@/entities/PaperWallets/types/PaperWal
 import { NDrawer, NDrawerContent } from "naive-ui";
 import { ref } from "vue";
 import PaperWalletFormAddImage from "@/entities/PaperWallets/ui/PaperWalletForms/PaperWalletFormAddImage.vue";
+import { usePaperWallet } from "@/entities/PaperWallets/model/paperWallet";
 
+const store = usePaperWallet();
 const isShown = ref(false);
-const emit = defineEmits<{
-  addText: [];
-  addQrCode: [];
-  addImage: [string];
-}>();
-
-function handleAddImage(src: string) {
-  emit("addImage", src);
-  isShown.value = false;
-}
 
 function handleAddItem(item: PaperWalletItemType) {
   switch (item) {
@@ -23,14 +15,20 @@ function handleAddItem(item: PaperWalletItemType) {
       isShown.value = true;
       return;
     case "TEXT":
-      emit("addText");
+      store.addItemText();
       return;
     case "QR_CODE":
-      emit("addQrCode");
+      store.addItemQRCode();
       return;
   }
 }
+
+function handleAddImage(src: string) {
+  store.addItemImage(src);
+  isShown.value = false;
+}
 </script>
+
 <template>
   <PaperWalletFormAddItem @addItem="handleAddItem" />
 

@@ -1,16 +1,13 @@
 <script lang="ts" setup>
 import { NButton } from "naive-ui";
+import { usePaperWallet } from "@/entities/PaperWallets/model/paperWallet";
 
-defineProps<{
-  isEditMode: boolean;
-}>();
-const emit = defineEmits<{
-  "update:isEditMode": [boolean];
-}>();
+const store = usePaperWallet();
 </script>
+
 <template>
-  <NButton @click="emit('update:isEditMode', !isEditMode)">
-    <template v-if="isEditMode"> Preview Mode </template>
+  <NButton @click="store.setIsEditMode(!store.isEditMode)">
+    <template v-if="store.isEditMode"> Preview Mode </template>
     <template v-else> Edit Mode </template>
   </NButton>
 </template>
