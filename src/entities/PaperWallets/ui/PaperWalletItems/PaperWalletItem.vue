@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
-import { NCard, NIcon, NSpace } from "naive-ui";
+import { NCard, NEllipsis, NIcon, NSpace } from "naive-ui";
 import {
   Image20Regular,
   QrCode20Regular,
@@ -34,15 +34,17 @@ const text = computed(() => {
     hoverable
   >
     <NSpace style="flex-wrap: nowrap">
-      <NIcon size="22">
-        <TextChangeCase20Regular v-if="item.type === 'TEXT'" />
-        <Image20Regular v-if="item.type === 'IMAGE'" />
-        <QrCode20Regular v-if="item.type === 'QR_CODE'" />
-      </NIcon>
+      <div style="line-height: 0">
+        <NIcon size="22">
+          <TextChangeCase20Regular v-if="item.type === 'TEXT'" />
+          <Image20Regular v-if="item.type === 'IMAGE'" />
+          <QrCode20Regular v-if="item.type === 'QR_CODE'" />
+        </NIcon>
+      </div>
       <div class="paper-wallet-item__id-container">
-        <div class="paper-wallet-item__id">
+        <NEllipsis style="max-width: 100%" :tooltip="{ trigger: 'click' }">
           {{ text }}
-        </div>
+        </NEllipsis>
       </div>
     </NSpace>
   </NCard>
@@ -54,7 +56,7 @@ const text = computed(() => {
   user-select: none;
   cursor: pointer;
   &--selected {
-    border: 1px solid #7e7e7e;
+    border-color: var(--n-color-target);
   }
 }
 
