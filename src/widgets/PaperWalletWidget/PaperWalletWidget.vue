@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import { ref } from "vue";
-import { NButton, NSpace } from "naive-ui";
+import { NSpace } from "naive-ui";
 import {
   PaperWalletCanvas,
   PaperWalletItemProps,
@@ -8,35 +7,16 @@ import {
   PaperWalletWrapper,
   usePaperWallet,
 } from "@/entities/PaperWallets";
-import html2canvas from "html2canvas";
 import { AddPaperWalletItem } from "@/features/AddPaperWalletItem";
 import { ChangeOrderItemList } from "@/features/ChangeOrderItemList";
-import { ChangeEditPreviewCanvasMode } from "@/features/ChangeEditPreviewCanvasMode";
+import { ChangeCanvasMode } from "@/features/ChangeCanvasMode";
+import { DownloadPaperWallet } from "@/features/DownloadPaperWallet";
 import {
   RedoActionInPaperWallet,
   UndoActionInPaperWallet,
 } from "@/features/ConrollHistoryInPaperWallet/";
 
 const paperWalletStore = usePaperWallet();
-
-const canvasEl = ref();
-
-// todo
-function printPaperWallet() {
-  if (!canvasEl.value) {
-    return;
-  }
-
-  const data = window.document.querySelector(
-    "#paper-wallet-canvas"
-  ) as HTMLElement;
-  if (!data) {
-    return;
-  }
-  html2canvas(data).then(function (canvas) {
-    document.body.appendChild(canvas);
-  });
-}
 </script>
 
 <template>
@@ -47,7 +27,6 @@ function printPaperWallet() {
         :view="paperWalletStore.canvasMode"
         :is-edit-mode="true"
         :selected-item-id="paperWalletStore.selectedItemId"
-        ref="canvasEl"
         @updateItem="paperWalletStore.updateItem"
         @select="paperWalletStore.setSelectItem"
       />
@@ -75,11 +54,11 @@ function printPaperWallet() {
     <template #actions>
       <NSpace>
         <AddPaperWalletItem />
-        <ChangeEditPreviewCanvasMode />
+        <ChangeCanvasMode />
         <UndoActionInPaperWallet />
         <RedoActionInPaperWallet />
+        <DownloadPaperWallet />
       </NSpace>
     </template>
   </PaperWalletWrapper>
-  <n-button @click="printPaperWallet" size="large">Print</n-button>
 </template>

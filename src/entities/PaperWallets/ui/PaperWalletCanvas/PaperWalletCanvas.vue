@@ -129,8 +129,6 @@ defineExpose({
   user-select: none;
 
   &--edit-mode {
-    outline: 2px dashed #555;
-
     & > div {
       outline: 1px dashed rgba(85, 85, 85, 0.5);
       overflow: auto;
