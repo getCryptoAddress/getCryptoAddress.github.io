@@ -1,6 +1,9 @@
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
-import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
+import type {
+  PaperWalletCanvasMode,
+  PaperWalletItem,
+} from "@/entities/PaperWallets/types/PaperWallet.types";
 import getImage from "@/shared/lib/utils/getImage";
 import debounce from "lodash/debounce";
 
@@ -101,10 +104,10 @@ export const usePaperWallet = defineStore("paperWallet", () => {
   }
 
   ////////// Edit mode
-  const isEditMode = ref(true);
+  const canvasMode = ref<PaperWalletCanvasMode>("EDIT");
 
-  function setIsEditMode(value: boolean) {
-    isEditMode.value = value;
+  function setCanvasMode(value: PaperWalletCanvasMode) {
+    canvasMode.value = value;
   }
 
   ////////// Current item
@@ -166,7 +169,7 @@ export const usePaperWallet = defineStore("paperWallet", () => {
 
   return {
     items,
-    isEditMode,
+    canvasMode,
     selectedItemId,
     undoStack,
     redoStack,
@@ -179,7 +182,7 @@ export const usePaperWallet = defineStore("paperWallet", () => {
     addItemImage,
     addItemQRCode,
     removeItem,
-    setIsEditMode,
+    setCanvasMode,
     setSelectItem,
     undo,
     redo,

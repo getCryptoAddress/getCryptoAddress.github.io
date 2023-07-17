@@ -1,27 +1,35 @@
 <script lang="ts" setup>
-import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
-import { onUnmounted } from "vue";
+import type {
+  PaperWalletCanvasMode,
+  PaperWalletItem,
+} from "@/entities/PaperWallets/types/PaperWallet.types";
+import { onUnmounted, ref } from "vue";
 import PaperWalletCanvasText from "@/entities/PaperWallets/ui/PaperWalletCanvas/PaperWalletCanvasText.vue";
 import PaperWalletCanvasImage from "@/entities/PaperWallets/ui/PaperWalletCanvas/PaperWalletCanvasImage.vue";
 import PaperWalletCanvasQrCode from "@/entities/PaperWallets/ui/PaperWalletCanvas/PaperWalletCanvasQrCode.vue";
 
 const emit = defineEmits<{
-  update: [PaperWalletItem[]];
+  updateItem: [PaperWalletItem];
   select: [PaperWalletItem];
 }>();
 
 const props = defineProps<{
   items: PaperWalletItem[];
+  view: PaperWalletCanvasMode;
   isEditMode?: boolean;
-  selectedItemId: string | null;
+  selectedItemId?: string | null;
 }>();
 
+const targetElement = ref<HTMLElement | null>(null);
 let isMoving = false;
 let activeItem: PaperWalletItem | null = null;
 let xPosition = 0;
 let yPosition = 0;
 
 function handleMouseDown(item: PaperWalletItem, e: MouseEvent) {
+  if (!props.isEditMode) {
+    return;
+  }
   isMoving = true;
   activeItem = item;
   emit("select", item);
@@ -49,11 +57,7 @@ function handleMouseMove(e: MouseEvent) {
     yPosition + e.clientY,
     activeItem
   );
-
-  emit(
-    "update",
-    props.items.map((i) => (i.id === item.id ? item : i))
-  );
+  emit("updateItem", item);
 }
 
 function updatePositionInItem(x: number, y: number, item: PaperWalletItem) {
@@ -72,17 +76,12 @@ function handleUpdateText(item: PaperWalletItem, text: string) {
     ...item,
     text,
   };
-  emit(
-    "update",
-    props.items.map((i) => (i.id === updatedItem.id ? updatedItem : i))
-  );
+  emit("updateItem", updatedItem);
 }
 
-// function updateItemPosition(item: PaperWalletItem) {
-// const index = items.findIndex((i) => i.id === item.id);
-// items.splice(index, 1, item);
-// emit("update", items);
-// }
+defineExpose({
+  targetElement,
+});
 </script>
 
 <template>
@@ -90,8 +89,10 @@ function handleUpdateText(item: PaperWalletItem, text: string) {
     class="paper-wallet-canvas"
     @mousemove="handleMouseMove"
     :class="{
-      'paper-wallet-canvas--edit-mode': isEditMode,
+      'paper-wallet-canvas--edit-mode': view === 'EDIT',
+      'paper-wallet-canvas--print-mode': view === 'PRINT',
     }"
+    ref="targetElement"
   >
     <template v-for="item in items" :key="item.id">
       <PaperWalletCanvasText
@@ -123,12 +124,12 @@ function handleUpdateText(item: PaperWalletItem, text: string) {
   width: 480px;
   height: 260px;
   overflow: hidden;
-  margin: 1px;
+  margin: 3px;
   background: white;
   user-select: none;
 
   &--edit-mode {
-    outline: 1px dashed #555;
+    outline: 2px dashed #555;
 
     & > div {
       outline: 1px dashed rgba(85, 85, 85, 0.5);
@@ -137,6 +138,11 @@ function handleUpdateText(item: PaperWalletItem, text: string) {
     & > div[data-selected-item="true"] {
       outline: 1px dashed #18a058;
     }
+  }
+  &--print-mode {
+    border: 3px dotted #555;
+    margin: 0;
+    border-radius: 2px;
   }
 }
 </style>

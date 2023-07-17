@@ -1,13 +1,22 @@
 <script lang="ts" setup>
-import { NButton } from "naive-ui";
+import { NSelect } from "naive-ui";
 import { usePaperWallet } from "@/entities/PaperWallets";
+import type { PaperWalletCanvasMode } from "@/entities/PaperWallets/types/PaperWallet.types";
 
 const store = usePaperWallet();
+
+const options: { label: string; value: PaperWalletCanvasMode }[] = [
+  { label: "Edit Mode", value: "EDIT" },
+  { label: "Preview Mode", value: "VIEW" },
+  { label: "Print Mode", value: "PRINT" },
+];
 </script>
 
 <template>
-  <NButton @click="store.setIsEditMode(!store.isEditMode)">
-    <template v-if="store.isEditMode"> Preview Mode </template>
-    <template v-else> Edit Mode </template>
-  </NButton>
+  <NSelect
+    v-model:value="store.canvasMode"
+    :options="options"
+    :consistent-menu-width="false"
+    :style="{ minWidth: '130px' }"
+  />
 </template>

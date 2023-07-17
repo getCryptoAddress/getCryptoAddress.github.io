@@ -44,11 +44,11 @@ function printPaperWallet() {
     <template #canvas>
       <PaperWalletCanvas
         :items="paperWalletStore.items"
-        :is-edit-mode="paperWalletStore.isEditMode"
+        :view="paperWalletStore.canvasMode"
+        :is-edit-mode="true"
         :selected-item-id="paperWalletStore.selectedItemId"
         ref="canvasEl"
-        id="paper-wallet-canvas"
-        @update="paperWalletStore.setItems"
+        @updateItem="paperWalletStore.updateItem"
         @select="paperWalletStore.setSelectItem"
       />
     </template>
