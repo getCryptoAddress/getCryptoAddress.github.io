@@ -57,8 +57,8 @@
 .paper-wallet-wrapper__canvas-scroll-area {
   overflow-x: scroll;
   background: #9a9a9a82;
-  border-radius: 3px;
-  padding: 5px;
+  border-radius: 5px;
+  padding: 12px;
 }
 
 .paper-wallet-wrapper__properties {

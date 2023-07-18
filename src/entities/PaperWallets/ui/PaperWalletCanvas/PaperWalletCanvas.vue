@@ -124,7 +124,6 @@ defineExpose({
   width: 480px;
   height: 260px;
   overflow: hidden;
-  margin: 3px;
   background: white;
   user-select: none;
 
@@ -139,7 +138,6 @@ defineExpose({
   }
   &--print-mode {
     border: 3px dotted #555;
-    margin: 0;
     border-radius: 2px;
   }
 }
