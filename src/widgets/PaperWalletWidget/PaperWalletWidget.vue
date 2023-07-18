@@ -34,9 +34,12 @@ const paperWalletStore = usePaperWallet();
     <template #properties>
       <PaperWalletItemProps
         v-if="paperWalletStore.selectedItem"
+        :items="paperWalletStore.items"
         :item="paperWalletStore.selectedItem"
         @updateItem="paperWalletStore.updateItem"
         @removeItem="paperWalletStore.removeItem"
+        @upItem="paperWalletStore.moveItemUp"
+        @downItem="paperWalletStore.moveItemDown"
       />
     </template>
     <template #items>

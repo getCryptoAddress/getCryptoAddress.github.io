@@ -36,6 +36,36 @@ export const usePaperWallet = defineStore("paperWallet", () => {
     );
   }
 
+  function moveItemDown(item: PaperWalletItem) {
+    const index = items.value.findIndex(
+      (currentItem) => currentItem.id === item.id
+    );
+    if (index === 0) {
+      return;
+    }
+
+    prepareForChange();
+
+    const prevItem = items.value[index - 1];
+    items.value[index - 1] = item;
+    items.value[index] = prevItem;
+  }
+
+  function moveItemUp(item: PaperWalletItem) {
+    const index = items.value.findIndex(
+      (currentItem) => currentItem.id === item.id
+    );
+    if (index === items.value.length - 1) {
+      return;
+    }
+
+    prepareForChange();
+
+    const nextItem = items.value[index + 1];
+    items.value[index + 1] = item;
+    items.value[index] = nextItem;
+  }
+
   async function addItemText(text = "Text") {
     const item: PaperWalletItem = {
       id: `${Date.now()}`,
@@ -182,6 +212,8 @@ export const usePaperWallet = defineStore("paperWallet", () => {
     addItemImage,
     addItemQRCode,
     removeItem,
+    moveItemUp,
+    moveItemDown,
     setCanvasMode,
     setSelectItem,
     undo,

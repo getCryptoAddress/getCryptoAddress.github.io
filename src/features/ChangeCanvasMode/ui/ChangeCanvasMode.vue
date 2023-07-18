@@ -14,7 +14,8 @@ const options: { label: string; value: PaperWalletCanvasMode }[] = [
 
 <template>
   <NSelect
-    v-model:value="store.canvasMode"
+    :value="store.canvasMode"
+    @update:value="store.setCanvasMode"
     :options="options"
     :consistent-menu-width="false"
     :style="{ minWidth: '130px' }"
