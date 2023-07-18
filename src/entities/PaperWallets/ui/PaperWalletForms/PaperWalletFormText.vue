@@ -65,7 +65,7 @@ function handleUpdateValue<K extends keyof PaperWalletItemText>(
         :min="100"
         :max="900"
         :step="100"
-        @update:value="handleUpdateValue('weight', $event ?? 400)"
+        @update:value="handleUpdateValue('weight', $event ?? 100)"
       >
         <template #suffix> px </template>
       </NInputNumber>

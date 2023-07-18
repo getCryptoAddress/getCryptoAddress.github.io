@@ -54,7 +54,8 @@ function handleUpdatePosition(
     <NFormItem label="Width">
       <NInputNumber
         :value="item.position.width"
-        @update:value="handleUpdatePosition('width', $event ?? 300)"
+        :min="0"
+        @update:value="handleUpdatePosition('width', $event ?? 0)"
       >
         <template #suffix> px </template>
       </NInputNumber>
