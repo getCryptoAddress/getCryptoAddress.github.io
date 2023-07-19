@@ -1,17 +1,13 @@
 <script lang="ts" setup>
+import { NButton, NDrawer, NDrawerContent, useMessage } from "naive-ui";
 import {
-  NButton,
-  NDrawer,
-  NDrawerContent,
-  NSelect,
-  NSpace,
-  useMessage,
-} from "naive-ui";
-import { PaperWalletCanvas } from "@/entities/PaperWallets";
+  downloadPaperWallet,
+  PaperWalletCanvas,
+  PaperWalletDownloadForm,
+} from "@/entities/PaperWallets";
 import { ref } from "vue";
-import downloadAs from "@/features/DownloadPaperWallet/lib/downloadPaperWallet/downloadAs";
-import type DownloadPaperWalletType from "@/features/DownloadPaperWallet/types/DownloadPaperWalletType.type";
-import {
+import type DownloadPaperWalletType from "@/entities/PaperWallets/types/DownloadPaperWalletType.type";
+import type {
   PaperWalletCanvasMode,
   PaperWalletItem,
 } from "@/entities/PaperWallets/types/PaperWallet.types";
@@ -23,23 +19,15 @@ const message = useMessage();
 const canvasEl = ref();
 const isShown = ref(false);
 const isLoading = ref(false);
-// todo move to entities
 const typeOfDownload = ref<DownloadPaperWalletType>("PNG");
-const mode = ref<PaperWalletCanvasMode>("PRINT");
+const canvasMode = ref<PaperWalletCanvasMode>("PRINT");
 
-const optionsDownloadType: { label: string; value: DownloadPaperWalletType }[] =
-  [
-    { label: "Download as PNG", value: "PNG" },
-    { label: "Download as JPEG", value: "JPEG" },
-  ];
-
-const optionsDownloadMode: { label: string; value: PaperWalletCanvasMode }[] = [
-  { label: "Print Mode", value: "PRINT" },
-  { label: "Preview Mode", value: "VIEW" },
-  { label: "Edit Mode", value: "EDIT" },
-];
-
-async function handleSelect() {
+async function handleSubmitForm(payload: {
+  typeOfDownload: DownloadPaperWalletType;
+  canvasMode: PaperWalletCanvasMode;
+}) {
+  canvasMode.value = payload.canvasMode;
+  typeOfDownload.value = payload.typeOfDownload;
   isLoading.value = true;
 }
 async function handleDownload() {
@@ -51,7 +39,7 @@ async function handleDownload() {
       return;
     }
 
-    await downloadAs(targetElement, typeOfDownload.value);
+    await downloadPaperWallet(targetElement, typeOfDownload.value);
   } catch (e) {
     message.error(typeof e === "string" ? e : "Something went wrong");
   } finally {
@@ -65,23 +53,7 @@ async function handleDownload() {
 
   <NDrawer v-model:show="isShown" :height="320" placement="bottom">
     <NDrawerContent title="Download paper wallet" closable>
-      <NSpace>
-        <NSelect
-          trigger="hover"
-          :options="optionsDownloadType"
-          v-model:value="typeOfDownload"
-          :consistent-menu-width="false"
-          :style="{ minWidth: '170px' }"
-        />
-        <NSelect
-          trigger="hover"
-          :options="optionsDownloadMode"
-          v-model:value="mode"
-          :consistent-menu-width="false"
-          :style="{ minWidth: '170px' }"
-        />
-        <NButton @click="handleSelect">Download</NButton>
-      </NSpace>
+      <PaperWalletDownloadForm @submit="handleSubmitForm" />
     </NDrawerContent>
   </NDrawer>
 
@@ -89,7 +61,7 @@ async function handleDownload() {
     <PaperWalletCanvas
       v-if="isLoading"
       :items="items"
-      :view="mode"
+      :view="canvasMode"
       ref="canvasEl"
       @load="handleDownload"
     />

@@ -1,5 +1,5 @@
 import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
-import type Preset from "@/widgets/PaperWalletPresetsWidget/types/Preset.type";
+import type Preset from "@/widgets/PaperWalletsPresetsWidget/types/Preset.type";
 import getImage from "@/shared/lib/utils/getImage";
 
 async function getDefaultPresetItems(): Promise<PaperWalletItem[]> {

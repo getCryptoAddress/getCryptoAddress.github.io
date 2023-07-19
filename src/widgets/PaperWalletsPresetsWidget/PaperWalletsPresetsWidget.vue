@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { PaperWalletCanvas } from "@/entities/PaperWallets";
-import { usePaperWalletPresets } from "@/widgets/PaperWalletPresetsWidget/model/paperWalletPresets";
+import { usePaperWalletPresets } from "@/widgets/PaperWalletsPresetsWidget/model/paperWalletPresets";
 import { ref } from "vue";
 import type { FormInst, FormRules } from "naive-ui";
 import { NButton, NForm, NFormItem, NInput } from "naive-ui";
