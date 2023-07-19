@@ -11,6 +11,7 @@ import type {
   PaperWalletCanvasMode,
   PaperWalletItem,
 } from "@/entities/PaperWallets/types/PaperWallet.types";
+import { ArrowDownload16Regular } from "@vicons/fluent";
 
 defineProps<{
   items: PaperWalletItem[];
@@ -49,7 +50,12 @@ async function handleDownload() {
 </script>
 
 <template>
-  <NButton @click="isShown = !isShown">Download Image</NButton>
+  <NButton @click="isShown = !isShown">
+    <template #icon>
+      <ArrowDownload16Regular />
+    </template>
+    Download Image
+  </NButton>
 
   <NDrawer v-model:show="isShown" :height="320" placement="bottom">
     <NDrawerContent title="Download paper wallet" closable>

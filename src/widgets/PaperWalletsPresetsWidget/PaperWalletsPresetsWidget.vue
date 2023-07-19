@@ -3,8 +3,20 @@ import { PaperWalletCanvas } from "@/entities/PaperWallets";
 import { usePaperWalletPresets } from "@/widgets/PaperWalletsPresetsWidget/model/paperWalletPresets";
 import { ref } from "vue";
 import type { FormInst, FormRules } from "naive-ui";
-import { NButton, NForm, NFormItem, NInput } from "naive-ui";
+import {
+  NButton,
+  NCollapseTransition,
+  NDivider,
+  NForm,
+  NFormItem,
+  NInput,
+  NList,
+  NListItem,
+  NSpace,
+  NThing,
+} from "naive-ui";
 import { DownloadPaperWallet } from "@/features/DownloadPaperWallet";
+import { EditPaperWalletPreset } from "@/features/EditPaperWalletPreset";
 
 const paperWalletPresets = usePaperWalletPresets();
 
@@ -111,10 +123,27 @@ function handleKeydown(e: KeyboardEvent) {
       </NButton>
     </NForm>
 
-    <div v-for="preset in paperWalletPresets.loadedPresets" :key="preset.name">
-      {{ preset.name }}
-      <PaperWalletCanvas :items="preset.paperWalletItems" view="PRINT" />
-      <DownloadPaperWallet :items="preset.paperWalletItems" />
-    </div>
+    <NDivider />
+    <NCollapseTransition :show="paperWalletPresets.loadedPresets.length > 0">
+      <NList :showDivider="false" hoverable>
+        <NListItem
+          v-for="preset in paperWalletPresets.loadedPresets"
+          :key="preset.name"
+        >
+          <NThing :title="preset.name" :description="preset.description">
+            <PaperWalletCanvas
+              :items="preset.paperWalletItems"
+              view="PREVIEW"
+            />
+            <template #action>
+              <NSpace>
+                <DownloadPaperWallet :items="preset.paperWalletItems" />
+                <EditPaperWalletPreset :items="preset.paperWalletItems" />
+              </NSpace>
+            </template>
+          </NThing>
+        </NListItem>
+      </NList>
+    </NCollapseTransition>
   </div>
 </template>
