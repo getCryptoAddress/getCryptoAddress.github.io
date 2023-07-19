@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { createServer } from "vite";
 
-const routes = ["/", "/create-wallet", "/create-paper-wallet"];
+const routes = ["/", "/paper-wallet-editor", "/paper-wallets"];
 
 const vite = await createServer({
   server: { middlewareMode: true },
