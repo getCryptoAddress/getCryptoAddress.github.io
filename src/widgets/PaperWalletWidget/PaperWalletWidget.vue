@@ -2,9 +2,9 @@
 import { NSpace } from "naive-ui";
 import {
   PaperWalletCanvas,
-  PaperWalletItemProps,
-  PaperWalletItems,
-  PaperWalletWrapper,
+  PaperWalletEditorWrapper,
+  PaperWalletItemPropsForm,
+  PaperWalletLayers,
   usePaperWallet,
 } from "@/entities/PaperWallets";
 import { AddPaperWalletItem } from "@/features/AddPaperWalletItem";
@@ -20,7 +20,7 @@ const paperWalletStore = usePaperWallet();
 </script>
 
 <template>
-  <PaperWalletWrapper>
+  <PaperWalletEditorWrapper>
     <template #canvas>
       <PaperWalletCanvas
         :items="paperWalletStore.items"
@@ -32,7 +32,7 @@ const paperWalletStore = usePaperWallet();
       />
     </template>
     <template #properties>
-      <PaperWalletItemProps
+      <PaperWalletItemPropsForm
         v-if="paperWalletStore.selectedItem"
         :items="paperWalletStore.items"
         :item="paperWalletStore.selectedItem"
@@ -47,7 +47,7 @@ const paperWalletStore = usePaperWallet();
         :items="paperWalletStore.revertedItems"
         @update="paperWalletStore.setRevertedItems"
       >
-        <PaperWalletItems
+        <PaperWalletLayers
           :items="paperWalletStore.revertedItems"
           :selectedItemId="paperWalletStore.selectedItemId"
           @selectItem="paperWalletStore.setSelectItem"
@@ -63,5 +63,5 @@ const paperWalletStore = usePaperWallet();
         <DownloadPaperWallet :items="paperWalletStore.items" />
       </NSpace>
     </template>
-  </PaperWalletWrapper>
+  </PaperWalletEditorWrapper>
 </template>

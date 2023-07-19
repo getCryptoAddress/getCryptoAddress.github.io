@@ -27,6 +27,11 @@ if (!SSR) {
     ""
   );
 }
+paperWalletPresets.setWallet(
+  formValue.value.secret,
+  formValue.value.address,
+  "test" // todo
+);
 
 const rules: FormRules = {
   secret: [

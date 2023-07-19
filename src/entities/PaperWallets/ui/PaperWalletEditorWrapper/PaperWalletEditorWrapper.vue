@@ -1,20 +1,20 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div class="paper-wallet-wrapper-container">
-    <div class="paper-wallet-wrapper">
-      <div class="paper-wallet-wrapper__canvas">
-        <div class="paper-wallet-wrapper__canvas-scroll-area">
+  <div class="paper-wallet-editor-wrapper-container">
+    <div class="paper-wallet-editor-wrapper">
+      <div class="paper-wallet-editor-wrapper__canvas">
+        <div class="paper-wallet-editor-wrapper__canvas-scroll-area">
           <slot name="canvas" />
         </div>
       </div>
-      <div class="paper-wallet-wrapper__properties">
+      <div class="paper-wallet-editor-wrapper__properties">
         <slot name="properties" />
       </div>
-      <div class="paper-wallet-wrapper__items">
+      <div class="paper-wallet-editor-wrapper__items">
         <slot name="items" />
       </div>
-      <div class="paper-wallet-wrapper__actions">
+      <div class="paper-wallet-editor-wrapper__actions">
         <slot name="actions" />
       </div>
     </div>
@@ -22,12 +22,12 @@
 </template>
 
 <style scoped lang="scss">
-.paper-wallet-wrapper-container {
-  container: paper-wallet-wrapper-container / inline-size;
+.paper-wallet-editor-wrapper-container {
+  container: paper-wallet-editor-wrapper-container / inline-size;
   min-height: 780px;
 }
 
-.paper-wallet-wrapper {
+.paper-wallet-editor-wrapper {
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: auto;
@@ -37,8 +37,8 @@
     "items properties";
   grid-gap: 1rem;
 }
-@container paper-wallet-wrapper-container (max-width: 520px) {
-  .paper-wallet-wrapper {
+@container paper-wallet-editor-wrapper-container (max-width: 520px) {
+  .paper-wallet-editor-wrapper {
     grid-template-columns: 1fr;
     grid-template-areas:
       "canvas"
@@ -48,27 +48,27 @@
   }
 }
 
-.paper-wallet-wrapper__canvas {
+.paper-wallet-editor-wrapper__canvas {
   grid-area: canvas;
   overflow: hidden;
   display: grid;
 }
 
-.paper-wallet-wrapper__canvas-scroll-area {
+.paper-wallet-editor-wrapper__canvas-scroll-area {
   overflow-x: scroll;
   background: #9a9a9a82;
   border-radius: 5px;
   padding: 12px;
 }
 
-.paper-wallet-wrapper__properties {
+.paper-wallet-editor-wrapper__properties {
   grid-area: properties;
 }
 
-.paper-wallet-wrapper__items {
+.paper-wallet-editor-wrapper__items {
   grid-area: items;
 }
-.paper-wallet-wrapper__actions {
+.paper-wallet-editor-wrapper__actions {
   grid-area: actions;
 }
 </style>

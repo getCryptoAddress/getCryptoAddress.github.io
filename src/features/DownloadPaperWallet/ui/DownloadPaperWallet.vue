@@ -46,6 +46,7 @@ async function handleDownload() {
   try {
     let targetElement: HTMLElement | null = canvasEl.value?.targetElement;
     if (!targetElement) {
+      isLoading.value = false;
       message.error("Problem with canvas element");
       return;
     }

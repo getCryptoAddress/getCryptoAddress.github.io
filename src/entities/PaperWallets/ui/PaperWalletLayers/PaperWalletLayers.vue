@@ -1,19 +1,19 @@
 <script lang="ts" setup>
-import type { PaperWalletItem as PaperWalletItemType } from "@/entities/PaperWallets/types/PaperWallet.types";
-import PaperWalletItem from "@/entities/PaperWallets/ui/PaperWalletItems/PaperWalletItem.vue";
+import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
+import PaperWalletLayer from "@/entities/PaperWallets/ui/PaperWalletLayers/PaperWalletLayer.vue";
 
 const emit = defineEmits<{
-  selectItem: [PaperWalletItemType];
+  selectItem: [PaperWalletItem];
 }>();
 
 defineProps<{
-  items: PaperWalletItemType[];
+  items: PaperWalletItem[];
   selectedItemId: string | null;
 }>();
 </script>
 
 <template>
-  <PaperWalletItem
+  <PaperWalletLayer
     v-for="item in items"
     :key="item.id"
     :item="item"

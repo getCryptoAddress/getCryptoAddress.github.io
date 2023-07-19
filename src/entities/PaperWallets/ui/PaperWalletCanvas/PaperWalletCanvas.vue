@@ -94,17 +94,16 @@ function handleLoadedImage(item: PaperWalletItem) {
   );
 }
 
-const isAllImagesLoaded = computed(() => {
-  return loadedImages.value.length === mapImagesIds.value.size;
-});
-
 watch(
-  () => isAllImagesLoaded.value,
+  () =>
+    targetElement.value &&
+    loadedImages.value.length === mapImagesIds.value.size,
   (isAllImagesLoaded) => {
     if (isAllImagesLoaded) {
       emit("load");
     }
-  }
+  },
+  { immediate: true }
 );
 defineExpose({
   targetElement,

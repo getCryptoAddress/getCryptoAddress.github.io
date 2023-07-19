@@ -28,8 +28,8 @@ const text = computed(() => {
 <template>
   <NCard
     size="small"
-    class="paper-wallet-item"
-    :class="{ 'paper-wallet-item--selected': isSelected }"
+    class="paper-wallet-layer"
+    :class="{ 'paper-wallet-layer--selected': isSelected }"
     @click="emit('selectItem', item)"
     hoverable
   >
@@ -41,7 +41,7 @@ const text = computed(() => {
           <QrCode20Regular v-if="item.type === 'QR_CODE'" />
         </NIcon>
       </div>
-      <div class="paper-wallet-item__id-container">
+      <div class="paper-wallet-layer__id-container">
         <NEllipsis
           style="max-width: 100%"
           :tooltip="{ trigger: 'click', placement: 'right' }"
@@ -54,7 +54,7 @@ const text = computed(() => {
 </template>
 
 <style scoped lang="scss">
-.paper-wallet-item {
+.paper-wallet-layer {
   margin-bottom: 10px;
   user-select: none;
   cursor: pointer;
@@ -63,11 +63,11 @@ const text = computed(() => {
   }
 }
 
-.paper-wallet-item__id-container {
+.paper-wallet-layer__id-container {
   display: grid;
   width: 100%;
 }
-.paper-wallet-item__id {
+.paper-wallet-layer__id {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
