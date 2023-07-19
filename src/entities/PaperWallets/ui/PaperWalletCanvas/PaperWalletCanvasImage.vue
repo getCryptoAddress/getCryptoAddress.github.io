@@ -2,6 +2,10 @@
 import type { PaperWalletItemImage } from "@/entities/PaperWallets/types/PaperWallet.types";
 import { computed, type StyleValue } from "vue";
 
+const emit = defineEmits<{
+  load: [PaperWalletItemImage];
+}>();
+
 const props = defineProps<{
   item: PaperWalletItemImage;
 }>();
@@ -21,5 +25,11 @@ const styles = computed<StyleValue>(() => {
 </script>
 
 <template>
-  <img :src="item.src" alt="" draggable="false" :style="styles" />
+  <img
+    :src="item.src"
+    alt=""
+    draggable="false"
+    :style="styles"
+    @load="emit('load', item)"
+  />
 </template>

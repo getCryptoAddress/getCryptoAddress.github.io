@@ -1,5 +1,5 @@
 import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
-import type Preset from "@/widgets/PaperWalletWidget/types/Preset.type";
+import type Preset from "@/widgets/PaperWalletPresetsWidget/types/Preset.type";
 
 const defaultPresetItems: PaperWalletItem[] = [
   {
@@ -50,6 +50,6 @@ const defaultPresetItems: PaperWalletItem[] = [
 const defaultPreset: Preset = {
   name: "Default",
   paperWalletItems: defaultPresetItems,
-  status: "INIT",
+  status: "SUCCESS",
 };
 export default defaultPreset;

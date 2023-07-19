@@ -60,7 +60,7 @@ const paperWalletStore = usePaperWallet();
         <ChangeCanvasMode />
         <UndoActionInPaperWallet />
         <RedoActionInPaperWallet />
-        <DownloadPaperWallet />
+        <DownloadPaperWallet :items="paperWalletStore.items" />
       </NSpace>
     </template>
   </PaperWalletWrapper>

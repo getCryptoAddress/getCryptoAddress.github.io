@@ -3,7 +3,7 @@ import type {
   PaperWalletCanvasMode,
   PaperWalletItem,
 } from "@/entities/PaperWallets/types/PaperWallet.types";
-import { onUnmounted, ref } from "vue";
+import { computed, onUnmounted, ref, watch } from "vue";
 import PaperWalletCanvasText from "@/entities/PaperWallets/ui/PaperWalletCanvas/PaperWalletCanvasText.vue";
 import PaperWalletCanvasImage from "@/entities/PaperWallets/ui/PaperWalletCanvas/PaperWalletCanvasImage.vue";
 import PaperWalletCanvasQrCode from "@/entities/PaperWallets/ui/PaperWalletCanvas/PaperWalletCanvasQrCode.vue";
@@ -11,6 +11,7 @@ import PaperWalletCanvasQrCode from "@/entities/PaperWallets/ui/PaperWalletCanva
 const emit = defineEmits<{
   updateItem: [PaperWalletItem];
   select: [PaperWalletItem];
+  load: [];
 }>();
 
 const props = defineProps<{
@@ -79,6 +80,32 @@ function handleUpdateText(item: PaperWalletItem, text: string) {
   emit("updateItem", updatedItem);
 }
 
+const loadedImages = ref<string[]>([]);
+
+const mapImagesIds = computed(
+  () =>
+    new Set(
+      props.items.filter((item) => item.type === "IMAGE").map((item) => item.id)
+    )
+);
+function handleLoadedImage(item: PaperWalletItem) {
+  loadedImages.value = [...loadedImages.value, item.id].filter((id) =>
+    mapImagesIds.value.has(id)
+  );
+}
+
+const isAllImagesLoaded = computed(() => {
+  return loadedImages.value.length === mapImagesIds.value.size;
+});
+
+watch(
+  () => isAllImagesLoaded.value,
+  (isAllImagesLoaded) => {
+    if (isAllImagesLoaded) {
+      emit("load");
+    }
+  }
+);
 defineExpose({
   targetElement,
 });
@@ -105,8 +132,9 @@ defineExpose({
       <PaperWalletCanvasImage
         v-if="item.type === 'IMAGE'"
         :item="item"
-        @mousedown="handleMouseDown(item, $event)"
         :data-selected-item="selectedItemId === item.id"
+        @mousedown="handleMouseDown(item, $event)"
+        @load="handleLoadedImage"
       />
       <PaperWalletCanvasQrCode
         v-else-if="item.type === 'QR_CODE'"

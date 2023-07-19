@@ -27,6 +27,7 @@ const styles = computed<StyleValue>(() => {
     overflowWrap: "anywhere",
     userSelect: "none",
     transform: `rotate(${props.item.position.rotate}deg)`,
+    lineHeight: "normal",
   };
 });
 
