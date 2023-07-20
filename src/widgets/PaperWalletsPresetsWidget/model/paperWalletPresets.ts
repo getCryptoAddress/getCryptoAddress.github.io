@@ -60,6 +60,11 @@ export const usePaperWalletPresets = defineStore("presets", () => {
   }
 
   async function _lazyLoadAllPreset() {
+    const { SSR } = import.meta.env;
+    if (SSR) {
+      return;
+    }
+
     for (const preset of presets.value) {
       if (preset.status !== "INIT") {
         continue;

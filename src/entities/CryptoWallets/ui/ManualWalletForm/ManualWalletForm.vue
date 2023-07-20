@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import {
-  FormInst,
-  FormRules,
+  type FormInst,
+  type FormRules,
   NButton,
   NForm,
   NFormItem,
   NInput,
+  NSpace,
 } from "naive-ui";
 import { ref } from "vue";
 
