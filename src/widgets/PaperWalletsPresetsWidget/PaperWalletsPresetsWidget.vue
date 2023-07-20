@@ -65,7 +65,6 @@ function handleGeneratePaperWallets(payload: {
 
 <template>
   <div>
-    <h1>Generate Paper Wallets</h1>
     <ManualWalletForm
       :default-value="formValue"
       @submit="handleGeneratePaperWallets"

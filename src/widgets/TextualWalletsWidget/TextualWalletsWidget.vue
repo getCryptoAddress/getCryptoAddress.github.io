@@ -38,7 +38,6 @@ function handleForm({ count, payload }: FormCreateWalletsPayload) {
 </script>
 
 <template>
-  <h1>Generate Secret keys and Address</h1>
   <FormCreateWallets @submit="handleForm" />
   <simple-progress :total="totalCount" :count="count" />
   <CollapseTransition

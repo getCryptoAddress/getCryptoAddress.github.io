@@ -26,8 +26,9 @@ const router = createRouter({
       name: "CreateWallet",
       component: CreateWalletsPage,
       meta: {
-        title: "Create Wallet",
-        description: "Create Wallet",
+        title: "Generate Crypto Address",
+        description:
+          "Get Crypto Address without registration or personal data disclosure. Free and secure generate address online. Bitcoin, Ethereum, and others",
         withParanoidMode: true,
       },
     },
@@ -46,8 +47,9 @@ const router = createRouter({
       name: "PaperWallets",
       component: PaperWalletsPage,
       meta: {
-        title: "Create Paper Wallet",
-        description: "Create Paper Wallet",
+        title: "Create Paper Wallets",
+        description:
+          "How to make paper wallet? Free and secure creation of cryptocurrency paper wallets online. Bitcoin, Ethereum, and others",
         withParanoidMode: true,
       },
     },
