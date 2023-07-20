@@ -18,7 +18,9 @@ const { SSR } = import.meta.env;
     <nav>
       <RouterLink :to="{ name: 'Home' }">Home</RouterLink>
       |
-      <RouterLink :to="{ name: 'CreateWallet' }"> Create Wallet </RouterLink>
+      <RouterLink :to="{ name: 'CreateWallet' }">
+        Create Crypto Address
+      </RouterLink>
       |
       <RouterLink :to="{ name: 'PaperWallets' }">
         Create Paper Wallet
