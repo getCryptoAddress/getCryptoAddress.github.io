@@ -18,8 +18,8 @@ import PaperWalletsPresetsWidget from "@/widgets/PaperWalletsPresetsWidget/Paper
   </p>
   <ol>
     <li>
-      For enhanced security, please activate the "Paranoid Mode" found on the
-      left side of the page
+      For enhanced security, please activate the "Paranoid Mode" found on under
+      the navigation menu
     </li>
     <li>
       Enter your secret key and address (you can generate them from
