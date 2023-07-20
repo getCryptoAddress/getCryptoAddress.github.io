@@ -11,8 +11,8 @@ import {
   NSpace,
 } from "naive-ui";
 import { computed, ref } from "vue";
-import type FormCreateWalletsPayload from "@/entities/CryptoWallets/ui/FormCreateWallets/types/FormCreateWalletsPayload.type";
-import FormCreateWalletsBitcoin from "@/entities/CryptoWallets/ui/FormCreateWallets/FormCreateWalletsBitcoin.vue";
+import type FormCreateWalletsPayload from "@/entities/CryptoWallets/ui/CreateWalletsForm/types/CreateWalletsFormPayload.type";
+import FormCreateWalletsBitcoin from "@/entities/CryptoWallets/ui/CreateWalletsForm/CreateWalletsFormBitcoin.vue";
 import type { BitcoinWalletPayload } from "@/entities/CryptoWallets/lib/Wallets/walletsBitcoin/WalletsBitcoin.types";
 import type { WalletFactoryCryptoPlatform } from "@/entities/CryptoWallets/lib/Wallets/WalletFactory.types";
 

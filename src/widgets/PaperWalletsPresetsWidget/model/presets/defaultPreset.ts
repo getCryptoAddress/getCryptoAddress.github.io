@@ -68,7 +68,7 @@ const defaultPresetItems: PaperWalletItem[] = [
   {
     id: "type-title",
     type: "TEXT",
-    text: "Bitcoin",
+    text: "{{ Platform }}",
     align: "center",
     alignLast: "auto",
     color: "#333333FF",

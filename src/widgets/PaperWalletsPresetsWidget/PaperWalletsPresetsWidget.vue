@@ -2,14 +2,9 @@
 import { PaperWalletCanvas } from "@/entities/PaperWallets";
 import { usePaperWalletPresets } from "@/widgets/PaperWalletsPresetsWidget/model/paperWalletPresets";
 import { ref } from "vue";
-import type { FormInst, FormRules } from "naive-ui";
 import {
-  NButton,
   NCollapseTransition,
   NDivider,
-  NForm,
-  NFormItem,
-  NInput,
   NList,
   NListItem,
   NSpace,
@@ -17,112 +12,60 @@ import {
 } from "naive-ui";
 import { DownloadPaperWallet } from "@/features/DownloadPaperWallet";
 import { EditPaperWalletPreset } from "@/features/EditPaperWalletPreset";
+import ManualWalletForm from "@/entities/CryptoWallets/ui/ManualWalletForm/ManualWalletForm.vue";
 
+// todo refactoring component
 const paperWalletPresets = usePaperWalletPresets();
 
 const { SSR } = import.meta.env;
 
-const formRef = ref<FormInst | null>(null);
-
-const formValue = ref({
+const formValue = ref<{
+  secret: string;
+  address: string;
+  platform: string;
+}>({
   secret: "",
   address: "",
+  platform: "",
 });
 
 if (!SSR) {
   formValue.value = {
     secret: history.state.secret || formValue.value.secret,
     address: history.state.address || formValue.value.address,
+    platform: history.state.platform || formValue.value.platform,
   };
-  history.replaceState(
-    { ...history.state, address: null, secret: null, walletType: null },
-    ""
-  );
 }
 paperWalletPresets.setWallet(
   formValue.value.secret,
   formValue.value.address,
-  "test" // todo
+  formValue.value.platform
 );
 
-const rules: FormRules = {
-  secret: [
-    {
-      required: true,
-      message: "Please input secret field",
-      trigger: ["input", "blur"],
-    },
-  ],
-  address: [
-    {
-      required: true,
-      message: "Please input address field",
-      trigger: ["input", "blur"],
-    },
-  ],
-};
+function handleGeneratePaperWallets(payload: {
+  secret: string;
+  address: string;
+  platform: string;
+}) {
+  formValue.value.secret = payload.secret;
+  formValue.value.address = payload.address;
+  formValue.value.platform = payload.platform;
 
-function handleGeneratePaperWallets() {
-  formRef.value?.validate((errors) => {
-    if (errors) {
-      return;
-    }
-    paperWalletPresets.setWallet(
-      formValue.value.secret,
-      formValue.value.address,
-      "test"
-    );
-  });
-}
-
-function handleKeydown(e: KeyboardEvent) {
-  if (e.key === "Enter") {
-    handleGeneratePaperWallets();
-  }
+  paperWalletPresets.setWallet(
+    formValue.value.secret,
+    formValue.value.address,
+    formValue.value.platform
+  );
 }
 </script>
 
 <template>
   <div>
     <h1>Generate Paper Wallets</h1>
-
-    <NForm
-      @submit.prevent="handleGeneratePaperWallets"
-      :model="formValue"
-      :rules="rules"
-      ref="formRef"
-    >
-      <NFormItem label="Secret key" path="secret">
-        <NInput
-          v-model:value="formValue.secret"
-          placeholder="Input secret key"
-          type="textarea"
-          :autosize="{
-            minRows: 1,
-            maxRows: 3,
-          }"
-          @keydown.enter.space.prevent="handleKeydown"
-          maxlength="154"
-        />
-      </NFormItem>
-      <NFormItem label="Address" path="address">
-        <NInput
-          v-model:value="formValue.address"
-          placeholder="Input address"
-          type="textarea"
-          @keydown.enter.space.prevent="handleKeydown"
-          :autosize="{
-            minRows: 1,
-            maxRows: 3,
-          }"
-          maxlength="154"
-        />
-      </NFormItem>
-      <NButton type="primary" attr-type="submit">
-        Generate paper wallets
-      </NButton>
-    </NForm>
-
+    <ManualWalletForm
+      :default-value="formValue"
+      @submit="handleGeneratePaperWallets"
+    />
     <NDivider />
     <NCollapseTransition :show="paperWalletPresets.loadedPresets.length > 0">
       <NList :showDivider="false" hoverable>

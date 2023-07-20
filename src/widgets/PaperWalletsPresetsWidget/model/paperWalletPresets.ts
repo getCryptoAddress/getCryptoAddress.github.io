@@ -9,23 +9,23 @@ export const usePaperWalletPresets = defineStore("presets", () => {
   const presets = ref<Preset[]>([defaultPreset, bitAddressPreset]);
   const secretKey = ref("");
   const address = ref("");
-  const type = ref("");
+  const platform = ref("");
 
   function setWallet(
     nextSecretKey: string,
     nextAddress: string,
-    nextType: string
+    nextPlatform: string
   ) {
     secretKey.value = nextSecretKey;
     address.value = nextAddress;
-    type.value = nextType;
+    platform.value = nextPlatform;
   }
 
   function replaceVariables(text: string) {
     return text
       .replace(/\{\{ SecretKey }}/g, secretKey.value)
       .replace(/\{\{ Address }}/g, address.value)
-      .replace(/\{\{ WalletType }}/g, type.value);
+      .replace(/\{\{ Platform }}/g, platform.value);
   }
 
   function replaceVariablesInItem(item: PaperWalletItem): PaperWalletItem {
