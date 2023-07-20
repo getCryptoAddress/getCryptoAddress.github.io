@@ -13,6 +13,7 @@ import {
 import { DownloadPaperWallet } from "@/features/DownloadPaperWallet";
 import { EditPaperWalletPreset } from "@/features/EditPaperWalletPreset";
 import ManualWalletForm from "@/entities/CryptoWallets/ui/ManualWalletForm/ManualWalletForm.vue";
+import RedirectWalletToCreateWallet from "@/features/RedirectWalletToCreateWallet/ui/RedirectWalletToCreateWallet.vue";
 
 // todo refactoring component
 const paperWalletPresets = usePaperWalletPresets();
@@ -65,7 +66,11 @@ function handleGeneratePaperWallets(payload: {
     <ManualWalletForm
       :default-value="formValue"
       @submit="handleGeneratePaperWallets"
-    />
+    >
+      <template #actions>
+        <RedirectWalletToCreateWallet />
+      </template>
+    </ManualWalletForm>
     <NDivider />
     <NCollapseTransition :show="paperWalletPresets.loadedPresets.length > 0">
       <NList :showDivider="false" hoverable>

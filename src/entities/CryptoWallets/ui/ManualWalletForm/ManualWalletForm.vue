@@ -115,9 +115,7 @@ function handleSubmit() {
       />
     </NFormItem>
     <NSpace>
-      <NButton type="primary" attr-type="submit">
-        Generate paper wallets
-      </NButton>
+      <NButton type="primary" attr-type="submit"> Get Paper Wallets </NButton>
       <slot name="actions" />
     </NSpace>
   </NForm>
