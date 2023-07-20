@@ -12,6 +12,7 @@ import {
 import { CopyWalletToClipboard } from "@/features/CopyWalletToClipboard";
 import { RedirectWalletToPaperWallet } from "@/features/RedirectWalletToPaperWallet";
 import { ref } from "vue";
+import { ShowQrCodes } from "@/features/ShowQrCodes";
 
 const { SSR } = import.meta.env;
 
@@ -57,7 +58,6 @@ function handleForm({ count, payload }: FormCreateWalletsPayload) {
         :key="wallet.privateKey"
         :key-formatted="wallet.privateKey"
         :address="wallet.address"
-        :is-shown-qr-code="false"
       >
         <template #actions>
           <CopyWalletToClipboard :wallet="wallet" />
@@ -66,6 +66,7 @@ function handleForm({ count, payload }: FormCreateWalletsPayload) {
             :address="wallet.address"
             :platform="selectedPlatform"
           />
+          <ShowQrCodes :address="wallet.address" :secret="wallet.privateKey" />
         </template>
       </KeyAddressItem>
     </n-list>
