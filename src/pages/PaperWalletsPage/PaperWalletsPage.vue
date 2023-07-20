@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import PaperWalletVariantsWidget from "@/widgets/PaperWalletVariantsWidget/PaperWalletVariantsWidget.vue";
+import PaperWalletsPresetsWidget from "@/widgets/PaperWalletsPresetsWidget/PaperWalletsPresetsWidget.vue";
 </script>
 
 <template>
-  <PaperWalletVariantsWidget />
+  <PaperWalletsPresetsWidget />
 </template>

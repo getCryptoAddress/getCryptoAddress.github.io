@@ -3,8 +3,9 @@ import {
   createRouter,
   createWebHistory,
 } from "vue-router";
-import CreateWalletsView from "../../pages/CreateWalletsPage/CreateWalletsPage.vue";
-import PaperWalletsView from "../../pages/PaperWalletsPage/PaperWalletsPage.vue";
+import CreateWalletsPage from "../../pages/CreateWalletsPage/CreateWalletsPage.vue";
+import PaperWalletEditorPage from "@/pages/PaperWalletEditorPage/PaperWalletEditorPage.vue";
+import PaperWalletsPage from "@/pages/PaperWalletsPage/PaperWalletsPage.vue";
 
 const router = createRouter({
   history: import.meta.env.SSR
@@ -23,7 +24,7 @@ const router = createRouter({
     {
       path: "/create-wallet",
       name: "CreateWallet",
-      component: CreateWalletsView,
+      component: CreateWalletsPage,
       meta: {
         title: "Create Wallet",
         description: "Create Wallet",
@@ -31,9 +32,19 @@ const router = createRouter({
       },
     },
     {
-      path: "/create-paper-wallet",
+      path: "/paper-wallet-editor",
+      name: "PaperWalletEditor",
+      component: PaperWalletEditorPage,
+      meta: {
+        title: "Paper Wallet Editor",
+        description: "Create Paper Wallet",
+        withParanoidMode: true,
+      },
+    },
+    {
+      path: "/paper-wallets",
       name: "PaperWallets",
-      component: PaperWalletsView,
+      component: PaperWalletsPage,
       meta: {
         title: "Create Paper Wallet",
         description: "Create Paper Wallet",

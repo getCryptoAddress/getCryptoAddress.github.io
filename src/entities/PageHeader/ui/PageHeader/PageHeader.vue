@@ -23,6 +23,10 @@ const { SSR } = import.meta.env;
       <RouterLink :to="{ name: 'PaperWallets' }">
         Create Paper Wallet
       </RouterLink>
+      |
+      <RouterLink :to="{ name: 'PaperWalletEditor' }">
+        Paper Wallet Editor
+      </RouterLink>
     </nav>
     <slot />
   </PageHeaderWrapper>
