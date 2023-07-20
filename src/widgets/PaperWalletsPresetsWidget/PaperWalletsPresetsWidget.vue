@@ -1,5 +1,8 @@
 <script lang="ts" setup>
-import { PaperWalletCanvas } from "@/entities/PaperWallets";
+import {
+  PaperWalletCanvas,
+  ResizablePaperWalletWrapper,
+} from "@/entities/PaperWallets";
 import { usePaperWalletPresets } from "@/widgets/PaperWalletsPresetsWidget/model/paperWalletPresets";
 import { ref } from "vue";
 import {
@@ -15,7 +18,7 @@ import { EditPaperWalletPreset } from "@/features/EditPaperWalletPreset";
 import ManualWalletForm from "@/entities/CryptoWallets/ui/ManualWalletForm/ManualWalletForm.vue";
 import RedirectWalletToCreateWallet from "@/features/RedirectWalletToCreateWallet/ui/RedirectWalletToCreateWallet.vue";
 
-// todo refactoring component
+// todo refactoring component, simplify logic
 const paperWalletPresets = usePaperWalletPresets();
 
 const { SSR } = import.meta.env;
@@ -79,10 +82,12 @@ function handleGeneratePaperWallets(payload: {
           :key="preset.name"
         >
           <NThing :title="preset.name" :description="preset.description">
-            <PaperWalletCanvas
-              :items="preset.paperWalletItems"
-              view="PREVIEW"
-            />
+            <ResizablePaperWalletWrapper>
+              <PaperWalletCanvas
+                :items="preset.paperWalletItems"
+                view="PREVIEW"
+              />
+            </ResizablePaperWalletWrapper>
             <template #action>
               <NSpace>
                 <DownloadPaperWallet :items="preset.paperWalletItems" />

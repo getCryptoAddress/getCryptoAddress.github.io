@@ -7,4 +7,5 @@ export { default as PaperWalletItemPropsForm } from "./ui/PaperWalletForms/Paper
 export { default as PaperWalletDownloadForm } from "./ui/PaperWalletForms/PaperWalletDownloadForm.vue";
 export { default as PaperWalletLayers } from "@/entities/PaperWallets/ui/PaperWalletLayers/PaperWalletLayers.vue";
 export { default as PaperWalletEditorWrapper } from "@/entities/PaperWallets/ui/PaperWalletEditorWrapper/PaperWalletEditorWrapper.vue";
+export { default as ResizablePaperWalletWrapper } from "@/entities/PaperWallets/ui/ResizablePaperWalletWrapper/ResizablePaperWalletWrapper.vue";
 export { default as downloadPaperWallet } from "@/entities/PaperWallets/lib/download/downloadPaperWallet";
