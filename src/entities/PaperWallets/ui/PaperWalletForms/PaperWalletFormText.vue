@@ -77,8 +77,22 @@ function handleUpdateValue<K extends keyof PaperWalletItemText>(
           { value: 'center', label: 'Center' },
           { value: 'right', label: 'Right' },
           { value: 'left', label: 'Left' },
+          { value: 'justify', label: 'Justify' },
         ]"
         @update:value="handleUpdateValue('align', $event)"
+      />
+    </NFormItem>
+    <NFormItem label="AlignLast">
+      <n-select
+        :value="item.alignLast"
+        :options="[
+          { value: 'auto', label: 'Auto' },
+          { value: 'center', label: 'Center' },
+          { value: 'right', label: 'Right' },
+          { value: 'left', label: 'Left' },
+          { value: 'justify', label: 'Justify' },
+        ]"
+        @update:value="handleUpdateValue('alignLast', $event)"
       />
     </NFormItem>
     <NFormItem label="Color">

@@ -17,6 +17,7 @@ const styles = computed(() => {
     overflowWrap: "anywhere",
     userSelect: "none",
     transform: `rotate(${props.item.position.rotate}deg)`,
+    transformOrigin: props.item.position.transformOrigin,
     lineHeight: 0,
   };
 });

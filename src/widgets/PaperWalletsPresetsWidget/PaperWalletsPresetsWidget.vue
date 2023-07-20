@@ -32,7 +32,7 @@ const formValue = ref({
 if (!SSR) {
   formValue.value = {
     secret: history.state.secret || formValue.value.secret,
-    address: history.state.secret || formValue.value.address,
+    address: history.state.address || formValue.value.address,
   };
   history.replaceState(
     { ...history.state, address: null, secret: null, walletType: null },

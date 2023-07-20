@@ -12,6 +12,7 @@ export type PaperWalletItemPosition = {
   y: number;
   width: number;
   rotate: number;
+  transformOrigin: "top center" | "center center" | "bottom center";
 };
 
 export type PaperWalletItemText = {
@@ -19,7 +20,8 @@ export type PaperWalletItemText = {
   type: PaperWalletItemTypeText;
   text: string;
   size: number;
-  align: "center" | "left" | "right";
+  align: "center" | "left" | "right" | "justify";
+  alignLast: "auto" | "center" | "left" | "right" | "justify";
   weight: number;
   color: string;
   position: PaperWalletItemPosition;

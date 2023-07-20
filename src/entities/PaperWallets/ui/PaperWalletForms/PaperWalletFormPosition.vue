@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NForm, NFormItem, NInputNumber } from "naive-ui";
+import { NForm, NFormItem, NInputNumber, NSelect } from "naive-ui";
 import type {
   PaperWalletItem,
   PaperWalletItemPosition,
@@ -67,6 +67,17 @@ function handleUpdatePosition(
       >
         <template #suffix> deg </template>
       </NInputNumber>
+    </NFormItem>
+    <NFormItem label="Transform origin">
+      <NSelect
+        :value="item.position.transformOrigin"
+        :options="[
+          { value: 'center center', label: 'Center Center' },
+          { value: 'top center', label: 'Top Center' },
+          { value: 'bottom center', label: 'Bottom Center' },
+        ]"
+        @update:value="handleUpdatePosition('transformOrigin', $event)"
+      />
     </NFormItem>
   </NForm>
 </template>

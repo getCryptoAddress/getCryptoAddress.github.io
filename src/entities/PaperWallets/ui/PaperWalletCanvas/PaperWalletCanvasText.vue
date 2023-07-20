@@ -20,6 +20,7 @@ const styles = computed<StyleValue>(() => {
     fontSize: props.item.size + "px",
     fontWeight: props.item.weight,
     textAlign: props.item.align,
+    textAlignLast: props.item.alignLast,
     color: props.item.color,
     left: props.item.position.x + "px",
     top: props.item.position.y + "px",
@@ -27,6 +28,7 @@ const styles = computed<StyleValue>(() => {
     overflowWrap: "anywhere",
     userSelect: "none",
     transform: `rotate(${props.item.position.rotate}deg)`,
+    transformOrigin: props.item.position.transformOrigin,
     lineHeight: "normal",
   };
 });

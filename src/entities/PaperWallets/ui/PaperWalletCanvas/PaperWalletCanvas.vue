@@ -3,12 +3,11 @@ import type {
   PaperWalletCanvasMode,
   PaperWalletItem,
 } from "@/entities/PaperWallets/types/PaperWallet.types";
-import { computed, onUnmounted, ref, watch } from "vue";
+import { computed, onUnmounted, ref, type Ref, watch } from "vue";
 import PaperWalletCanvasText from "@/entities/PaperWallets/ui/PaperWalletCanvas/PaperWalletCanvasText.vue";
 import PaperWalletCanvasImage from "@/entities/PaperWallets/ui/PaperWalletCanvas/PaperWalletCanvasImage.vue";
 import PaperWalletCanvasQrCode from "@/entities/PaperWallets/ui/PaperWalletCanvas/PaperWalletCanvasQrCode.vue";
 import { useDark } from "@vueuse/core";
-import { Ref } from "vue/dist/vue";
 
 const emit = defineEmits<{
   updateItem: [PaperWalletItem];

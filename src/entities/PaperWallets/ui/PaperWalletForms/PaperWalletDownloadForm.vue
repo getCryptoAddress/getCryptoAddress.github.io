@@ -2,7 +2,7 @@
 import { NButton, NSelect, NSpace } from "naive-ui";
 import { ref } from "vue";
 import type DownloadPaperWalletType from "@/entities/PaperWallets/types/DownloadPaperWalletType.type";
-import { PaperWalletCanvasMode } from "@/entities/PaperWallets/types/PaperWallet.types";
+import type { PaperWalletCanvasMode } from "@/entities/PaperWallets/types/PaperWallet.types";
 
 const emit = defineEmits<{
   submit: [

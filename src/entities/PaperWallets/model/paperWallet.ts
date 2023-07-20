@@ -72,6 +72,7 @@ export const usePaperWallet = defineStore("paperWallet", () => {
       type: "TEXT",
       text,
       align: "center",
+      alignLast: "auto",
       color: "#333333FF",
       size: 16,
       weight: 400,
@@ -80,6 +81,7 @@ export const usePaperWallet = defineStore("paperWallet", () => {
         y: 10,
         width: 300,
         rotate: 0,
+        transformOrigin: "center center",
       },
     };
 
@@ -99,6 +101,7 @@ export const usePaperWallet = defineStore("paperWallet", () => {
         y: 0,
         width,
         rotate: 0,
+        transformOrigin: "center center",
       },
     };
 
@@ -118,6 +121,7 @@ export const usePaperWallet = defineStore("paperWallet", () => {
         y: 0,
         width: 100,
         rotate: 0,
+        transformOrigin: "center center",
       },
     };
 
