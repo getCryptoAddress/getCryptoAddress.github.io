@@ -1,15 +1,13 @@
 import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
 import type Preset from "@/widgets/PaperWalletsPresetsWidget/types/Preset.type";
-import getImage from "@/shared/lib/utils/getImage";
+import getCachedImageLink from "@/shared/lib/utils/getCachedImageLink";
 
 async function getDefaultPresetItems(): Promise<PaperWalletItem[]> {
-  const background = await import("./bitaddress_org.png");
-  await getImage(background.default);
   return [
     {
       id: "background",
       type: "IMAGE",
-      src: background.default,
+      src: await getCachedImageLink(await import("./bitaddress_org.png")),
       position: {
         x: -3,
         y: 0,
@@ -84,7 +82,7 @@ async function getDefaultPresetItems(): Promise<PaperWalletItem[]> {
 }
 
 const bitAddressPreset: Preset = {
-  name: "BitAddress",
+  name: "BitAddress paper wallet",
   async preloadFn() {
     this.paperWalletItems = await getDefaultPresetItems();
   },

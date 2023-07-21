@@ -3,7 +3,7 @@ import {
   PaperWalletCanvas,
   ResizablePaperWalletWrapper,
 } from "@/entities/PaperWallets";
-import { usePaperWalletPresets } from "@/widgets/PaperWalletsPresetsWidget/model/paperWalletPresets";
+import { usePaperWalletPresets } from "@/widgets/PaperWalletsPresetsWidget/model/usePaperWalletPresets";
 import { ref } from "vue";
 import {
   NCollapseTransition,
