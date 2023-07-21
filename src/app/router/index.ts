@@ -3,9 +3,20 @@ import {
   createRouter,
   createWebHistory,
 } from "vue-router";
-import CreateWalletsPage from "../../pages/CreateWalletsPage/CreateWalletsPage.vue";
-import PaperWalletEditorPage from "@/pages/PaperWalletEditorPage/PaperWalletEditorPage.vue";
-import PaperWalletsPage from "@/pages/PaperWalletsPage/PaperWalletsPage.vue";
+import waitLoadedPage from "@/shared/lib/utils/waitLoadedPage";
+
+function getHomePage() {
+  return import("@/pages/HomePage/HomePage.vue");
+}
+function getCreateWalletsPage() {
+  return import("@/pages/CreateWalletsPage/CreateWalletsPage.vue");
+}
+function getPaperWalletEditorPage() {
+  return import("@/pages/PaperWalletEditorPage/PaperWalletEditorPage.vue");
+}
+function getPaperWalletsPage() {
+  return import("@/pages/PaperWalletsPage/PaperWalletsPage.vue");
+}
 
 const router = createRouter({
   history: import.meta.env.SSR
@@ -15,7 +26,7 @@ const router = createRouter({
     {
       path: "/",
       name: "Home",
-      component: () => import("@/pages/HomePage/HomePage.vue"),
+      component: getHomePage,
       meta: {
         title: "Home",
         description: "Home page",
@@ -24,7 +35,7 @@ const router = createRouter({
     {
       path: "/create-wallet",
       name: "CreateWallet",
-      component: CreateWalletsPage,
+      component: getCreateWalletsPage,
       meta: {
         title: "Generate Crypto Address",
         description:
@@ -35,7 +46,7 @@ const router = createRouter({
     {
       path: "/paper-wallet-editor",
       name: "PaperWalletEditor",
-      component: PaperWalletEditorPage,
+      component: getPaperWalletEditorPage,
       meta: {
         title: "Paper Wallet Editor",
         description: "Create Paper Wallet",
@@ -45,7 +56,7 @@ const router = createRouter({
     {
       path: "/paper-wallets",
       name: "PaperWallets",
-      component: PaperWalletsPage,
+      component: getPaperWalletsPage,
       meta: {
         title: "Create Paper Wallets",
         description:
@@ -55,5 +66,20 @@ const router = createRouter({
     },
   ],
 });
+
+// load all pages, because we need to work offline without service-worker
+waitLoadedPage().then(() =>
+  Promise.resolve()
+    // first priority
+    .then(() =>
+      Promise.all([
+        getCreateWalletsPage(),
+        getPaperWalletEditorPage(),
+        getPaperWalletsPage(),
+      ])
+    )
+    // second priority
+    .then(() => getHomePage())
+);
 
 export default router;

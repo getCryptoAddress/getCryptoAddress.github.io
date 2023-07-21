@@ -4,6 +4,7 @@ import type Preset from "@/widgets/PaperWalletsPresetsWidget/types/Preset.type";
 import defaultPreset from "@/widgets/PaperWalletsPresetsWidget/model/presets/defaultPreset";
 import bitAddressPreset from "@/widgets/PaperWalletsPresetsWidget/model/presets/bitAddressPreset";
 import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
+import waitLoadedPage from "@/shared/lib/utils/waitLoadedPage";
 
 export const usePaperWalletPresets = defineStore("presets", () => {
   const presets = ref<Preset[]>([defaultPreset, bitAddressPreset]);
@@ -59,7 +60,7 @@ export const usePaperWalletPresets = defineStore("presets", () => {
     );
   }
 
-  async function _lazyLoadAllPreset() {
+  async function preloadImages() {
     const { SSR } = import.meta.env;
     if (SSR) {
       return;
@@ -77,7 +78,12 @@ export const usePaperWalletPresets = defineStore("presets", () => {
       });
     }
   }
-  _lazyLoadAllPreset().then();
 
-  return { presets, loadedPresets, setWallet };
+  return { presets, loadedPresets, setWallet, preloadImages };
+});
+
+waitLoadedPage(true).then(() => {
+  // preload images
+  const store = usePaperWalletPresets();
+  return store.preloadImages();
 });
