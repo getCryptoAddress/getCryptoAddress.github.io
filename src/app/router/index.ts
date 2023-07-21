@@ -67,19 +67,21 @@ const router = createRouter({
   ],
 });
 
-// load all pages, because we need to work offline without service-worker
-waitLoadedPage().then(() =>
-  Promise.resolve()
-    // first priority
-    .then(() =>
-      Promise.all([
-        getCreateWalletsPage(),
-        getPaperWalletEditorPage(),
-        getPaperWalletsPage(),
-      ])
-    )
-    // second priority
-    .then(() => getHomePage())
-);
-
+const { SSR } = import.meta.env;
+if (!SSR) {
+  // load all pages, because we need to work offline without service-worker
+  waitLoadedPage().then(() =>
+    Promise.resolve()
+      // first priority
+      .then(() =>
+        Promise.all([
+          getCreateWalletsPage(),
+          getPaperWalletEditorPage(),
+          getPaperWalletsPage(),
+        ])
+      )
+      // second priority
+      .then(() => getHomePage())
+  );
+}
 export default router;

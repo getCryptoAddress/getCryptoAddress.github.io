@@ -82,8 +82,11 @@ export const usePaperWalletPresets = defineStore("presets", () => {
   return { presets, loadedPresets, setWallet, preloadImages };
 });
 
-waitLoadedPage(true).then(() => {
-  // preload images
-  const store = usePaperWalletPresets();
-  return store.preloadImages();
-});
+const { SSR } = import.meta.env;
+if (!SSR) {
+  waitLoadedPage(true).then(() => {
+    // preload images
+    const store = usePaperWalletPresets();
+    return store.preloadImages();
+  });
+}
