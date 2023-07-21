@@ -1,4 +1,8 @@
 export default async function cacheImage(src: string) {
+  if (!("caches" in window)) {
+    return fetch(src);
+  }
+
   const cache = await caches.open("images-cache");
 
   const cachedResponse = await cache.match(src);

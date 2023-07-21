@@ -10,17 +10,17 @@ const initialHeight = ref(0);
 let resizeObserver: ResizeObserver | null = null;
 
 function updateScale() {
-  if (!container.value) {
+  if (!container.value || !wrapper.value) {
     console.log("Container not found");
     return;
   }
-  let scaleValue = container.value.offsetWidth / container.value.scrollWidth; // не правильно считает
+  let scaleValue = container.value.offsetWidth / wrapper.value.offsetHeight;
   scale.value = scaleValue < 1 ? scaleValue : 1;
   height.value = `${initialHeight.value * scale.value}px`;
 }
 
 onMounted(() => {
-  if (!container.value) return;
+  if (!container.value || !wrapper.value) return;
   initialHeight.value = container.value.offsetHeight;
   let containerWidth = container.value.offsetWidth;
   window.addEventListener("resize", updateScale);
