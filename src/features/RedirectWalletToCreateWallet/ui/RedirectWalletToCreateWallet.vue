@@ -5,7 +5,7 @@ import { useRouter } from "vue-router";
 const router = useRouter();
 function handleCreateWallets() {
   router.push({
-    name: "CreateWallet",
+    name: "CreateWallets",
   });
 }
 </script>

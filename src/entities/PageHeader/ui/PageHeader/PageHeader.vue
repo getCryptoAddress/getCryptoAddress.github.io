@@ -55,12 +55,12 @@ const menuOptions: MenuOption[] = [
         RouterLink,
         {
           to: {
-            name: "CreateWallet",
+            name: "CreateWallets",
           },
         },
         { default: () => "Create Crypto Address" }
       ),
-    key: "CreateWallet",
+    key: "CreateWallets",
   },
   {
     label: () =>

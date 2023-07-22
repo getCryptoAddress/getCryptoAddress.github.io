@@ -33,8 +33,8 @@ const router = createRouter({
       },
     },
     {
-      path: "/create-wallet",
-      name: "CreateWallet",
+      path: "/create-wallets",
+      name: "CreateWallets",
       component: getCreateWalletsPage,
       meta: {
         title: "Generate Crypto Address",
