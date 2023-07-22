@@ -23,7 +23,7 @@ import PaperWalletsPresetsWidget from "@/widgets/PaperWalletsPresetsWidget/Paper
     </li>
     <li>
       Enter your secret key and address (you can generate them from
-      <router-link :to="{ name: 'CreateWallet' }">
+      <router-link :to="{ name: 'CreateWallets' }">
         Generate Crypto Address </router-link
       >) then click “Get Paper Wallets”
     </li>

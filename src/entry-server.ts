@@ -1,4 +1,4 @@
-import { createSSRApp } from "vue";
+import { createSSRApp, nextTick } from "vue";
 import { renderToString, type SSRContext } from "@vue/server-renderer";
 import { setup } from "@css-render/vue3-ssr";
 import App from "./App.vue";
@@ -8,6 +8,7 @@ import { createPinia } from "pinia";
 export const render = async (url: string) => {
   await router.push(url);
   await router.isReady();
+  await nextTick();
 
   const app = createSSRApp(App);
   app.use(createPinia());
@@ -21,3 +22,5 @@ export const render = async (url: string) => {
     ctx,
   };
 };
+
+export const routes = router.getRoutes();

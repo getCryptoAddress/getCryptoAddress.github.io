@@ -1,8 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
 import { createServer } from "vite";
+import generateSitemap from "./node/sitemap/generateSitemap.mjs";
 
-const routes = ["/", "/paper-wallet-editor", "/paper-wallets"];
+// todo refactor file, separate into functions
 
 const vite = await createServer({
   server: { middlewareMode: true },
@@ -11,10 +12,14 @@ const vite = await createServer({
 });
 
 const template = fs.readFileSync("dist/index.html", "utf-8");
-const { render } = await vite.ssrLoadModule("/src/entry-server.ts");
+const { render, routes } = await vite.ssrLoadModule("/src/entry-server.ts");
 
-for (const route of routes) {
-  const { appHtml, ctx } = await render(route);
+const routerPaths = routes.map((route) => route.path);
+
+generateSitemap(routerPaths, 'https://getcryptoaddress.github.io', "dist");
+
+for (const routerPath of routerPaths) {
+  const { appHtml, ctx } = await render(routerPath);
 
   const pageHtml = template
     .replace("<!--app-head-->", ctx?.teleports?.head || "")
@@ -22,10 +27,12 @@ for (const route of routes) {
     .replace(/<!--.*?-->/g, "")
     .replaceAll(' data-vm-ssr="true"', "");
 
-  const pageFolder = path.join("dist", route);
+  const pageFolder = path.join("dist", routerPath);
   fs.mkdirSync(pageFolder, {
     recursive: true,
   });
   fs.writeFileSync(path.join(pageFolder, "index.html"), pageHtml);
+  console.log('Generated:',path.join(pageFolder, "index.html"))
+  await new Promise(resolve=>setTimeout(resolve, 300));
 }
 vite.close();
