@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { NButton } from "naive-ui";
+import { NButton, NIcon } from "naive-ui";
 import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
 import { usePaperWallet } from "@/entities/PaperWallets";
 import { useRouter } from "vue-router";
@@ -19,7 +19,9 @@ function handleEditPaperWallet() {
 <template>
   <NButton @click="handleEditPaperWallet">
     <template #icon>
-      <ImageEdit16Regular />
+      <NIcon>
+        <ImageEdit16Regular />
+      </NIcon>
     </template>
     Edit
   </NButton>

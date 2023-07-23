@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { NButton, NDrawer, NDrawerContent, useMessage } from "naive-ui";
+import { NButton, NDrawer, NDrawerContent, NIcon, useMessage } from "naive-ui";
 import {
   downloadPaperWallet,
   PaperWalletCanvas,
@@ -52,7 +52,9 @@ async function handleDownload() {
 <template>
   <NButton @click="isShown = !isShown">
     <template #icon>
-      <ArrowDownload16Regular />
+      <NIcon>
+        <ArrowDownload16Regular />
+      </NIcon>
     </template>
     Download Image
   </NButton>
