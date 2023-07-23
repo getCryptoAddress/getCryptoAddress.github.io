@@ -5,7 +5,7 @@ import {
   PaperWalletCanvas,
   PaperWalletDownloadForm,
 } from "@/entities/PaperWallets";
-import { ref } from "vue";
+import { nextTick, ref } from "vue";
 import type DownloadPaperWalletType from "@/entities/PaperWallets/types/DownloadPaperWalletType.type";
 import type {
   PaperWalletCanvasMode,
@@ -32,6 +32,8 @@ async function handleSubmitForm(payload: {
   isLoading.value = true;
 }
 async function handleDownload() {
+  await nextTick();
+  await new Promise((resolve) => setTimeout(resolve, 1));
   try {
     let targetElement: HTMLElement | null = canvasEl.value?.targetElement;
     if (!targetElement) {
