@@ -45,8 +45,43 @@ function handleMouseUp() {
   removeEventListener("mouseup", handleMouseUp);
 }
 
+function handleTouchStart(item: PaperWalletItem, e: TouchEvent) {
+  if (!props.isEditMode || e.touches.length > 1) {
+    return;
+  }
+  isMoving = true;
+  activeItem = item;
+  emit("select", item);
+  xPosition = item.position.x - e.touches[0].clientX;
+  yPosition = item.position.y - e.touches[0].clientY;
+  addEventListener("touchend", handleTouchEnd);
+  addEventListener("touchcancel", handleTouchEnd);
+}
+
+function handleTouchMove(e: TouchEvent) {
+  if (!isMoving || !activeItem || e.touches.length > 1) {
+    return;
+  }
+  e.preventDefault();
+  const item = updatePositionInItem(
+    xPosition + e.touches[0].clientX,
+    yPosition + e.touches[0].clientY,
+    activeItem
+  );
+  emit("updateItem", item);
+}
+
+function handleTouchEnd() {
+  isMoving = false;
+  activeItem = null;
+  removeEventListener("touchend", handleTouchEnd);
+  removeEventListener("touchcancel", handleTouchEnd);
+}
+
 onUnmounted(() => {
   removeEventListener("mouseup", handleMouseUp);
+  removeEventListener("touchend", handleTouchEnd);
+  removeEventListener("touchcancel", handleTouchEnd);
 });
 
 function handleMouseMove(e: MouseEvent) {
@@ -114,6 +149,7 @@ defineExpose({
   <div
     class="paper-wallet-canvas"
     @mousemove="handleMouseMove"
+    @touchmove="handleTouchMove"
     :class="{
       'paper-wallet-canvas--edit-mode': view === 'EDIT',
       'paper-wallet-canvas--print-mode': view === 'PRINT',
@@ -125,6 +161,7 @@ defineExpose({
         v-if="item.type === 'TEXT'"
         :item="item"
         @mousedown="handleMouseDown(item, $event)"
+        @touchstart="handleTouchStart(item, $event)"
         @updateText="handleUpdateText(item, $event)"
         :data-selected-item="selectedItemId === item.id"
       />
@@ -133,12 +170,14 @@ defineExpose({
         :item="item"
         :data-selected-item="selectedItemId === item.id"
         @mousedown="handleMouseDown(item, $event)"
+        @touchstart="handleTouchStart(item, $event)"
         @load="handleLoadedImage"
       />
       <PaperWalletCanvasQrCode
         v-else-if="item.type === 'QR_CODE'"
         :item="item"
         @mousedown="handleMouseDown(item, $event)"
+        @touchstart="handleTouchStart(item, $event)"
         :data-selected-item="selectedItemId === item.id"
       />
     </template>
