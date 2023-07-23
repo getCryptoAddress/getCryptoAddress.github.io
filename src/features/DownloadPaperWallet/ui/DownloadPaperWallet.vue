@@ -12,6 +12,7 @@ import type {
   PaperWalletItem,
 } from "@/entities/PaperWallets/types/PaperWallet.types";
 import { ArrowDownload16Regular } from "@vicons/fluent";
+import mobile from "is-mobile";
 
 defineProps<{
   items: PaperWalletItem[];
@@ -33,7 +34,8 @@ async function handleSubmitForm(payload: {
 }
 async function handleDownload() {
   await nextTick();
-  await new Promise((resolve) => setTimeout(resolve, 1));
+  await new Promise((resolve) => setTimeout(resolve, mobile() ? 500 : 1));
+
   try {
     let targetElement: HTMLElement | null = canvasEl.value?.targetElement;
     if (!targetElement) {
@@ -63,7 +65,10 @@ async function handleDownload() {
 
   <NDrawer v-model:show="isShown" :height="320" placement="bottom">
     <NDrawerContent title="Download paper wallet" closable>
-      <PaperWalletDownloadForm @submit="handleSubmitForm" />
+      <PaperWalletDownloadForm
+        :loading="isLoading"
+        @submit="handleSubmitForm"
+      />
     </NDrawerContent>
   </NDrawer>
 

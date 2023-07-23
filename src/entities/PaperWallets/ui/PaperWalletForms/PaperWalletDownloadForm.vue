@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import { NButton, NSelect, NSpace } from "naive-ui";
+import { NButton, NIcon, NSelect, NSpace } from "naive-ui";
 import { ref } from "vue";
 import type DownloadPaperWalletType from "@/entities/PaperWallets/types/DownloadPaperWalletType.type";
 import type { PaperWalletCanvasMode } from "@/entities/PaperWallets/types/PaperWallet.types";
+import { ArrowDownload16Regular } from "@vicons/fluent";
 
 const emit = defineEmits<{
   submit: [
@@ -11,6 +12,10 @@ const emit = defineEmits<{
       canvasMode: PaperWalletCanvasMode;
     }
   ];
+}>();
+
+defineProps<{
+  loading: boolean;
 }>();
 const typeOfDownload = ref<DownloadPaperWalletType>("PNG");
 const canvasMode = ref<PaperWalletCanvasMode>("PRINT");
@@ -51,6 +56,13 @@ async function handleDownloadButton() {
       :consistent-menu-width="false"
       :style="{ minWidth: '170px' }"
     />
-    <NButton @click="handleDownloadButton">Download</NButton>
+    <NButton :loading="loading" @click="handleDownloadButton">
+      <template #icon>
+        <NIcon>
+          <ArrowDownload16Regular />
+        </NIcon>
+      </template>
+      Download
+    </NButton>
   </NSpace>
 </template>
