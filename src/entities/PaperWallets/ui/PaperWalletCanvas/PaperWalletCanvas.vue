@@ -3,11 +3,10 @@ import type {
   PaperWalletCanvasMode,
   PaperWalletItem,
 } from "@/entities/PaperWallets/types/PaperWallet.types";
-import { computed, onUnmounted, ref, type Ref, watch } from "vue";
+import { computed, onUnmounted, ref, watch } from "vue";
 import PaperWalletCanvasText from "@/entities/PaperWallets/ui/PaperWalletCanvas/PaperWalletCanvasText.vue";
 import PaperWalletCanvasImage from "@/entities/PaperWallets/ui/PaperWalletCanvas/PaperWalletCanvasImage.vue";
 import PaperWalletCanvasQrCode from "@/entities/PaperWallets/ui/PaperWalletCanvas/PaperWalletCanvasQrCode.vue";
-import { useDark } from "@vueuse/core";
 
 const emit = defineEmits<{
   updateItem: [PaperWalletItem];
@@ -27,7 +26,6 @@ let isMoving = false;
 let activeItem: PaperWalletItem | null = null;
 let xPosition = 0;
 let yPosition = 0;
-const isDark = useDark() as Ref<boolean>;
 
 function handleMouseDown(item: PaperWalletItem, e: MouseEvent) {
   if (!props.isEditMode) {
@@ -119,8 +117,6 @@ defineExpose({
     :class="{
       'paper-wallet-canvas--edit-mode': view === 'EDIT',
       'paper-wallet-canvas--print-mode': view === 'PRINT',
-      'paper-wallet-canvas--preview-mode': view === 'PREVIEW' && !isDark,
-      'paper-wallet-canvas--preview-mode-dark': view === 'PREVIEW' && isDark,
     }"
     ref="targetElement"
   >
@@ -170,13 +166,6 @@ defineExpose({
   &--print-mode {
     border: 3px dotted #555;
     border-radius: 2px;
-  }
-  &--preview-mode {
-    outline: 1px dashed #ccc;
-    border-radius: 4px;
-  }
-  &--preview-mode-dark {
-    border-radius: 4px;
   }
 }
 </style>

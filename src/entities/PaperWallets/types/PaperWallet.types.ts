@@ -46,4 +46,4 @@ export type PaperWalletItem =
   | PaperWalletItemImage
   | PaperWalletItemQRCode;
 
-export type PaperWalletCanvasMode = "EDIT" | "VIEW" | "PRINT" | "PREVIEW";
+export type PaperWalletCanvasMode = "EDIT" | "VIEW" | "PRINT";

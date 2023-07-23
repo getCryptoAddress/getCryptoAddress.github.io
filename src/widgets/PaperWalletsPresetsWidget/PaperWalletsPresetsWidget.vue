@@ -81,11 +81,8 @@ function handleGeneratePaperWallets(payload: {
           :key="preset.name"
         >
           <NThing :title="preset.name" :description="preset.description">
-            <ResizablePaperWalletWrapper>
-              <PaperWalletCanvas
-                :items="preset.paperWalletItems"
-                view="PREVIEW"
-              />
+            <ResizablePaperWalletWrapper bordered>
+              <PaperWalletCanvas :items="preset.paperWalletItems" view="VIEW" />
             </ResizablePaperWalletWrapper>
             <template #action>
               <NSpace>

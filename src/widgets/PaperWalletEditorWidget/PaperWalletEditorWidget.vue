@@ -15,6 +15,7 @@ import {
   RedoActionInPaperWallet,
   UndoActionInPaperWallet,
 } from "@/features/ConrollHistoryInPaperWallet/";
+import ResizablePaperWalletWrapper from "@/entities/PaperWallets/ui/ResizablePaperWalletWrapper/ResizablePaperWalletWrapper.vue";
 
 const paperWalletStore = usePaperWallet();
 </script>
@@ -22,14 +23,16 @@ const paperWalletStore = usePaperWallet();
 <template>
   <PaperWalletEditorWrapper>
     <template #canvas>
-      <PaperWalletCanvas
-        :items="paperWalletStore.items"
-        :view="paperWalletStore.canvasMode"
-        :is-edit-mode="true"
-        :selected-item-id="paperWalletStore.selectedItemId"
-        @updateItem="paperWalletStore.updateItem"
-        @select="paperWalletStore.setSelectItem"
-      />
+      <ResizablePaperWalletWrapper>
+        <PaperWalletCanvas
+          :items="paperWalletStore.items"
+          :view="paperWalletStore.canvasMode"
+          :is-edit-mode="true"
+          :selected-item-id="paperWalletStore.selectedItemId"
+          @updateItem="paperWalletStore.updateItem"
+          @select="paperWalletStore.setSelectItem"
+        />
+      </ResizablePaperWalletWrapper>
     </template>
     <template #properties>
       <PaperWalletItemPropsForm
