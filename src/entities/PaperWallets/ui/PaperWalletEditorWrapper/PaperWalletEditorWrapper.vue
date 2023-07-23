@@ -4,9 +4,7 @@
   <div class="paper-wallet-editor-wrapper-container">
     <div class="paper-wallet-editor-wrapper">
       <div class="paper-wallet-editor-wrapper__canvas">
-        <div class="paper-wallet-editor-wrapper__canvas-scroll-area">
-          <slot name="canvas" />
-        </div>
+        <slot name="canvas" />
       </div>
       <div class="paper-wallet-editor-wrapper__properties">
         <slot name="properties" />
@@ -50,12 +48,6 @@
 
 .paper-wallet-editor-wrapper__canvas {
   grid-area: canvas;
-  overflow: hidden;
-  display: grid;
-}
-
-.paper-wallet-editor-wrapper__canvas-scroll-area {
-  overflow-x: scroll;
   background: #9a9a9a82;
   border-radius: 5px;
   padding: 12px;

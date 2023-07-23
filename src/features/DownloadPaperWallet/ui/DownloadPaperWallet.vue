@@ -73,12 +73,26 @@ async function handleDownload() {
   </NDrawer>
 
   <Teleport to="body">
-    <PaperWalletCanvas
+    <div
       v-if="isLoading"
-      :items="items"
-      :view="canvasMode"
-      ref="canvasEl"
-      @load="handleDownload"
-    />
+      style="
+        position: fixed;
+        overflow: hidden;
+        display: grid;
+        width: 0;
+        height: 0;
+        top: 0;
+        left: 0;
+      "
+    >
+      <div style="overflow: scroll">
+        <PaperWalletCanvas
+          :items="items"
+          :view="canvasMode"
+          @load="handleDownload"
+          ref="canvasEl"
+        />
+      </div>
+    </div>
   </Teleport>
 </template>

@@ -23,7 +23,7 @@ const paperWalletStore = usePaperWallet();
 <template>
   <PaperWalletEditorWrapper>
     <template #canvas>
-      <ResizablePaperWalletWrapper>
+      <ResizablePaperWalletWrapper :key="paperWalletStore.canvasMode">
         <PaperWalletCanvas
           :items="paperWalletStore.items"
           :view="paperWalletStore.canvasMode"
