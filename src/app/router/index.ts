@@ -19,6 +19,13 @@ function getPaperWalletsPage() {
 }
 
 const router = createRouter({
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    }
+    // always scroll to top
+    return { top: 0 };
+  },
   history: import.meta.env.SSR
     ? createMemoryHistory(import.meta.env.BASE_URL)
     : createWebHistory(import.meta.env.BASE_URL),
@@ -28,8 +35,8 @@ const router = createRouter({
       name: "Home",
       component: getHomePage,
       meta: {
-        title: "Home",
-        description: "Home page",
+        description:
+          "Generate cryptocurrency addresses, create free secure paper wallets, and customize your own. Join us for a secure wallet creation experience.",
       },
     },
     {
