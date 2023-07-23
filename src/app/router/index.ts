@@ -19,6 +19,13 @@ function getPaperWalletsPage() {
 }
 
 const router = createRouter({
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    }
+    // always scroll to top
+    return { top: 0 };
+  },
   history: import.meta.env.SSR
     ? createMemoryHistory(import.meta.env.BASE_URL)
     : createWebHistory(import.meta.env.BASE_URL),
