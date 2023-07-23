@@ -1,55 +1,66 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from "vue";
-// todo refactoring component, simplify logic
+import { computed, onBeforeUnmount, onMounted, type Ref, ref } from "vue";
+import throttle from "lodash/throttle";
+import { useDark } from "@vueuse/core";
 
-const container = ref<HTMLDivElement>();
-const wrapper = ref<HTMLDivElement>();
+const area = ref<HTMLDivElement>();
+
+const isDark = useDark() as Ref<boolean>;
+
 const scale = ref(1);
 const height = ref<string>("auto");
-const initialHeight = ref(0);
-let resizeObserver: ResizeObserver | null = null;
 
-function updateScale() {
-  if (!container.value || !wrapper.value) {
-    console.log("Container not found");
-    return;
-  }
-  let scaleValue = container.value.offsetWidth / wrapper.value.offsetHeight;
-  scale.value = scaleValue < 1 ? scaleValue : 1;
-  height.value = `${initialHeight.value * scale.value}px`;
+const props = defineProps<{ bordered?: boolean }>();
+
+const containerStyles = computed(() => ({
+  "resizable-paper-wallet-wrapper__container": true,
+  "resizable-paper-wallet-wrapper__bordered": props.bordered,
+  "resizable-paper-wallet-wrapper__bordered--dark":
+    props.bordered && isDark.value,
+}));
+
+function getMaxWidthFromChildren(el: HTMLDivElement) {
+  return Math.max(
+    0,
+    ...[...el.children].map((el) =>
+      el instanceof HTMLDivElement ? el.offsetWidth : 0
+    )
+  );
 }
 
+const updateScale = throttle(() => {
+  if (!area.value) {
+    console.error("Container not found");
+    return;
+  }
+
+  const maxWidth = getMaxWidthFromChildren(area.value);
+  if (!maxWidth) {
+    return;
+  }
+
+  const scaleValue = area.value.offsetWidth / maxWidth;
+  scale.value = scaleValue < 1 ? scaleValue : 1;
+  height.value = `${area.value.offsetHeight * scale.value}px`;
+}, 100);
+
 onMounted(() => {
-  if (!container.value || !wrapper.value) return;
-  initialHeight.value = container.value.offsetHeight;
-  let containerWidth = container.value.offsetWidth;
   window.addEventListener("resize", updateScale);
-
-  resizeObserver = new ResizeObserver(() => {
-    if (!container.value) return;
-    if (containerWidth !== container.value.offsetWidth) {
-      containerWidth = container.value.offsetWidth;
-      updateScale();
-    }
-  });
-
   updateScale();
-  resizeObserver.observe(container.value);
 });
 
 onBeforeUnmount(() => {
-  if (!container.value) return;
-  if (resizeObserver) resizeObserver.unobserve(container.value);
   window.removeEventListener("resize", updateScale);
 });
 </script>
 
 <template>
-  <div ref="wrapper" class="wrapper">
-    <div ref="container" class="container">
+  <div class="resizable-paper-wallet-wrapper">
+    <div ref="container" :class="containerStyles" :style="{ height: height }">
       <div
-        class="area"
-        :style="{ transform: `scale(${scale})`, height: height }"
+        class="resizable-paper-wallet-wrapper__area"
+        ref="area"
+        :style="{ transform: `scale(${scale})` }"
       >
         <slot />
       </div>
@@ -58,16 +69,23 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped lang="scss">
-.wrapper {
+.resizable-paper-wallet-wrapper {
   display: grid;
 }
-.container {
-  padding: 1px;
+.resizable-paper-wallet-wrapper__container {
+  max-width: fit-content;
   overflow: hidden;
 }
 
-.area {
+.resizable-paper-wallet-wrapper__bordered {
+  border-radius: 4px;
+  outline: 1px dashed #ccc;
+  &--dark {
+    outline: none;
+  }
+}
+
+.resizable-paper-wallet-wrapper__area {
   transform-origin: top left;
-  width: fit-content;
 }
 </style>
