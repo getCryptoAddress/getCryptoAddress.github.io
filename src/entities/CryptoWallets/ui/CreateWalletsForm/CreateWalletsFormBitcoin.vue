@@ -20,15 +20,15 @@ const props = defineProps<{
 }>();
 
 const keyFormatOptions = [
-  { value: "hex", label: "hex" },
-  { value: "wif", label: "wif" },
-  { value: "wifUncompressed", label: "wif uncompressed" },
+  { value: "hex", label: "Hexadecimal" },
+  { value: "wif", label: "Wallet Import Format" },
+  { value: "wifUncompressed", label: "Wallet Import Format Uncompressed" },
 ];
 
 const addressFormatOptions = [
-  { value: "tr", label: "tr" },
-  { value: "pkh", label: "pkh" },
-  { value: "wpkh", label: "wpkh" },
+  { value: "tr", label: "Taproot" },
+  { value: "pkh", label: "P2PKH (Pay-to-Public-Key-Hash)" },
+  { value: "wpkh", label: "P2WPKH (Pay-to-Witness-Public-Key-Hash)" },
 ];
 
 function convertKeyFormat(format: BitcoinPrivateKeyFormat): PrivateKeyFormat {
