@@ -40,7 +40,7 @@ const router = createRouter({
       },
     },
     {
-      path: "/create-wallets",
+      path: "/create-wallets/",
       name: "CreateWallets",
       component: getCreateWalletsPage,
       meta: {
@@ -51,7 +51,7 @@ const router = createRouter({
       },
     },
     {
-      path: "/paper-wallet-editor",
+      path: "/paper-wallet-editor/",
       name: "PaperWalletEditor",
       component: getPaperWalletEditorPage,
       meta: {
@@ -61,7 +61,7 @@ const router = createRouter({
       },
     },
     {
-      path: "/paper-wallets",
+      path: "/paper-wallets/",
       name: "PaperWallets",
       component: getPaperWalletsPage,
       meta: {
