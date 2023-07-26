@@ -6,6 +6,7 @@ async function getDefaultPresetItems(): Promise<PaperWalletItem[]> {
   return [
     {
       id: "secret-title",
+      font: "Helvetica",
       type: "TEXT",
       text: "Secret",
       align: "center",
@@ -23,6 +24,7 @@ async function getDefaultPresetItems(): Promise<PaperWalletItem[]> {
     },
     {
       id: "address-title",
+      font: "Helvetica",
       type: "TEXT",
       text: "Address",
       align: "center",
@@ -68,6 +70,7 @@ async function getDefaultPresetItems(): Promise<PaperWalletItem[]> {
     },
     {
       id: "type-title",
+      font: "Helvetica",
       type: "TEXT",
       text: "{{ Platform }}",
       align: "center",
@@ -85,6 +88,7 @@ async function getDefaultPresetItems(): Promise<PaperWalletItem[]> {
     },
     {
       id: "secret-text",
+      font: "Courier New",
       type: "TEXT",
       text: "{{ SecretKey }}",
       align: "center",
@@ -102,6 +106,7 @@ async function getDefaultPresetItems(): Promise<PaperWalletItem[]> {
     },
     {
       id: "address-text",
+      font: "Courier New",
       type: "TEXT",
       text: "{{ Address }}",
       align: "center",
@@ -119,6 +124,7 @@ async function getDefaultPresetItems(): Promise<PaperWalletItem[]> {
     },
     {
       id: "wallet-title",
+      font: "Helvetica",
       type: "TEXT",
       text: "Wallet",
       align: "center",

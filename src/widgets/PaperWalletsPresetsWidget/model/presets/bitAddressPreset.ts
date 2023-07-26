@@ -46,6 +46,7 @@ async function getDefaultPresetItems(): Promise<PaperWalletItem[]> {
     },
     {
       id: "text-address",
+      font: "Courier New",
       type: "TEXT",
       text: "{{ Address }}",
       align: "center",
@@ -63,6 +64,7 @@ async function getDefaultPresetItems(): Promise<PaperWalletItem[]> {
     },
     {
       id: "text-secret",
+      font: "Courier New",
       type: "TEXT",
       text: "{{ SecretKey }}",
       align: "left",

@@ -17,6 +17,7 @@ const styles = computed<StyleValue>(() => {
   return {
     cursor: "move",
     position: "absolute",
+    fontFamily: props.item.font,
     fontSize: props.item.size + "px",
     fontWeight: props.item.weight,
     textAlign: props.item.align,
