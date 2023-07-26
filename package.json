@@ -20,6 +20,7 @@
     "@vueuse/core": "^9.13.0",
     "downloadjs": "^1.4.7",
     "ethereum-cryptography": "^2.1.2",
+    "highlight.js": "^11.8.0",
     "html-to-image": "^1.11.11",
     "is-mobile": "^4.0.0",
     "lodash.debounce": "^4.0.8",
