@@ -7,7 +7,9 @@ async function getDefaultPresetItems(): Promise<PaperWalletItem[]> {
     {
       id: "background",
       type: "IMAGE",
-      src: await getCachedImageLink(await import("./bitaddress_org.png")),
+      src: await getCachedImageLink(
+        await import("./images/bitaddress_org.png")
+      ),
       position: {
         x: -3,
         y: 0,

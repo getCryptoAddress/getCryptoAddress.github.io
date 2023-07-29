@@ -21,6 +21,7 @@ import highlight from "highlight.js/lib/core";
 import jsonStyle from "highlight.js/lib/languages/json";
 import copyToClipboard from "@/shared/lib/utils/copyToClipboard";
 
+// todo simplify this component, move templates to entities
 const props = defineProps<{
   items: PaperWalletItem[];
 }>();
@@ -37,6 +38,7 @@ const message = useMessage();
 
 const status = ref<"initial" | "coped" | "error">("initial");
 
+// todo make common function
 async function handleSaveToClipboard() {
   try {
     await copyToClipboard(code.value);
@@ -68,18 +70,16 @@ async function handleSaveToClipboard() {
       aria-modal="true"
       style="max-width: 600px"
     >
-      <NSpace vertical>
+      <NSpace size="large" vertical>
         <div>
-          <p>
-            You can export design for
-            <a
-              href="https://github.com/getCryptoAddress/getCryptoAddress.github.io/tree/master/src/widgets/PaperWalletsPresetsWidget/model/presets"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Paper Wallets Presets
-            </a>
-          </p>
+          You can export design for
+          <a
+            href="https://github.com/getCryptoAddress/getCryptoAddress.github.io/tree/master/src/widgets/PaperWalletsPresetsWidget/model/presets"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Paper Wallets Presets
+          </a>
           <p>P.s. Images need to be uploaded separately</p>
           <NButton @click="handleSaveToClipboard">
             <template #icon>
@@ -93,7 +93,7 @@ async function handleSaveToClipboard() {
           </NButton>
         </div>
         <NConfigProvider :hljs="highlight">
-          <div style="overflow: auto">
+          <div class="export-paper-wallet__code">
             <NCode :code="code" language="json" show-line-numbers />
           </div>
         </NConfigProvider>
@@ -101,3 +101,13 @@ async function handleSaveToClipboard() {
     </NCard>
   </NModal>
 </template>
+
+<style lang="scss" scoped>
+.export-paper-wallet__code {
+  overflow: auto;
+  max-height: 315px;
+  border: 1px solid var(--borderColor);
+  border-radius: 5px;
+  padding: 10px 15px;
+}
+</style>

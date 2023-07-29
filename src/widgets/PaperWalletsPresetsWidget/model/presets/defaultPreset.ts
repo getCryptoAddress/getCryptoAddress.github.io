@@ -143,7 +143,7 @@ async function getDefaultPresetItems(): Promise<PaperWalletItem[]> {
     {
       id: "1689855959723",
       type: "IMAGE",
-      src: await getCachedImageLink(await import("./logo.svg")),
+      src: await getCachedImageLink(await import("./images/logo.svg")),
       position: {
         x: 180,
         y: 70,
