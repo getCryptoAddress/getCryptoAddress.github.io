@@ -17,6 +17,19 @@ const props = defineProps<{
   item: PaperWalletItemText;
 }>();
 
+const fontOptions: {
+  value: PaperWalletItemText["font"];
+  label: string;
+}[] = [
+  { value: "Arial", label: "Arial" },
+  { value: "Verdana", label: "Verdana" },
+  { value: "Times New Roman", label: "Times New Roman" },
+  { value: "Courier New", label: "Courier New" },
+  { value: "Georgia", label: "Georgia" },
+  { value: "Helvetica", label: "Helvetica" },
+  { value: "Trebuchet MS", label: "Trebuchet MS" },
+];
+
 function handleUpdateValue<K extends keyof PaperWalletItemText>(
   key: K,
   value: PaperWalletItemText[K]
@@ -49,6 +62,14 @@ function handleUpdateValue<K extends keyof PaperWalletItemText>(
         @update:value="handleUpdateValue('text', $event)"
       />
     </NFormItem>
+    <NFormItem label="Font family">
+      <NSelect
+        :value="item.font"
+        :options="fontOptions"
+        @update:value="handleUpdateValue('font', $event)"
+      />
+    </NFormItem>
+
     <NFormItem label="Font Size">
       <NInputNumber
         :value="item.size"
@@ -71,7 +92,7 @@ function handleUpdateValue<K extends keyof PaperWalletItemText>(
       </NInputNumber>
     </NFormItem>
     <NFormItem label="Align">
-      <n-select
+      <NSelect
         :value="item.align"
         :options="[
           { value: 'center', label: 'Center' },
@@ -83,7 +104,7 @@ function handleUpdateValue<K extends keyof PaperWalletItemText>(
       />
     </NFormItem>
     <NFormItem label="AlignLast">
-      <n-select
+      <NSelect
         :value="item.alignLast"
         :options="[
           { value: 'auto', label: 'Auto' },

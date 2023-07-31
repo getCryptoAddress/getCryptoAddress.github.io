@@ -15,7 +15,8 @@ import {
   RedoActionInPaperWallet,
   UndoActionInPaperWallet,
 } from "@/features/ConrollHistoryInPaperWallet/";
-import ResizablePaperWalletWrapper from "@/entities/PaperWallets/ui/ResizablePaperWalletWrapper/ResizablePaperWalletWrapper.vue";
+import { ResizablePaperWalletWrapper } from "@/entities/PaperWallets/";
+import { ExportPaperWallet } from "@/features/ExportPaperWallet";
 
 const paperWalletStore = usePaperWallet();
 </script>
@@ -64,6 +65,7 @@ const paperWalletStore = usePaperWallet();
         <UndoActionInPaperWallet />
         <RedoActionInPaperWallet />
         <DownloadPaperWallet :items="paperWalletStore.items" />
+        <ExportPaperWallet :items="paperWalletStore.items" />
       </NSpace>
     </template>
   </PaperWalletEditorWrapper>

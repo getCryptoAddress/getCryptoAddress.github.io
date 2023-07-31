@@ -71,7 +71,7 @@ function updateBitcoinPayload(data: BitcoinWalletPayload) {
   <NForm>
     <NFormItem label="Crypto wallet" path="type">
       <n-space class="form-create-wallets__space" vertical>
-        <n-select v-model:value="platform" :options="platforms" />
+        <NSelect v-model:value="platform" :options="platforms" />
       </n-space>
     </NFormItem>
     <NFormItem label="Count tokens" path="count">

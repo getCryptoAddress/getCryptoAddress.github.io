@@ -20,6 +20,14 @@ export type PaperWalletItemText = {
   type: PaperWalletItemTypeText;
   text: string;
   size: number;
+  font:
+    | "Arial"
+    | "Verdana"
+    | "Times New Roman"
+    | "Courier New"
+    | "Georgia"
+    | "Helvetica"
+    | "Trebuchet MS";
   align: "center" | "left" | "right" | "justify";
   alignLast: "auto" | "center" | "left" | "right" | "justify";
   weight: number;

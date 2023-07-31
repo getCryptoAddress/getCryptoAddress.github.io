@@ -69,6 +69,7 @@ export const usePaperWallet = defineStore("paperWallet", () => {
   async function addItemText(text = "Text") {
     const item: PaperWalletItem = {
       id: `${Date.now()}`,
+      font: "Courier New",
       type: "TEXT",
       text,
       align: "center",

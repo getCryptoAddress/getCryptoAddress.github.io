@@ -7,7 +7,9 @@ async function getDefaultPresetItems(): Promise<PaperWalletItem[]> {
     {
       id: "background",
       type: "IMAGE",
-      src: await getCachedImageLink(await import("./bitaddress_org.png")),
+      src: await getCachedImageLink(
+        await import("./images/bitaddress_org.png")
+      ),
       position: {
         x: -3,
         y: 0,
@@ -46,6 +48,7 @@ async function getDefaultPresetItems(): Promise<PaperWalletItem[]> {
     },
     {
       id: "text-address",
+      font: "Courier New",
       type: "TEXT",
       text: "{{ Address }}",
       align: "center",
@@ -63,6 +66,7 @@ async function getDefaultPresetItems(): Promise<PaperWalletItem[]> {
     },
     {
       id: "text-secret",
+      font: "Courier New",
       type: "TEXT",
       text: "{{ SecretKey }}",
       align: "left",

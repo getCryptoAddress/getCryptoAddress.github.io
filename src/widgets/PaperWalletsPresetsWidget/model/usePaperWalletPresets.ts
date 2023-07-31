@@ -3,11 +3,16 @@ import { computed, ref } from "vue";
 import type Preset from "@/widgets/PaperWalletsPresetsWidget/types/Preset.type";
 import defaultPreset from "@/widgets/PaperWalletsPresetsWidget/model/presets/defaultPreset";
 import bitAddressPreset from "@/widgets/PaperWalletsPresetsWidget/model/presets/bitAddressPreset";
+import metamaskPreset from "@/widgets/PaperWalletsPresetsWidget/model/presets/metamaskPreset";
 import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
 import waitLoadedPage from "@/shared/lib/utils/waitLoadedPage";
 
 export const usePaperWalletPresets = defineStore("presets", () => {
-  const presets = ref<Preset[]>([defaultPreset, bitAddressPreset]);
+  const presets = ref<Preset[]>([
+    defaultPreset,
+    bitAddressPreset,
+    metamaskPreset,
+  ]);
   const secretKey = ref("");
   const address = ref("");
   const platform = ref("");

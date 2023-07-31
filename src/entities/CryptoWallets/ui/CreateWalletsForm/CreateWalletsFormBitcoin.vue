@@ -73,10 +73,10 @@ watchEffect(() => {
     <n-switch v-model:value="isTestNet" />
   </NFormItem>
   <NFormItem label="Key format">
-    <n-select v-model:value="selectedKeyFormats" :options="keyFormatOptions" />
+    <NSelect v-model:value="selectedKeyFormats" :options="keyFormatOptions" />
   </NFormItem>
   <NFormItem label="Address format">
-    <n-select
+    <NSelect
       v-model:value="selectedAddressFormats"
       :options="addressFormatOptions"
     />
