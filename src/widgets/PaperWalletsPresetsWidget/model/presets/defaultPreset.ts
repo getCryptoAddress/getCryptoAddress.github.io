@@ -160,6 +160,7 @@ const defaultPreset: Preset = {
   async preloadFn() {
     this.paperWalletItems = await getDefaultPresetItems();
   },
+  isShowFn: () => true,
   paperWalletItems: [],
   status: "INIT",
 };

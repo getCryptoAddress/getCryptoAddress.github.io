@@ -51,6 +51,7 @@ export const usePaperWalletPresets = defineStore("presets", () => {
 
     return presets.value
       .filter((preset) => preset.status === "SUCCESS")
+      .filter((preset) => preset.isShowFn(platform.value))
       .map((preset) => {
         return {
           ...preset,
