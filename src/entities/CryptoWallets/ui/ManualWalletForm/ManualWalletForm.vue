@@ -11,33 +11,30 @@ import {
 } from "naive-ui";
 import { computed, ref } from "vue";
 
-// todo refactoring component
-
-type FormManualWalletPayload = {
-  secret: string;
-  address: string;
-  platform: string;
-};
-
 const emit = defineEmits<{
-  submit: [FormManualWalletPayload];
+  submit: [];
+  "update:secret": [string];
+  "update:address": [string];
+  "update:platform": [string];
 }>();
 
 const props = defineProps<{
-  defaultValue: FormManualWalletPayload;
+  secret: string;
+  address: string;
+  platform: string;
 }>();
 
-const formValue = ref<FormManualWalletPayload>({
-  secret: props.defaultValue.secret || "",
-  address: props.defaultValue.address || "",
-  platform: props.defaultValue.platform || "Bitcoin",
+const formModel = computed(() => {
+  return {
+    secret: props.secret,
+    address: props.address,
+    platform: props.platform,
+  };
 });
 
 const options = computed<string[]>(() => {
   return ["Bitcoin", "Ethereum"].filter(
-    (item) =>
-      item.includes(formValue.value.platform) &&
-      item !== formValue.value.platform
+    (item) => item.includes(props.platform) && item !== props.platform
   );
 });
 
@@ -48,21 +45,21 @@ const rules: FormRules = {
     {
       required: true,
       message: "Please input platform",
-      trigger: ["input", "blur"],
+      trigger: ["blur"],
     },
   ],
   secret: [
     {
       required: true,
       message: "Please input secret field",
-      trigger: ["input", "blur"],
+      trigger: ["blur"],
     },
   ],
   address: [
     {
       required: true,
       message: "Please input address field",
-      trigger: ["input", "blur"],
+      trigger: ["blur"],
     },
   ],
 };
@@ -78,11 +75,7 @@ function handleSubmit() {
     if (errors) {
       return;
     }
-    emit("submit", {
-      platform: formValue.value.platform,
-      secret: formValue.value.secret,
-      address: formValue.value.address,
-    });
+    emit("submit");
   });
 }
 </script>
@@ -90,16 +83,21 @@ function handleSubmit() {
 <template>
   <NForm
     @submit.prevent="handleSubmit"
-    :model="formValue"
+    :model="formModel"
     :rules="rules"
     ref="formRef"
   >
     <NFormItem label="Platform" path="platform">
-      <NAutoComplete v-model:value="formValue.platform" :options="options" />
+      <NAutoComplete
+        :options="options"
+        :value="platform"
+        @update:value="emit('update:platform', $event)"
+      />
     </NFormItem>
     <NFormItem label="Secret key" path="secret">
       <NInput
-        v-model:value="formValue.secret"
+        :value="secret"
+        @update:value="emit('update:secret', $event)"
         placeholder="Input secret key"
         type="textarea"
         :autosize="{
@@ -112,7 +110,8 @@ function handleSubmit() {
     </NFormItem>
     <NFormItem label="Address" path="address">
       <NInput
-        v-model:value="formValue.address"
+        :value="address"
+        @update:value="emit('update:address', $event)"
         placeholder="Input address"
         type="textarea"
         @keydown.enter.space.prevent="handleKeydown"
