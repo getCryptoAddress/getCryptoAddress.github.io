@@ -16,7 +16,7 @@ const { render, routes } = await vite.ssrLoadModule("/src/entry-server.ts");
 
 const routerPaths = routes.map((route) => route.path);
 
-generateSitemap(routerPaths, 'https://getcryptoaddress.github.io', "dist");
+generateSitemap(routerPaths, "https://getcryptoaddress.github.io", "dist");
 
 for (const routerPath of routerPaths) {
   const { appHtml, ctx } = await render(routerPath);
@@ -32,7 +32,7 @@ for (const routerPath of routerPaths) {
     recursive: true,
   });
   fs.writeFileSync(path.join(pageFolder, "index.html"), pageHtml);
-  console.log('Generated:',path.join(pageFolder, "index.html"))
-  await new Promise(resolve=>setTimeout(resolve, 300));
+  console.log("Generated:", path.join(pageFolder, "index.html"));
+  await new Promise((resolve) => setTimeout(resolve, 300));
 }
 vite.close();
