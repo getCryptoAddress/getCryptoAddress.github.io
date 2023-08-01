@@ -90,6 +90,7 @@ const bitAddressPreset: Preset = {
   async preloadFn() {
     this.paperWalletItems = await getDefaultPresetItems();
   },
+  isShowFn: (platform) => platform === "Bitcoin",
   paperWalletItems: [],
   status: "INIT",
 };

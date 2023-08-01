@@ -15,58 +15,39 @@ import {
 } from "naive-ui";
 import { DownloadPaperWallet } from "@/features/DownloadPaperWallet";
 import { EditPaperWalletPreset } from "@/features/EditPaperWalletPreset";
-import ManualWalletForm from "@/entities/CryptoWallets/ui/ManualWalletForm/ManualWalletForm.vue";
-import RedirectWalletToCreateWallet from "@/features/RedirectWalletToCreateWallet/ui/RedirectWalletToCreateWallet.vue";
+import { ManualWalletForm } from "@/entities/CryptoWallets";
+import { RedirectWalletToCreateWallet } from "@/features/RedirectWalletToCreateWallet";
 
-// todo refactoring component, simplify logic
 const paperWalletPresets = usePaperWalletPresets();
+
+const secret = ref("");
+const address = ref("");
+const platform = ref("");
 
 const { SSR } = import.meta.env;
 
-const formValue = ref<{
-  secret: string;
-  address: string;
-  platform: string;
-}>({
-  secret: "",
-  address: "",
-  platform: "",
-});
+function setWallet() {
+  paperWalletPresets.setWallet(secret.value, address.value, platform.value);
+}
 
 if (!SSR) {
-  formValue.value = {
-    secret: history.state.secret || formValue.value.secret,
-    address: history.state.address || formValue.value.address,
-    platform: history.state.platform || formValue.value.platform,
-  };
+  secret.value = history.state.secret || secret.value;
+  address.value = history.state.address || address.value;
+  platform.value = history.state.platform || platform.value;
 }
-paperWalletPresets.setWallet(
-  formValue.value.secret,
-  formValue.value.address,
-  formValue.value.platform
-);
+setWallet();
 
-function handleGeneratePaperWallets(payload: {
-  secret: string;
-  address: string;
-  platform: string;
-}) {
-  formValue.value.secret = payload.secret;
-  formValue.value.address = payload.address;
-  formValue.value.platform = payload.platform;
-
-  paperWalletPresets.setWallet(
-    formValue.value.secret,
-    formValue.value.address,
-    formValue.value.platform
-  );
+function handleGeneratePaperWallets() {
+  setWallet();
 }
 </script>
 
 <template>
   <div>
     <ManualWalletForm
-      :default-value="formValue"
+      v-model:secret="secret"
+      v-model:address="address"
+      v-model:platform="platform"
       @submit="handleGeneratePaperWallets"
     >
       <template #actions>

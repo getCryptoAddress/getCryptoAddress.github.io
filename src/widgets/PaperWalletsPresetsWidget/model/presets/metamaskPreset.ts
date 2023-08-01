@@ -192,6 +192,7 @@ const metamaskPreset: Preset = {
   async preloadFn() {
     this.paperWalletItems = await getDefaultPresetItems();
   },
+  isShowFn: (platform) => platform === "Ethereum",
   paperWalletItems: [],
   status: "INIT",
 };
