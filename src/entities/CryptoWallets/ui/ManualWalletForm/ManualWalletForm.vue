@@ -2,13 +2,14 @@
 import {
   type FormInst,
   type FormRules,
+  NAutoComplete,
   NButton,
   NForm,
   NFormItem,
   NInput,
   NSpace,
 } from "naive-ui";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 // todo refactoring component
 
@@ -30,6 +31,14 @@ const formValue = ref<FormManualWalletPayload>({
   secret: props.defaultValue.secret || "",
   address: props.defaultValue.address || "",
   platform: props.defaultValue.platform || "Bitcoin",
+});
+
+const options = computed<string[]>(() => {
+  return ["Bitcoin", "Ethereum"].filter(
+    (item) =>
+      item.includes(formValue.value.platform) &&
+      item !== formValue.value.platform
+  );
 });
 
 const formRef = ref<FormInst | null>(null);
@@ -86,7 +95,7 @@ function handleSubmit() {
     ref="formRef"
   >
     <NFormItem label="Platform" path="platform">
-      <NInput v-model:value="formValue.platform" />
+      <NAutoComplete v-model:value="formValue.platform" :options="options" />
     </NFormItem>
     <NFormItem label="Secret key" path="secret">
       <NInput
