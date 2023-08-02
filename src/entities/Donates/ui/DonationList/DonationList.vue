@@ -13,6 +13,7 @@ import EthereumQrCode from "@/entities/Donates/ui/EthereumQrCode/EthereumQrCode.
 <style scoped lang="scss">
 .donation-list {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem 1rem;
+  flex-wrap: wrap;
 }
 </style>
