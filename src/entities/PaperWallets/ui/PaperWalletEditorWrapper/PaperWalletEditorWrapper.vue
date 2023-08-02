@@ -22,7 +22,7 @@
 <style scoped lang="scss">
 .paper-wallet-editor-wrapper-container {
   container: paper-wallet-editor-wrapper-container / inline-size;
-  min-height: 780px;
+  min-height: 500px;
 }
 
 .paper-wallet-editor-wrapper {

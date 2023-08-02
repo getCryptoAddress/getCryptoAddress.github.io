@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import TextualWalletsWidget from "@/widgets/TextualWalletsWidget/TextualWalletsWidget.vue";
+import { DonationList } from "@/entities/Donates";
 </script>
 
 <template>
@@ -31,4 +32,12 @@ import TextualWalletsWidget from "@/widgets/TextualWalletsWidget/TextualWalletsW
     <li>Bitcoin</li>
     <li>Ethereum</li>
   </ul>
+
+  <h3>Support us by making a donation</h3>
+  <p>
+    Would you like us to support more types of wallets and currencies? We would
+    be happy if you supporting our project with a donation. Your support helps
+    us expand our services and include more wallet options for you.
+  </p>
+  <DonationList />
 </template>
