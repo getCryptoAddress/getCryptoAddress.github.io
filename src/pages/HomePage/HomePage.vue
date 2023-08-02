@@ -1,19 +1,15 @@
 <script setup lang="ts">
 import CryptoDescription from "@/pages/HomePage/ui/CryptoDescription/CryptoDescription.vue";
 import { NAlert } from "naive-ui";
+import DonationList from "@/entities/Donates/ui/DonationList/DonationList.vue";
+import GithubLink from "@/shared/ui/GithubLink/GithubLink.vue";
 </script>
 
 <template>
   <CryptoDescription>
     <NAlert title="Beta" type="info">
       We are in beta. If you find a bug, please report it to us on
-      <a
-        href="https://github.com/getCryptoAddress/getCryptoAddress.github.io"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        GitHub
-      </a>
+      <GithubLink />
     </NAlert>
     <p>
       Welcome to our website where you can generate cryptocurrency addresses and
@@ -22,32 +18,11 @@ import { NAlert } from "naive-ui";
     </p>
     <p>
       This project is open source, and all the code is available for review on
-      <a
-        href="https://github.com/getCryptoAddress/getCryptoAddress.github.io"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        GitHub </a
-      >. We invite you to support us by contributing to the code or making a
-      donation.
+      <GithubLink />. We invite you to support us by contributing to the code or
+      making a donation.
     </p>
-    <!--    <div>-->
-    <!--      <p>Donation</p>-->
-    <!--      <NSpace>-->
-    <!--        <NThing-->
-    <!--          title="Bitcoin"-->
-    <!--          description="123123123123123123112312312312312312312312312323123123"-->
-    <!--        >-->
-    <!--          <QRCode text="123123123" :width="100" />-->
-    <!--        </NThing>-->
-    <!--        <NThing-->
-    <!--          title="Ethereum"-->
-    <!--          description="123123123123123123123123123123123123123123123"-->
-    <!--        >-->
-    <!--          <QRCode text="123123123123123123123123123" :width="100" />-->
-    <!--        </NThing>-->
-    <!--      </NSpace>-->
-    <!--    </div>-->
+    <h3>Donation List</h3>
+    <DonationList />
     <p>
       Enjoy a comfortable and secure cryptocurrency wallet creation experience!
     </p>
