@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import PaperWalletsPresetsWidget from "@/widgets/PaperWalletsPresetsWidget/PaperWalletsPresetsWidget.vue";
+import { DonationList } from "@/entities/Donates";
 </script>
 
 <template>
@@ -91,4 +92,11 @@ import PaperWalletsPresetsWidget from "@/widgets/PaperWalletsPresetsWidget/Paper
       assets
     </li>
   </ul>
+  <h3>Support us by making a donation</h3>
+  <p>
+    Do you appreciate our paper wallet designs and want more? We would be
+    grateful if you consider donating. Your contribution helps us continue to
+    innovate and offer a variety of unique designs for your crypto needs.
+  </p>
+  <DonationList />
 </template>
