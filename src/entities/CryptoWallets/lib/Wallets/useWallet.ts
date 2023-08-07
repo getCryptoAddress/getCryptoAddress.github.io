@@ -3,7 +3,7 @@ import type { WalletFactoryPayload } from "@/entities/CryptoWallets/lib/Wallets/
 import type Wallet from "@/entities/CryptoWallets/lib/Wallets/useWallet.types";
 import WalletFactory from "@/entities/CryptoWallets/lib/Wallets/WalletFactory";
 
-export default function useBitcoinWallet() {
+export default function useWallet() {
   const wallets = ref<Wallet[]>([]);
   const totalCount = ref(0);
   const count = ref(0);
