@@ -55,3 +55,5 @@ export type PaperWalletItem =
   | PaperWalletItemQRCode;
 
 export type PaperWalletCanvasMode = "EDIT" | "VIEW" | "PRINT";
+
+export type DownloadPaperWalletType = "PNG" | "JPEG";

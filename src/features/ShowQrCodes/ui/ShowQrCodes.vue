@@ -1,35 +1,35 @@
 <script lang="ts" setup>
-import { NButton, NCard, NIcon, NModal, NThing, useMessage } from "naive-ui";
-import { QrCode20Regular } from "@vicons/fluent";
-import { ref } from "vue";
-import QRCode from "@/shared/ui/QRCode/QRCode.vue";
-import downloadHtmlAsImage from "@/shared/lib/downloadHtmlAsImage";
+  import { QrCode20Regular } from "@vicons/fluent";
+  import { NButton, NCard, NIcon, NModal, NThing, useMessage } from "naive-ui";
+  import { ref } from "vue";
+  import downloadHtmlAsImage from "@/shared/lib/downloadHtmlAsImage";
+  import QRCode from "@/shared/ui/QRCode/QRCode.vue";
 
-defineProps<{
-  address: string;
-  secret: string;
-}>();
+  defineProps<{
+    address: string;
+    secret: string;
+  }>();
 
-const message = useMessage();
+  const message = useMessage();
 
-function downloadSecretQrCode($event: MouseEvent) {
-  const { currentTarget } = $event;
-  if (!currentTarget || !(currentTarget instanceof HTMLElement)) {
-    message.error("Something went wrong");
-    return;
+  function downloadSecretQrCode($event: MouseEvent) {
+    const { currentTarget } = $event;
+    if (!currentTarget || !(currentTarget instanceof HTMLElement)) {
+      message.error("Something went wrong");
+      return;
+    }
+    downloadHtmlAsImage(currentTarget, "PNG", "QRCodeSecret");
   }
-  downloadHtmlAsImage(currentTarget, "PNG", "QRCodeSecret");
-}
-function downloadAddressQrCode($event: MouseEvent) {
-  const { currentTarget } = $event;
-  if (!currentTarget || !(currentTarget instanceof HTMLElement)) {
-    message.error("Something went wrong");
-    return;
+  function downloadAddressQrCode($event: MouseEvent) {
+    const { currentTarget } = $event;
+    if (!currentTarget || !(currentTarget instanceof HTMLElement)) {
+      message.error("Something went wrong");
+      return;
+    }
+    downloadHtmlAsImage(currentTarget, "PNG", "QRCodeAddress");
   }
-  downloadHtmlAsImage(currentTarget, "PNG", "QRCodeAddress");
-}
 
-const showModal = ref(false);
+  const showModal = ref(false);
 </script>
 
 <template>
@@ -50,11 +50,23 @@ const showModal = ref(false);
       aria-modal="true"
       style="max-width: 300px"
     >
-      <NThing title="Secret" :description="secret">
-        <QRCode :text="secret" @click="downloadSecretQrCode" />
+      <NThing
+        title="Secret"
+        :description="secret"
+      >
+        <QRCode
+          :text="secret"
+          @click="downloadSecretQrCode"
+        />
       </NThing>
-      <NThing title="Address" :description="address">
-        <QRCode :text="address" @click="downloadAddressQrCode" />
+      <NThing
+        title="Address"
+        :description="address"
+      >
+        <QRCode
+          :text="address"
+          @click="downloadAddressQrCode"
+        />
       </NThing>
     </NCard>
   </NModal>

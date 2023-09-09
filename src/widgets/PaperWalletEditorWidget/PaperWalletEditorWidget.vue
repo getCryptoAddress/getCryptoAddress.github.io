@@ -1,24 +1,24 @@
 <script lang="ts" setup>
-import { NSpace } from "naive-ui";
-import {
-  PaperWalletCanvas,
-  PaperWalletEditorWrapper,
-  PaperWalletItemPropsForm,
-  PaperWalletLayers,
-  usePaperWallet,
-} from "@/entities/PaperWallets";
-import { AddPaperWalletItem } from "@/features/AddPaperWalletItem";
-import { ChangeOrderItemList } from "@/features/ChangeOrderItemList";
-import { ChangeCanvasMode } from "@/features/ChangeCanvasMode";
-import { DownloadPaperWallet } from "@/features/DownloadPaperWallet";
-import {
-  RedoActionInPaperWallet,
-  UndoActionInPaperWallet,
-} from "@/features/ConrollHistoryInPaperWallet/";
-import { ResizablePaperWalletWrapper } from "@/entities/PaperWallets/";
-import { ExportPaperWallet } from "@/features/ExportPaperWallet";
+  import { NSpace } from "naive-ui";
+  import { AddPaperWalletItem } from "@/features/AddPaperWalletItem";
+  import { ChangeCanvasMode } from "@/features/ChangeCanvasMode";
+  import { ChangeOrderItemList } from "@/features/ChangeOrderItemList";
+  import {
+    RedoActionInPaperWallet,
+    UndoActionInPaperWallet,
+  } from "@/features/ConrollHistoryInPaperWallet/";
+  import { DownloadPaperWallet } from "@/features/DownloadPaperWallet";
+  import { ExportPaperWallet } from "@/features/ExportPaperWallet";
+  import {
+    PaperWalletCanvas,
+    PaperWalletEditorWrapper,
+    PaperWalletItemPropsForm,
+    PaperWalletLayers,
+    usePaperWallet,
+  } from "@/entities/PaperWallets";
+  import { ResizablePaperWalletWrapper } from "@/entities/PaperWallets/";
 
-const paperWalletStore = usePaperWallet();
+  const paperWalletStore = usePaperWallet();
 </script>
 
 <template>

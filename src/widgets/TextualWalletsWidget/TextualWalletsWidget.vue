@@ -1,45 +1,48 @@
 <script setup lang="ts">
-import { NDivider, NList } from "naive-ui";
-import SimpleProgress from "@/shared/ui/SimpleProgress/SimpleProgress.vue";
-import CollapseTransition from "@/shared/ui/CollapseTransition/CollapseTransition.vue";
-import {
-  FormCreateWallets,
-  type FormCreateWalletsPayload,
-  KeyAddressItem,
-  useWallet,
-  WalletDetails,
-} from "@/entities/CryptoWallets";
-import { CopyWalletToClipboard } from "@/features/CopyWalletToClipboard";
-import { RedirectWalletToPaperWallet } from "@/features/RedirectWalletToPaperWallet";
-import { ref } from "vue";
-import { ShowQrCodes } from "@/features/ShowQrCodes";
+  import { NDivider, NList } from "naive-ui";
+  import { ref } from "vue";
+  import { CopyWalletToClipboard } from "@/features/CopyWalletToClipboard";
+  import { RedirectWalletToPaperWallet } from "@/features/RedirectWalletToPaperWallet";
+  import { ShowQrCodes } from "@/features/ShowQrCodes";
+  import {
+    FormCreateWallets,
+    type FormCreateWalletsPayload,
+    KeyAddressItem,
+    useWallet,
+    WalletDetails,
+  } from "@/entities/CryptoWallets";
+  import CollapseTransition from "@/shared/ui/CollapseTransition/CollapseTransition.vue";
+  import SimpleProgress from "@/shared/ui/SimpleProgress/SimpleProgress.vue";
 
-const { SSR } = import.meta.env;
+  const { SSR } = import.meta.env;
 
-const { wallets, makeWallets, isLoading, count, totalCount } = useWallet();
-const selectedPlatform = ref("");
-const walletDetailsPayload = ref<{ label: string; data: string }[]>([]);
+  const { wallets, makeWallets, isLoading, count, totalCount } = useWallet();
+  const selectedPlatform = ref("");
+  const walletDetailsPayload = ref<{ label: string; data: string }[]>([]);
 
-function handleForm({ count, payload }: FormCreateWalletsPayload) {
-  makeWallets(count, payload);
-  selectedPlatform.value = payload.platform;
-  const walletPayload = payload.payload;
-  if (!walletPayload) {
-    walletDetailsPayload.value = [];
-  } else {
-    walletDetailsPayload.value = (
-      Object.keys(walletPayload) as Array<keyof typeof walletPayload>
-    ).map((key) => ({
-      label: key,
-      data: walletPayload[key] as string,
-    }));
+  function handleForm({ count, payload }: FormCreateWalletsPayload) {
+    makeWallets(count, payload);
+    selectedPlatform.value = payload.platform;
+    const walletPayload = payload.payload;
+    if (!walletPayload) {
+      walletDetailsPayload.value = [];
+    } else {
+      walletDetailsPayload.value = (
+        Object.keys(walletPayload) as Array<keyof typeof walletPayload>
+      ).map((key) => ({
+        label: key.toString(),
+        data: walletPayload[key] as string,
+      }));
+    }
   }
-}
 </script>
 
 <template>
   <FormCreateWallets @submit="handleForm" />
-  <simple-progress :total="totalCount" :count="count" />
+  <simple-progress
+    :total="totalCount"
+    :count="count"
+  />
   <CollapseTransition
     v-if="!SSR"
     :show="wallets.length > 0"
@@ -65,7 +68,10 @@ function handleForm({ count, payload }: FormCreateWalletsPayload) {
             :address="wallet.address"
             :platform="selectedPlatform"
           />
-          <ShowQrCodes :address="wallet.address" :secret="wallet.privateKey" />
+          <ShowQrCodes
+            :address="wallet.address"
+            :secret="wallet.privateKey"
+          />
         </template>
       </KeyAddressItem>
     </n-list>

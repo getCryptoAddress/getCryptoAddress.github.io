@@ -1,47 +1,47 @@
 <script setup lang="ts">
-import {
-  NButton,
-  NForm,
-  NFormItem,
-  NImage,
-  NInput,
-  NSpace,
-  NUpload,
-  NUploadDragger,
-  useMessage,
-} from "naive-ui";
-import { ref, watch } from "vue";
+  import {
+    NButton,
+    NForm,
+    NFormItem,
+    NImage,
+    NInput,
+    NSpace,
+    NUpload,
+    NUploadDragger,
+    useMessage,
+  } from "naive-ui";
+  import { ref, watch } from "vue";
 
-const emit = defineEmits<{
-  src: [string];
-}>();
-const message = useMessage();
+  const emit = defineEmits<{
+    src: [string];
+  }>();
+  const message = useMessage();
 
-const currentSrc = ref("");
-const isLoaded = ref(false);
+  const currentSrc = ref("");
+  const isLoaded = ref(false);
 
-function handleAddImage({ file }: any) {
-  currentSrc.value = URL.createObjectURL(file.file);
-}
-
-function handleSubmitForm() {
-  if (!currentSrc.value) {
-    message.error("Image link is required");
-    return;
+  function handleAddImage({ file }: any) {
+    currentSrc.value = URL.createObjectURL(file.file);
   }
-  if (!isLoaded.value) {
-    message.error("Image is not loaded yet");
-    return;
-  }
-  emit("src", currentSrc.value);
-}
 
-watch(
-  () => currentSrc.value,
-  () => {
-    isLoaded.value = false;
+  function handleSubmitForm() {
+    if (!currentSrc.value) {
+      message.error("Image link is required");
+      return;
+    }
+    if (!isLoaded.value) {
+      message.error("Image is not loaded yet");
+      return;
+    }
+    emit("src", currentSrc.value);
   }
-);
+
+  watch(
+    () => currentSrc.value,
+    () => {
+      isLoaded.value = false;
+    },
+  );
 </script>
 <template>
   <NSpace>

@@ -1,62 +1,68 @@
 <script lang="ts" setup>
-import { NButton, NDrawer, NDrawerContent, NIcon, useMessage } from "naive-ui";
-import {
-  PaperWalletCanvas,
-  PaperWalletDownloadForm,
-} from "@/entities/PaperWallets";
-import { nextTick, ref } from "vue";
-import type DownloadPaperWalletType from "@/entities/PaperWallets/types/DownloadPaperWalletType.type";
-import type {
-  PaperWalletCanvasMode,
-  PaperWalletItem,
-} from "@/entities/PaperWallets/types/PaperWallet.types";
-import { ArrowDownload16Regular } from "@vicons/fluent";
-import mobile from "is-mobile";
-import downloadHtmlAsImage from "@/shared/lib/downloadHtmlAsImage";
-import isSafariOrIos from "@/shared/lib/browser/isSafariOrIos";
+  import { ArrowDownload16Regular } from "@vicons/fluent";
+  import mobile from "is-mobile";
+  import {
+    NButton,
+    NDrawer,
+    NDrawerContent,
+    NIcon,
+    useMessage,
+  } from "naive-ui";
+  import { nextTick, ref } from "vue";
+  import {
+    PaperWalletCanvas,
+    PaperWalletDownloadForm,
+  } from "@/entities/PaperWallets";
+  import type {
+    DownloadPaperWalletType,
+    PaperWalletCanvasMode,
+    PaperWalletItem,
+  } from "@/entities/PaperWallets/types/PaperWallet.types";
+  import isSafariOrIos from "@/shared/lib/browser/isSafariOrIos";
+  import downloadHtmlAsImage from "@/shared/lib/downloadHtmlAsImage";
 
-defineProps<{
-  items: PaperWalletItem[];
-}>();
-const message = useMessage();
-const canvasEl = ref();
-const isShown = ref(false);
-const isLoading = ref(false);
-const typeOfDownload = ref<DownloadPaperWalletType>("PNG");
-const canvasMode = ref<PaperWalletCanvasMode>("PRINT");
-const isSafariBrowser = isSafariOrIos();
-async function handleSubmitForm(payload: {
-  typeOfDownload: DownloadPaperWalletType;
-  canvasMode: PaperWalletCanvasMode;
-}) {
-  canvasMode.value = payload.canvasMode;
-  typeOfDownload.value = payload.typeOfDownload;
-  isLoading.value = true;
-}
-async function handleDownload() {
-  await nextTick();
-  await new Promise((resolve) => setTimeout(resolve, mobile() ? 500 : 1));
-
-  try {
-    let targetElement: HTMLElement | null = canvasEl.value?.targetElement;
-    if (!targetElement) {
-      isLoading.value = false;
-      message.error("Problem with canvas element");
-      return;
-    }
-
-    await downloadHtmlAsImage(
-      targetElement,
-      typeOfDownload.value,
-      "paper-wallet",
-      true
-    );
-  } catch (e) {
-    message.error(typeof e === "string" ? e : "Something went wrong");
-  } finally {
-    isLoading.value = false;
+  defineProps<{
+    items: PaperWalletItem[];
+  }>();
+  const message = useMessage();
+  const canvasEl = ref();
+  const isShown = ref(false);
+  const isLoading = ref(false);
+  const typeOfDownload = ref<DownloadPaperWalletType>("PNG");
+  const canvasMode = ref<PaperWalletCanvasMode>("PRINT");
+  const isSafariBrowser = isSafariOrIos();
+  async function handleSubmitForm(payload: {
+    typeOfDownload: DownloadPaperWalletType;
+    canvasMode: PaperWalletCanvasMode;
+  }) {
+    canvasMode.value = payload.canvasMode;
+    typeOfDownload.value = payload.typeOfDownload;
+    isLoading.value = true;
   }
-}
+  async function handleDownload() {
+    await nextTick();
+    await new Promise((resolve) => setTimeout(resolve, mobile() ? 500 : 1));
+
+    try {
+      let targetElement: HTMLElement | null = canvasEl.value?.targetElement;
+      if (!targetElement) {
+        isLoading.value = false;
+        message.error("Problem with canvas element");
+        return;
+      }
+
+      await downloadHtmlAsImage(
+        targetElement,
+        typeOfDownload.value,
+        "paper-wallet",
+        true,
+      );
+    } catch (e) {
+      message.error(typeof e === "string" ? e : "Something went wrong");
+    } finally {
+      isLoading.value = false;
+    }
+  }
 </script>
 
 <template>
@@ -69,8 +75,15 @@ async function handleDownload() {
     Download Image
   </NButton>
 
-  <NDrawer v-model:show="isShown" :height="320" placement="bottom">
-    <NDrawerContent title="Download paper wallet" closable>
+  <NDrawer
+    v-model:show="isShown"
+    :height="320"
+    placement="bottom"
+  >
+    <NDrawerContent
+      title="Download paper wallet"
+      closable
+    >
       <PaperWalletDownloadForm
         :loading="isLoading"
         @submit="handleSubmitForm"

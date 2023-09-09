@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import DonateQrCode from "@/entities/Donates/ui/DonationQrCode/DonationQrCode.vue";
+  import DonateQrCode from "../DonationQrCode/DonationQrCode.vue";
 </script>
 
 <template>

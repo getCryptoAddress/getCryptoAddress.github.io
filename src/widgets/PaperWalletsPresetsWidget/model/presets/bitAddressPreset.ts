@@ -1,6 +1,6 @@
 import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
-import type Preset from "@/widgets/PaperWalletsPresetsWidget/types/Preset.type";
 import getCachedImageLink from "@/shared/lib/images/getCachedImageLink";
+import type { Preset } from "../../types/PaperWalletsPresetsWidget.types";
 
 async function getDefaultPresetItems(): Promise<PaperWalletItem[]> {
   return [
@@ -8,7 +8,7 @@ async function getDefaultPresetItems(): Promise<PaperWalletItem[]> {
       id: "background",
       type: "IMAGE",
       src: await getCachedImageLink(
-        await import("./images/bitaddress_org.png")
+        await import("./images/bitaddress_org.png"),
       ),
       position: {
         x: -3,

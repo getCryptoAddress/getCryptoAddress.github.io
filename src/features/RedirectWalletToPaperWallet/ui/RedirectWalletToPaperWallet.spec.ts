@@ -1,7 +1,7 @@
 import { mount } from "@vue/test-utils";
-import RedirectWalletToPaperWallet from "./RedirectWalletToPaperWallet.vue";
 import { afterEach, expect, suite, test, vi } from "vitest";
 import { createMemoryHistory, createRouter } from "vue-router";
+import RedirectWalletToPaperWallet from "./RedirectWalletToPaperWallet.vue";
 
 suite(
   "features/RedirectWalletToPaperWallet/ui/RedirectWalletToPaperWallet",
@@ -49,5 +49,5 @@ suite(
         },
       });
     });
-  }
+  },
 );

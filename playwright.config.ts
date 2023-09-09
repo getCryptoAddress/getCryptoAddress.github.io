@@ -101,11 +101,14 @@ const config: PlaywrightTestConfig = {
     /**
      * Use the dev server by default for faster feedback loop.
      * Use the preview server on CI for more realistic testing.
-    Playwright will re-use the local server if there is already a dev-server running.
+     Playwright will re-use the local server if there is already a dev-server running.
      */
-    command: process.env.CI ? "vite preview --port 5173" : "vite dev",
+    command:
+      process.env.CI && !process.env.PLAYWRIGHT_DEV_SERVER
+        ? "vite preview --port 5173"
+        : "vite dev",
     port: 5173,
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: !process.env.CI || !!process.env.PLAYWRIGHT_DEV_SERVER,
   },
 };
 

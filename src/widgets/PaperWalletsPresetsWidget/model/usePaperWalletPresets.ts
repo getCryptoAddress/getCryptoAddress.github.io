@@ -1,11 +1,11 @@
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
-import type Preset from "@/widgets/PaperWalletsPresetsWidget/types/Preset.type";
-import defaultPreset from "@/widgets/PaperWalletsPresetsWidget/model/presets/defaultPreset";
-import bitAddressPreset from "@/widgets/PaperWalletsPresetsWidget/model/presets/bitAddressPreset";
-import metamaskPreset from "@/widgets/PaperWalletsPresetsWidget/model/presets/metamaskPreset";
 import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
 import waitLoadedPage from "@/shared/lib/utils/waitLoadedPage";
+import type { Preset } from "../types/PaperWalletsPresetsWidget.types";
+import bitAddressPreset from "./presets/bitAddressPreset";
+import defaultPreset from "./presets/defaultPreset";
+import metamaskPreset from "./presets/metamaskPreset";
 
 export const usePaperWalletPresets = defineStore("presets", () => {
   const presets = ref<Preset[]>([
@@ -20,7 +20,7 @@ export const usePaperWalletPresets = defineStore("presets", () => {
   function setWallet(
     nextSecretKey: string,
     nextAddress: string,
-    nextPlatform: string
+    nextPlatform: string,
   ) {
     secretKey.value = nextSecretKey;
     address.value = nextAddress;
@@ -62,7 +62,7 @@ export const usePaperWalletPresets = defineStore("presets", () => {
 
   function _updatePreset(preset: Preset) {
     presets.value = presets.value.map((currentPreset) =>
-      currentPreset.name === preset.name ? preset : currentPreset
+      currentPreset.name === preset.name ? preset : currentPreset,
     );
   }
 

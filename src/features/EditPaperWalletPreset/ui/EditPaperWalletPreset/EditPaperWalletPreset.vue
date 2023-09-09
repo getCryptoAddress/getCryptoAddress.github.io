@@ -1,19 +1,19 @@
 <script lang="ts" setup>
-import { NButton, NIcon } from "naive-ui";
-import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
-import { usePaperWallet } from "@/entities/PaperWallets";
-import { useRouter } from "vue-router";
-import { ImageEdit16Regular } from "@vicons/fluent";
+  import { ImageEdit16Regular } from "@vicons/fluent";
+  import { NButton, NIcon } from "naive-ui";
+  import { useRouter } from "vue-router";
+  import { usePaperWallet } from "@/entities/PaperWallets";
+  import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
 
-const props = defineProps<{
-  items: PaperWalletItem[];
-}>();
-const store = usePaperWallet();
-const router = useRouter();
-function handleEditPaperWallet() {
-  store.setItems(props.items);
-  router.push({ name: "PaperWalletEditor" });
-}
+  const props = defineProps<{
+    items: PaperWalletItem[];
+  }>();
+  const store = usePaperWallet();
+  const router = useRouter();
+  function handleEditPaperWallet() {
+    store.setItems(props.items);
+    router.push({ name: "PaperWalletEditor" });
+  }
 </script>
 
 <template>

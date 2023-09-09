@@ -1,9 +1,9 @@
-import validatePrivateKey from "@/entities/CryptoWallets/lib/PrivateKeys/validatePrivateKey";
+import validatePrivateKey from "./validatePrivateKey";
 
 type Size = 32;
 
 export default async function generatePrivateKey(
-  size: Size
+  size: Size,
 ): Promise<Uint8Array> {
   // create a typed array of 32 bytes (256 bits)
   const randomArray = new Uint8Array(size);

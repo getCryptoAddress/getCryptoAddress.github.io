@@ -1,28 +1,28 @@
 <script lang="ts" setup>
-import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
-import { NCard, NEllipsis, NIcon, NSpace } from "naive-ui";
-import {
-  Image20Regular,
-  QrCode20Regular,
-  TextChangeCase20Regular,
-} from "@vicons/fluent";
-import { computed } from "vue";
+  import {
+    Image20Regular,
+    QrCode20Regular,
+    TextChangeCase20Regular,
+  } from "@vicons/fluent";
+  import { NCard, NEllipsis, NIcon, NSpace } from "naive-ui";
+  import { computed } from "vue";
+  import type { PaperWalletItem } from "../../types/PaperWallet.types";
 
-const emit = defineEmits<{
-  selectItem: [PaperWalletItem];
-}>();
+  const emit = defineEmits<{
+    selectItem: [PaperWalletItem];
+  }>();
 
-const props = defineProps<{
-  item: PaperWalletItem;
-  isSelected: boolean;
-}>();
+  const props = defineProps<{
+    item: PaperWalletItem;
+    isSelected: boolean;
+  }>();
 
-const text = computed(() => {
-  if (props.item?.type === "TEXT" || props.item?.type === "QR_CODE") {
-    return props.item.text;
-  }
-  return props.item.id;
-});
+  const text = computed(() => {
+    if (props.item?.type === "TEXT" || props.item?.type === "QR_CODE") {
+      return props.item.text;
+    }
+    return props.item.id;
+  });
 </script>
 
 <template>
@@ -54,22 +54,22 @@ const text = computed(() => {
 </template>
 
 <style scoped lang="scss">
-.paper-wallet-layer {
-  margin-bottom: 10px;
-  user-select: none;
-  cursor: pointer;
-  &--selected {
-    border-color: var(--n-color-target);
+  .paper-wallet-layer {
+    margin-bottom: 10px;
+    user-select: none;
+    cursor: pointer;
+    &--selected {
+      border-color: var(--n-color-target);
+    }
   }
-}
 
-.paper-wallet-layer__id-container {
-  display: grid;
-  width: 100%;
-}
-.paper-wallet-layer__id {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
+  .paper-wallet-layer__id-container {
+    display: grid;
+    width: 100%;
+  }
+  .paper-wallet-layer__id {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
 </style>

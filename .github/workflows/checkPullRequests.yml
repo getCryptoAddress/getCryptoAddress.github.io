@@ -2,7 +2,7 @@ name: "Check Pull Requests"
 
 on:
   pull_request:
-    types: ['opened', 'edited', 'reopened', 'synchronize']
+    types: ["opened", "edited", "reopened", "synchronize"]
 
 jobs:
   check_pull_request:
@@ -28,5 +28,14 @@ jobs:
       - name: Run lint
         run: npm run lint
 
+      - name: Run prettier
+        run: npm run format -- --check
+
       - name: Run tests
         run: npm run test:unit -- --run
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run e2e tests
+        run: PLAYWRIGHT_DEV_SERVER=1 npm run test:e2e

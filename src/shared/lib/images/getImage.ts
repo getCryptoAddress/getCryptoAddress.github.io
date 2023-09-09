@@ -1,5 +1,5 @@
 export default function getImage(
-  src: string
+  src: string,
 ): Promise<{ width: number; height: number; src: string }> {
   return new Promise((resolve) => {
     const image = new Image();

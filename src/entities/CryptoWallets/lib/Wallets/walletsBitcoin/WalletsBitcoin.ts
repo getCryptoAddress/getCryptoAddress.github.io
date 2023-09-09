@@ -1,15 +1,15 @@
-import WalletsAbstract from "@/entities/CryptoWallets/lib/Wallets/WalletsAbstract";
-import type Wallet from "@/entities/CryptoWallets/lib/Wallets/useWallet.types";
-import generatePrivateKey from "@/entities/CryptoWallets/lib/PrivateKeys/generatePrivateKey";
 import { getAddress, NETWORK, TEST_NETWORK } from "@scure/btc-signer";
-import convertUint8ArrayToHex from "@/entities/CryptoWallets/lib/PrivateKeys/convertUint8ArrayToHex";
-import convertUint8ArrayToWif from "@/entities/CryptoWallets/lib/PrivateKeys/convertUint8ArrayToWif";
+import convertUint8ArrayToHex from "../../PrivateKeys/convertUint8ArrayToHex";
+import convertUint8ArrayToWif from "../../PrivateKeys/convertUint8ArrayToWif";
+import generatePrivateKey from "../../PrivateKeys/generatePrivateKey";
+import validatePrivateKey from "../../PrivateKeys/validatePrivateKey";
+import type { Wallet } from "../useWallet.types";
+import WalletsAbstract from "../WalletsAbstract";
 import type {
   BitcoinPrivateKey,
   BitcoinPrivateKeyFormat,
   BitcoinWalletPayload,
 } from "./WalletsBitcoin.types";
-import validatePrivateKey from "@/entities/CryptoWallets/lib/PrivateKeys/validatePrivateKey";
 
 export default class WalletsBitcoin extends WalletsAbstract<
   BitcoinWalletPayload,
@@ -17,7 +17,7 @@ export default class WalletsBitcoin extends WalletsAbstract<
 > {
   async makeWallet(
     { formatPrivateKey, formatAddress, isTestnet }: BitcoinWalletPayload,
-    initialPrivateKey?: BitcoinPrivateKey
+    initialPrivateKey?: BitcoinPrivateKey,
   ): Promise<Wallet> {
     const nextPrivateKey = await this.#getPrivateKey(initialPrivateKey);
 
@@ -28,7 +28,7 @@ export default class WalletsBitcoin extends WalletsAbstract<
     }
     const privateKey = await this.#getFormattedPrivateKey(
       nextPrivateKey,
-      formatPrivateKey
+      formatPrivateKey,
     );
 
     return {
@@ -49,7 +49,7 @@ export default class WalletsBitcoin extends WalletsAbstract<
 
   async #getFormattedPrivateKey(
     key: Uint8Array,
-    format: BitcoinPrivateKeyFormat
+    format: BitcoinPrivateKeyFormat,
   ): Promise<string> {
     if (format === "hex") {
       return convertUint8ArrayToHex(key);

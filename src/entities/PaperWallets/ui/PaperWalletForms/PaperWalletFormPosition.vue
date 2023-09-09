@@ -1,30 +1,30 @@
 <script setup lang="ts">
-import { NForm, NFormItem, NInputNumber, NSelect } from "naive-ui";
-import type {
-  PaperWalletItem,
-  PaperWalletItemPosition,
-} from "@/entities/PaperWallets/types/PaperWallet.types";
+  import { NForm, NFormItem, NInputNumber, NSelect } from "naive-ui";
+  import type {
+    PaperWalletItem,
+    PaperWalletItemPosition,
+  } from "../../types/PaperWallet.types";
 
-const emit = defineEmits<{
-  update: [PaperWalletItem];
-}>();
+  const emit = defineEmits<{
+    update: [PaperWalletItem];
+  }>();
 
-const props = defineProps<{
-  item: PaperWalletItem;
-}>();
+  const props = defineProps<{
+    item: PaperWalletItem;
+  }>();
 
-function handleUpdatePosition(
-  key: keyof PaperWalletItemPosition,
-  value: number
-) {
-  emit("update", {
-    ...props.item,
-    position: {
-      ...props.item.position,
-      [key]: value,
-    },
-  });
-}
+  function handleUpdatePosition(
+    key: keyof PaperWalletItemPosition,
+    value: number,
+  ) {
+    emit("update", {
+      ...props.item,
+      position: {
+        ...props.item.position,
+        [key]: value,
+      },
+    });
+  }
 </script>
 <template>
   <NForm
@@ -83,9 +83,9 @@ function handleUpdatePosition(
 </template>
 
 <style>
-.paper-wallet-form-position {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 0 1rem;
-}
+  .paper-wallet-form-position {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 0 1rem;
+  }
 </style>

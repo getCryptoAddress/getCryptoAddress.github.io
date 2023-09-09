@@ -1,11 +1,10 @@
-import { suite, test, expect } from "vitest";
-
+import { expect, suite, test } from "vitest";
 import WalletsBitcoin from "./WalletsBitcoin";
 import type {
   BitcoinAddressFormat,
   BitcoinPrivateKeyFormat,
   BitcoinWalletPayload,
-} from "@/entities/CryptoWallets/lib/Wallets/walletsBitcoin/WalletsBitcoin.types";
+} from "./WalletsBitcoin.types";
 
 const key1 = new Uint8Array([
   132, 205, 117, 44, 180, 113, 245, 200, 213, 19, 97, 187, 70, 157, 86, 111, 19,
@@ -61,7 +60,7 @@ suite("WalletsBitcoin", () => {
 
       const wallet2 = await walletGenerator.makeWallet(payload, key2);
       expect(JSON.stringify(wallet2)).toMatchSnapshot();
-    }
+    },
   );
 
   test("should generate wallet correctly without initialPrivateKey", async () => {
@@ -91,10 +90,10 @@ suite("WalletsBitcoin", () => {
     };
 
     await expect(
-      walletGenerator.makeWallet(payload, notValidKey1)
+      walletGenerator.makeWallet(payload, notValidKey1),
     ).rejects.toThrow("Invalid private key");
     await expect(
-      walletGenerator.makeWallet(payload, notValidKey2)
+      walletGenerator.makeWallet(payload, notValidKey2),
     ).rejects.toThrow("offset is out of bounds");
   });
 });

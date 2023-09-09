@@ -1,5 +1,5 @@
-import { suite, test, expect } from "vitest";
-import validatePrivateKey from "@/entities/CryptoWallets/lib/PrivateKeys/validatePrivateKey";
+import { expect, suite, test } from "vitest";
+import validatePrivateKey from "../validatePrivateKey";
 
 const validKey1 = new Uint8Array([
   130, 205, 117, 44, 180, 113, 245, 200, 213, 19, 97, 187, 70, 157, 86, 111, 19,
@@ -31,7 +31,7 @@ suite("validatePrivateKey", () => {
 
   test("should throw error for an oversized private key", async () => {
     await expect(validatePrivateKey(notValidKey2, 32)).rejects.toThrow(
-      "offset is out of bounds"
+      "offset is out of bounds",
     );
   });
 
@@ -42,7 +42,7 @@ suite("validatePrivateKey", () => {
 
   test("should throw error when key size argument is incorrect", async () => {
     await expect(validatePrivateKey(notValidKey2, 33 as any)).rejects.toThrow(
-      "Invalid key size"
+      "Invalid key size",
     );
   });
 });

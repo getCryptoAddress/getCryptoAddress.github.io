@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import PaperWalletEditorWidget from "@/widgets/PaperWalletEditorWidget/PaperWalletEditorWidget.vue";
-import { DonationList } from "@/entities/Donates";
+  import PaperWalletEditorWidget from "@/widgets/PaperWalletEditorWidget/PaperWalletEditorWidget.vue";
+  import { DonationList } from "@/entities/Donates";
 </script>
 
 <template>

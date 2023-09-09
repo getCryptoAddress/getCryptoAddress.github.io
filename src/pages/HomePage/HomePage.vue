@@ -1,13 +1,16 @@
 <script setup lang="ts">
-import CryptoDescription from "@/pages/HomePage/ui/CryptoDescription/CryptoDescription.vue";
-import { NAlert } from "naive-ui";
-import GithubLink from "@/shared/ui/GithubLink/GithubLink.vue";
-import { DonationList } from "@/entities/Donates/";
+  import { NAlert } from "naive-ui";
+  import { DonationList } from "@/entities/Donates/";
+  import GithubLink from "@/shared/ui/GithubLink/GithubLink.vue";
+  import CryptoDescription from "./ui/CryptoDescription/CryptoDescription.vue";
 </script>
 
 <template>
   <CryptoDescription>
-    <NAlert title="Beta" type="info">
+    <NAlert
+      title="Beta"
+      type="info"
+    >
       We are in beta. If you find a bug, please report it to us on
       <GithubLink />
     </NAlert>

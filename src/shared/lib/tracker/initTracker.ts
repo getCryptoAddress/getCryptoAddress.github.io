@@ -1,4 +1,4 @@
-import loadTrackerScript from "@/shared/lib/tracker/loadTrackerScript";
+import loadTrackerScript from "./loadTrackerScript";
 
 const { VITE_TRACKER_WEBSITE_ID, SSR } = import.meta.env;
 export default function initTracker() {

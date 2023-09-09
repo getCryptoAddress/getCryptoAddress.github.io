@@ -1,44 +1,44 @@
 <script setup lang="ts">
-import {
-  NColorPicker,
-  NForm,
-  NFormItem,
-  NInput,
-  NInputNumber,
-  NSelect,
-} from "naive-ui";
-import type { PaperWalletItemText } from "@/entities/PaperWallets/types/PaperWallet.types";
+  import {
+    NColorPicker,
+    NForm,
+    NFormItem,
+    NInput,
+    NInputNumber,
+    NSelect,
+  } from "naive-ui";
+  import type { PaperWalletItemText } from "../../types/PaperWallet.types";
 
-const emit = defineEmits<{
-  update: [PaperWalletItemText];
-}>();
+  const emit = defineEmits<{
+    update: [PaperWalletItemText];
+  }>();
 
-const props = defineProps<{
-  item: PaperWalletItemText;
-}>();
+  const props = defineProps<{
+    item: PaperWalletItemText;
+  }>();
 
-const fontOptions: {
-  value: PaperWalletItemText["font"];
-  label: string;
-}[] = [
-  { value: "Arial", label: "Arial" },
-  { value: "Verdana", label: "Verdana" },
-  { value: "Times New Roman", label: "Times New Roman" },
-  { value: "Courier New", label: "Courier New" },
-  { value: "Georgia", label: "Georgia" },
-  { value: "Helvetica", label: "Helvetica" },
-  { value: "Trebuchet MS", label: "Trebuchet MS" },
-];
+  const fontOptions: {
+    value: PaperWalletItemText["font"];
+    label: string;
+  }[] = [
+    { value: "Arial", label: "Arial" },
+    { value: "Verdana", label: "Verdana" },
+    { value: "Times New Roman", label: "Times New Roman" },
+    { value: "Courier New", label: "Courier New" },
+    { value: "Georgia", label: "Georgia" },
+    { value: "Helvetica", label: "Helvetica" },
+    { value: "Trebuchet MS", label: "Trebuchet MS" },
+  ];
 
-function handleUpdateValue<K extends keyof PaperWalletItemText>(
-  key: K,
-  value: PaperWalletItemText[K]
-) {
-  emit("update", {
-    ...props.item,
-    [key]: value,
-  });
-}
+  function handleUpdateValue<K extends keyof PaperWalletItemText>(
+    key: K,
+    value: PaperWalletItemText[K],
+  ) {
+    emit("update", {
+      ...props.item,
+      [key]: value,
+    });
+  }
 </script>
 <template>
   <NForm
