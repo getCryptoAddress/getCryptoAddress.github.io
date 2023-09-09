@@ -30,3 +30,6 @@ jobs:
 
       - name: Run tests
         run: npm run test:unit -- --run
+
+      - name: Run prettier
+        run: npm run test:e2e
