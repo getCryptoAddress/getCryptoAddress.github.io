@@ -1,8 +1,10 @@
 <script lang="ts" setup>
   import { NButton, NIcon, NSelect, NSpace } from "naive-ui";
   import { ref } from "vue";
-  import type DownloadPaperWalletType from "@/entities/PaperWallets/types/DownloadPaperWalletType.type";
-  import type { PaperWalletCanvasMode } from "@/entities/PaperWallets/types/PaperWallet.types";
+  import type {
+    DownloadPaperWalletType,
+    PaperWalletCanvasMode,
+  } from "@/entities/PaperWallets/types/PaperWallet.types";
   import { ArrowDownload16Regular } from "@vicons/fluent";
 
   const emit = defineEmits<{

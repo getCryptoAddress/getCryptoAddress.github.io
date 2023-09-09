@@ -5,7 +5,7 @@ import type {
   EthereumPrivateKey,
   EthereumWalletPayload,
 } from "./WalletsEthereum.types";
-import type Wallet from "@/entities/CryptoWallets/lib/Wallets/useWallet.types";
+import type { Wallet } from "@/entities/CryptoWallets/lib/Wallets/useWallet.types";
 import validatePrivateKey from "@/entities/CryptoWallets/lib/PrivateKeys/validatePrivateKey";
 import { publicKeyCreate } from "ethereum-cryptography/secp256k1-compat";
 import { keccak256 } from "ethereum-cryptography/keccak";

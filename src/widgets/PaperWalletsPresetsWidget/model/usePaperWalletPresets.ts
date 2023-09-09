@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
-import type Preset from "@/widgets/PaperWalletsPresetsWidget/types/Preset.type";
+import type { Preset } from "@/widgets/PaperWalletsPresetsWidget/types/PaperWalletsPresetsWidget.types";
 import defaultPreset from "@/widgets/PaperWalletsPresetsWidget/model/presets/defaultPreset";
 import bitAddressPreset from "@/widgets/PaperWalletsPresetsWidget/model/presets/bitAddressPreset";
 import metamaskPreset from "@/widgets/PaperWalletsPresetsWidget/model/presets/metamaskPreset";

@@ -11,8 +11,8 @@
     PaperWalletDownloadForm,
   } from "@/entities/PaperWallets";
   import { nextTick, ref } from "vue";
-  import type DownloadPaperWalletType from "@/entities/PaperWallets/types/DownloadPaperWalletType.type";
   import type {
+    DownloadPaperWalletType,
     PaperWalletCanvasMode,
     PaperWalletItem,
   } from "@/entities/PaperWallets/types/PaperWallet.types";

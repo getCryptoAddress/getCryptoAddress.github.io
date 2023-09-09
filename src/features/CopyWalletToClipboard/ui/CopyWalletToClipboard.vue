@@ -5,7 +5,7 @@
     ClipboardError24Regular,
     ClipboardTextRtl24Regular,
   } from "@vicons/fluent";
-  import type Wallet from "@/entities/CryptoWallets/lib/Wallets/useWallet.types";
+  import type { Wallet } from "@/entities/CryptoWallets/lib/Wallets/useWallet.types";
   import { ref } from "vue";
   import copyToClipboard from "@/shared/lib/utils/copyToClipboard";
 

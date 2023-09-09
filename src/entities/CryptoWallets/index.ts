@@ -5,4 +5,4 @@ export { default as ManualWalletForm } from "./ui/ManualWalletForm/ManualWalletF
 export { default as useWallet } from "./lib/Wallets/useWallet";
 
 // types
-export type { default as FormCreateWalletsPayload } from "@/entities/CryptoWallets/ui/CreateWalletsForm/types/CreateWalletsFormPayload.type";
+export * from "@/entities/CryptoWallets/ui/CreateWalletsForm/types/CreateWalletsForm.types";

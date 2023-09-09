@@ -1,5 +1,5 @@
 import WalletsAbstract from "@/entities/CryptoWallets/lib/Wallets/WalletsAbstract";
-import type Wallet from "@/entities/CryptoWallets/lib/Wallets/useWallet.types";
+import type { Wallet } from "@/entities/CryptoWallets/lib/Wallets/useWallet.types";
 import generatePrivateKey from "@/entities/CryptoWallets/lib/PrivateKeys/generatePrivateKey";
 import { getAddress, NETWORK, TEST_NETWORK } from "@scure/btc-signer";
 import convertUint8ArrayToHex from "@/entities/CryptoWallets/lib/PrivateKeys/convertUint8ArrayToHex";
