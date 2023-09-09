@@ -30,7 +30,7 @@
       walletDetailsPayload.value = (
         Object.keys(walletPayload) as Array<keyof typeof walletPayload>
       ).map((key) => ({
-        label: key,
+        label: key.toString(),
         data: walletPayload[key] as string,
       }));
     }
