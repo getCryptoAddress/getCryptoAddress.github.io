@@ -1,83 +1,83 @@
 <script setup lang="ts">
-import {
-  type FormInst,
-  type FormRules,
-  NAutoComplete,
-  NButton,
-  NForm,
-  NFormItem,
-  NInput,
-  NSpace,
-} from "naive-ui";
-import { computed, ref } from "vue";
+  import {
+    type FormInst,
+    type FormRules,
+    NAutoComplete,
+    NButton,
+    NForm,
+    NFormItem,
+    NInput,
+    NSpace,
+  } from "naive-ui";
+  import { computed, ref } from "vue";
 
-const emit = defineEmits<{
-  submit: [];
-  "update:secret": [string];
-  "update:address": [string];
-  "update:platform": [string];
-}>();
+  const emit = defineEmits<{
+    submit: [];
+    "update:secret": [string];
+    "update:address": [string];
+    "update:platform": [string];
+  }>();
 
-const props = defineProps<{
-  secret: string;
-  address: string;
-  platform: string;
-}>();
+  const props = defineProps<{
+    secret: string;
+    address: string;
+    platform: string;
+  }>();
 
-const formModel = computed(() => {
-  return {
-    secret: props.secret,
-    address: props.address,
-    platform: props.platform,
-  };
-});
-
-const options = computed<string[]>(() => {
-  return ["Bitcoin", "Ethereum"].filter(
-    (item) => item.includes(props.platform) && item !== props.platform,
-  );
-});
-
-const formRef = ref<FormInst | null>(null);
-
-const rules: FormRules = {
-  platform: [
-    {
-      required: true,
-      message: "Please input platform",
-      trigger: ["blur"],
-    },
-  ],
-  secret: [
-    {
-      required: true,
-      message: "Please input secret field",
-      trigger: ["blur"],
-    },
-  ],
-  address: [
-    {
-      required: true,
-      message: "Please input address field",
-      trigger: ["blur"],
-    },
-  ],
-};
-
-function handleKeydown(e: KeyboardEvent) {
-  if (e.key === "Enter") {
-    handleSubmit();
-  }
-}
-
-function handleSubmit() {
-  formRef.value?.validate((errors) => {
-    if (errors) {
-      return;
-    }
-    emit("submit");
+  const formModel = computed(() => {
+    return {
+      secret: props.secret,
+      address: props.address,
+      platform: props.platform,
+    };
   });
-}
+
+  const options = computed<string[]>(() => {
+    return ["Bitcoin", "Ethereum"].filter(
+      (item) => item.includes(props.platform) && item !== props.platform,
+    );
+  });
+
+  const formRef = ref<FormInst | null>(null);
+
+  const rules: FormRules = {
+    platform: [
+      {
+        required: true,
+        message: "Please input platform",
+        trigger: ["blur"],
+      },
+    ],
+    secret: [
+      {
+        required: true,
+        message: "Please input secret field",
+        trigger: ["blur"],
+      },
+    ],
+    address: [
+      {
+        required: true,
+        message: "Please input address field",
+        trigger: ["blur"],
+      },
+    ],
+  };
+
+  function handleKeydown(e: KeyboardEvent) {
+    if (e.key === "Enter") {
+      handleSubmit();
+    }
+  }
+
+  function handleSubmit() {
+    formRef.value?.validate((errors) => {
+      if (errors) {
+        return;
+      }
+      emit("submit");
+    });
+  }
 </script>
 
 <template>

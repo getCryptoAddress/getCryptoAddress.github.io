@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { NListItem, NSpace, NTimeline, NTimelineItem } from "naive-ui";
+  import { NListItem, NSpace, NTimeline, NTimelineItem } from "naive-ui";
 
-defineProps<{
-  address: string;
-  keyFormatted: string;
-}>();
+  defineProps<{
+    address: string;
+    keyFormatted: string;
+  }>();
 </script>
 
 <template>

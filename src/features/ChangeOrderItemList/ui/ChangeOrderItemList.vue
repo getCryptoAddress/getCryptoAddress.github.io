@@ -1,16 +1,16 @@
 <script lang="ts" setup>
-import { VueDraggableNext as Draggable } from "vue-draggable-next";
+  import { VueDraggableNext as Draggable } from "vue-draggable-next";
 
-const emit = defineEmits<{
-  update: [unknown[]];
-}>();
-defineProps<{
-  items: unknown[];
-}>();
+  const emit = defineEmits<{
+    update: [unknown[]];
+  }>();
+  defineProps<{
+    items: unknown[];
+  }>();
 
-function handleUpdateItems(items: []) {
-  emit("update", items);
-}
+  function handleUpdateItems(items: []) {
+    emit("update", items);
+  }
 </script>
 <template>
   <Draggable

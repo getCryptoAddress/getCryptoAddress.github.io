@@ -1,70 +1,72 @@
 <script lang="ts" setup>
-import {
-  NButton,
-  NCheckbox,
-  NCollapseTransition,
-  NForm,
-  NFormItem,
-  NInputNumber,
-  NSelect,
-  NSlider,
-  NSpace,
-} from "naive-ui";
-import { computed, ref } from "vue";
-import type FormCreateWalletsPayload from "@/entities/CryptoWallets/ui/CreateWalletsForm/types/CreateWalletsFormPayload.type";
-import FormCreateWalletsBitcoin from "@/entities/CryptoWallets/ui/CreateWalletsForm/CreateWalletsFormBitcoin.vue";
-import type { BitcoinWalletPayload } from "@/entities/CryptoWallets/lib/Wallets/walletsBitcoin/WalletsBitcoin.types";
-import type { WalletFactoryCryptoPlatform } from "@/entities/CryptoWallets/lib/Wallets/WalletFactory.types";
+  import {
+    NButton,
+    NCheckbox,
+    NCollapseTransition,
+    NForm,
+    NFormItem,
+    NInputNumber,
+    NSelect,
+    NSlider,
+    NSpace,
+  } from "naive-ui";
+  import { computed, ref } from "vue";
+  import type FormCreateWalletsPayload from "@/entities/CryptoWallets/ui/CreateWalletsForm/types/CreateWalletsFormPayload.type";
+  import FormCreateWalletsBitcoin from "@/entities/CryptoWallets/ui/CreateWalletsForm/CreateWalletsFormBitcoin.vue";
+  import type { BitcoinWalletPayload } from "@/entities/CryptoWallets/lib/Wallets/walletsBitcoin/WalletsBitcoin.types";
+  import type { WalletFactoryCryptoPlatform } from "@/entities/CryptoWallets/lib/Wallets/WalletFactory.types";
 
-// todo need to refactor this component
-const count = ref(20);
-const platform = ref<WalletFactoryCryptoPlatform>("Bitcoin");
-const platforms: { label: string; value: WalletFactoryCryptoPlatform }[] = [
-  {
-    label: "Bitcoin",
-    value: "Bitcoin",
-  },
-  {
-    label: "Ethereum",
-    value: "Ethereum",
-  },
-];
-const bitcoinPayload = ref<BitcoinWalletPayload>({
-  isTestnet: false,
-  formatPrivateKey: "mainnet",
-  formatAddress: "tr",
-});
-const showAdvanced = ref(false);
-const isAdvancedPlatform = computed(() => ["Bitcoin"].includes(platform.value));
+  // todo need to refactor this component
+  const count = ref(20);
+  const platform = ref<WalletFactoryCryptoPlatform>("Bitcoin");
+  const platforms: { label: string; value: WalletFactoryCryptoPlatform }[] = [
+    {
+      label: "Bitcoin",
+      value: "Bitcoin",
+    },
+    {
+      label: "Ethereum",
+      value: "Ethereum",
+    },
+  ];
+  const bitcoinPayload = ref<BitcoinWalletPayload>({
+    isTestnet: false,
+    formatPrivateKey: "mainnet",
+    formatAddress: "tr",
+  });
+  const showAdvanced = ref(false);
+  const isAdvancedPlatform = computed(() =>
+    ["Bitcoin"].includes(platform.value),
+  );
 
-const emit = defineEmits<{
-  submit: [FormCreateWalletsPayload];
-}>();
+  const emit = defineEmits<{
+    submit: [FormCreateWalletsPayload];
+  }>();
 
-function handleForm() {
-  if (platform.value === "Bitcoin" && bitcoinPayload.value) {
-    emit("submit", {
-      count: count.value,
-      payload: {
-        platform: platform.value,
-        payload: bitcoinPayload.value,
-      },
-    });
+  function handleForm() {
+    if (platform.value === "Bitcoin" && bitcoinPayload.value) {
+      emit("submit", {
+        count: count.value,
+        payload: {
+          platform: platform.value,
+          payload: bitcoinPayload.value,
+        },
+      });
+    }
+    if (platform.value === "Ethereum") {
+      emit("submit", {
+        count: count.value,
+        payload: {
+          platform: platform.value,
+          payload: null,
+        },
+      });
+    }
   }
-  if (platform.value === "Ethereum") {
-    emit("submit", {
-      count: count.value,
-      payload: {
-        platform: platform.value,
-        payload: null,
-      },
-    });
-  }
-}
 
-function updateBitcoinPayload(data: BitcoinWalletPayload) {
-  bitcoinPayload.value = data;
-}
+  function updateBitcoinPayload(data: BitcoinWalletPayload) {
+    bitcoinPayload.value = data;
+  }
 </script>
 
 <template>
@@ -127,7 +129,7 @@ function updateBitcoinPayload(data: BitcoinWalletPayload) {
 </template>
 
 <style lang="scss" scoped>
-.form-create-wallets__space {
-  width: 100%;
-}
+  .form-create-wallets__space {
+    width: 100%;
+  }
 </style>

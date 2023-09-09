@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
-import PaperWalletLayer from "@/entities/PaperWallets/ui/PaperWalletLayers/PaperWalletLayer.vue";
+  import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
+  import PaperWalletLayer from "@/entities/PaperWallets/ui/PaperWalletLayers/PaperWalletLayer.vue";
 
-const emit = defineEmits<{
-  selectItem: [PaperWalletItem];
-}>();
+  const emit = defineEmits<{
+    selectItem: [PaperWalletItem];
+  }>();
 
-defineProps<{
-  items: PaperWalletItem[];
-  selectedItemId: string | null;
-}>();
+  defineProps<{
+    items: PaperWalletItem[];
+    selectedItemId: string | null;
+  }>();
 </script>
 
 <template>

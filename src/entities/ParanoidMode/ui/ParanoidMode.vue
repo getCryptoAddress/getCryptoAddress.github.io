@@ -1,52 +1,52 @@
 <script lang="ts" setup>
-import { NCollapseTransition, NSpace, NSwitch } from "naive-ui";
-import { computed, onMounted, onUnmounted, ref, watch } from "vue";
+  import { NCollapseTransition, NSpace, NSwitch } from "naive-ui";
+  import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 
-const emit = defineEmits<{
-  (e: "isParanoidMode", payload: boolean): void;
-  (e: "isParanoidModeEnabled", payload: boolean): void;
-}>();
+  const emit = defineEmits<{
+    (e: "isParanoidMode", payload: boolean): void;
+    (e: "isParanoidModeEnabled", payload: boolean): void;
+  }>();
 
-defineProps<{
-  showParanoidMode?: boolean;
-}>();
+  defineProps<{
+    showParanoidMode?: boolean;
+  }>();
 
-const { SSR } = import.meta.env;
+  const { SSR } = import.meta.env;
 
-const isParanoidMode = ref(false);
-const isTrustDevice = ref(false);
-const isIncognito = ref(false);
-const isOffline = ref(SSR ? false : !navigator.onLine);
+  const isParanoidMode = ref(false);
+  const isTrustDevice = ref(false);
+  const isIncognito = ref(false);
+  const isOffline = ref(SSR ? false : !navigator.onLine);
 
-const isParanoidModeEnabled = computed(() => {
-  return (
-    isParanoidMode.value &&
-    isTrustDevice.value &&
-    isIncognito.value &&
-    isOffline.value
-  );
-});
+  const isParanoidModeEnabled = computed(() => {
+    return (
+      isParanoidMode.value &&
+      isTrustDevice.value &&
+      isIncognito.value &&
+      isOffline.value
+    );
+  });
 
-watch(isParanoidMode, (value) => {
-  emit("isParanoidMode", value);
-});
-watch(isParanoidModeEnabled, (value) => {
-  emit("isParanoidModeEnabled", value);
-});
+  watch(isParanoidMode, (value) => {
+    emit("isParanoidMode", value);
+  });
+  watch(isParanoidModeEnabled, (value) => {
+    emit("isParanoidModeEnabled", value);
+  });
 
-function updateOnlineStatus(event: Event) {
-  isOffline.value = event.type !== "online";
-}
+  function updateOnlineStatus(event: Event) {
+    isOffline.value = event.type !== "online";
+  }
 
-onMounted(() => {
-  window.addEventListener("online", updateOnlineStatus);
-  window.addEventListener("offline", updateOnlineStatus);
-});
+  onMounted(() => {
+    window.addEventListener("online", updateOnlineStatus);
+    window.addEventListener("offline", updateOnlineStatus);
+  });
 
-onUnmounted(() => {
-  window.removeEventListener("online", updateOnlineStatus);
-  window.removeEventListener("offline", updateOnlineStatus);
-});
+  onUnmounted(() => {
+    window.removeEventListener("online", updateOnlineStatus);
+    window.removeEventListener("offline", updateOnlineStatus);
+  });
 </script>
 <template>
   <n-collapse-transition :show="!!showParanoidMode">

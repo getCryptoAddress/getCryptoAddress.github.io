@@ -1,8 +1,8 @@
 <script setup lang="ts">
-defineProps<{
-  count: number;
-  total: number;
-}>();
+  defineProps<{
+    count: number;
+    total: number;
+  }>();
 </script>
 
 <template>
@@ -17,16 +17,16 @@ defineProps<{
 </template>
 
 <style lang="scss" scoped>
-.simple-progress {
-  visibility: visible;
-  width: 100px;
-  padding: 5px 10px;
-  display: grid;
-  text-align: center;
-  grid-template-columns: 3fr 1fr 3fr;
-  margin: 1rem auto;
-}
-.simple-progress__hidden {
-  visibility: hidden;
-}
+  .simple-progress {
+    visibility: visible;
+    width: 100px;
+    padding: 5px 10px;
+    display: grid;
+    text-align: center;
+    grid-template-columns: 3fr 1fr 3fr;
+    margin: 1rem auto;
+  }
+  .simple-progress__hidden {
+    visibility: hidden;
+  }
 </style>

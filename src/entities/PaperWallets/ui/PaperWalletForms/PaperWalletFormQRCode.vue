@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import { NColorPicker, NForm, NFormItem, NInput } from "naive-ui";
-import type { PaperWalletItemQRCode } from "@/entities/PaperWallets/types/PaperWallet.types";
+  import { NColorPicker, NForm, NFormItem, NInput } from "naive-ui";
+  import type { PaperWalletItemQRCode } from "@/entities/PaperWallets/types/PaperWallet.types";
 
-const emit = defineEmits<{
-  update: [PaperWalletItemQRCode];
-}>();
+  const emit = defineEmits<{
+    update: [PaperWalletItemQRCode];
+  }>();
 
-const props = defineProps<{
-  item: PaperWalletItemQRCode;
-}>();
+  const props = defineProps<{
+    item: PaperWalletItemQRCode;
+  }>();
 
-function handleUpdateValue(key: keyof PaperWalletItemQRCode, value: string) {
-  emit("update", {
-    ...props.item,
-    [key]: value,
-  });
-}
+  function handleUpdateValue(key: keyof PaperWalletItemQRCode, value: string) {
+    emit("update", {
+      ...props.item,
+      [key]: value,
+    });
+  }
 </script>
 <template>
   <NForm

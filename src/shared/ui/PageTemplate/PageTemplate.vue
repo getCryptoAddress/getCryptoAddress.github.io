@@ -10,22 +10,22 @@
 </template>
 
 <style lang="scss">
-.page-template {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 30px 3rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 3rem;
+  .page-template {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 30px 3rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
 
-  @media (min-width: 1024px) {
-    & {
-      grid-template-columns: 2fr 3fr;
+    @media (min-width: 1024px) {
+      & {
+        grid-template-columns: 2fr 3fr;
+      }
     }
   }
-}
 
-.page-template__content {
-  position: relative;
-}
+  .page-template__content {
+    position: relative;
+  }
 </style>

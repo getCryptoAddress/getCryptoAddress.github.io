@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import BitcoinQrCode from "@/entities/Donates/ui/BitcoinQrCode/BitcoinQrCode.vue";
-import EthereumQrCode from "@/entities/Donates/ui/EthereumQrCode/EthereumQrCode.vue";
+  import BitcoinQrCode from "@/entities/Donates/ui/BitcoinQrCode/BitcoinQrCode.vue";
+  import EthereumQrCode from "@/entities/Donates/ui/EthereumQrCode/EthereumQrCode.vue";
 </script>
 
 <template>
@@ -11,9 +11,9 @@ import EthereumQrCode from "@/entities/Donates/ui/EthereumQrCode/EthereumQrCode.
 </template>
 
 <style scoped lang="scss">
-.donation-list {
-  display: flex;
-  gap: 1.5rem 1rem;
-  flex-wrap: wrap;
-}
+  .donation-list {
+    display: flex;
+    gap: 1.5rem 1rem;
+    flex-wrap: wrap;
+  }
 </style>

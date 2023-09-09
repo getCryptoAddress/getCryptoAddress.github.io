@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import CryptoDescription from "@/pages/HomePage/ui/CryptoDescription/CryptoDescription.vue";
-import { NAlert } from "naive-ui";
-import GithubLink from "@/shared/ui/GithubLink/GithubLink.vue";
-import { DonationList } from "@/entities/Donates/";
+  import CryptoDescription from "@/pages/HomePage/ui/CryptoDescription/CryptoDescription.vue";
+  import { NAlert } from "naive-ui";
+  import GithubLink from "@/shared/ui/GithubLink/GithubLink.vue";
+  import { DonationList } from "@/entities/Donates/";
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import TextualWalletsWidget from "@/widgets/TextualWalletsWidget/TextualWalletsWidget.vue";
-import { DonationList } from "@/entities/Donates";
+  import TextualWalletsWidget from "@/widgets/TextualWalletsWidget/TextualWalletsWidget.vue";
+  import { DonationList } from "@/entities/Donates";
 </script>
 
 <template>

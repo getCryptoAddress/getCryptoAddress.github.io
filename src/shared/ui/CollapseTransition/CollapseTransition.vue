@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { NCollapseTransition } from "naive-ui";
+  import { NCollapseTransition } from "naive-ui";
 
-defineProps<{
-  show: boolean;
-  loading: boolean;
-}>();
+  defineProps<{
+    show: boolean;
+    loading: boolean;
+  }>();
 </script>
 
 <template>
@@ -19,12 +19,12 @@ defineProps<{
 </template>
 
 <style lang="scss" scoped>
-.collapse-transition {
-  transition: pointer-events 0.3s ease-in-out;
-}
+  .collapse-transition {
+    transition: pointer-events 0.3s ease-in-out;
+  }
 
-.collapse-transition__loading {
-  opacity: 0.3;
-  pointer-events: none;
-}
+  .collapse-transition__loading {
+    opacity: 0.3;
+    pointer-events: none;
+  }
 </style>

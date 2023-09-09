@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import { WeatherMoon24Regular, WeatherSunny24Regular } from "@vicons/fluent";
-import { NButton, NIcon } from "naive-ui";
+  import { WeatherMoon24Regular, WeatherSunny24Regular } from "@vicons/fluent";
+  import { NButton, NIcon } from "naive-ui";
 
-const emit = defineEmits(["switch"]);
-defineProps<{
-  isDark: boolean;
-}>();
+  const emit = defineEmits(["switch"]);
+  defineProps<{
+    isDark: boolean;
+  }>();
 
-const { SSR } = import.meta.env;
+  const { SSR } = import.meta.env;
 </script>
 
 <template>
@@ -32,7 +32,7 @@ const { SSR } = import.meta.env;
 </template>
 
 <style lang="scss" scoped>
-.theme-switcher__text {
-  margin-left: 0.5rem;
-}
+  .theme-switcher__text {
+    margin-left: 0.5rem;
+  }
 </style>

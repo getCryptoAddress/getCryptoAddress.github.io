@@ -1,35 +1,35 @@
 <script lang="ts" setup>
-import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
-import PaperWalletFormPosition from "@/entities/PaperWallets/ui/PaperWalletForms/PaperWalletFormPosition.vue";
-import PaperWalletFormText from "@/entities/PaperWallets/ui/PaperWalletForms/PaperWalletFormText.vue";
-import PaperWalletFormQRCode from "@/entities/PaperWallets/ui/PaperWalletForms/PaperWalletFormQRCode.vue";
-import { NButton, NIcon, NSpace } from "naive-ui";
-import {
-  ChevronCircleDown20Regular,
-  ChevronCircleUp20Regular,
-  Delete20Regular,
-} from "@vicons/fluent";
-import { computed } from "vue";
+  import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
+  import PaperWalletFormPosition from "@/entities/PaperWallets/ui/PaperWalletForms/PaperWalletFormPosition.vue";
+  import PaperWalletFormText from "@/entities/PaperWallets/ui/PaperWalletForms/PaperWalletFormText.vue";
+  import PaperWalletFormQRCode from "@/entities/PaperWallets/ui/PaperWalletForms/PaperWalletFormQRCode.vue";
+  import { NButton, NIcon, NSpace } from "naive-ui";
+  import {
+    ChevronCircleDown20Regular,
+    ChevronCircleUp20Regular,
+    Delete20Regular,
+  } from "@vicons/fluent";
+  import { computed } from "vue";
 
-const emit = defineEmits<{
-  updateItem: [PaperWalletItem];
-  removeItem: [PaperWalletItem];
-  upItem: [PaperWalletItem];
-  downItem: [PaperWalletItem];
-}>();
+  const emit = defineEmits<{
+    updateItem: [PaperWalletItem];
+    removeItem: [PaperWalletItem];
+    upItem: [PaperWalletItem];
+    downItem: [PaperWalletItem];
+  }>();
 
-const props = defineProps<{
-  items: PaperWalletItem[];
-  item: PaperWalletItem;
-}>();
+  const props = defineProps<{
+    items: PaperWalletItem[];
+    item: PaperWalletItem;
+  }>();
 
-const itemIndex = computed(() => props.items.indexOf(props.item));
-const isLastItem = computed(() => itemIndex.value === props.items.length - 1);
-const isFirstItem = computed(() => itemIndex.value === 0);
+  const itemIndex = computed(() => props.items.indexOf(props.item));
+  const isLastItem = computed(() => itemIndex.value === props.items.length - 1);
+  const isFirstItem = computed(() => itemIndex.value === 0);
 
-function handleUpdate(item: PaperWalletItem) {
-  emit("updateItem", item);
-}
+  function handleUpdate(item: PaperWalletItem) {
+    emit("updateItem", item);
+  }
 </script>
 
 <template>

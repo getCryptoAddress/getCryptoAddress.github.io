@@ -6,9 +6,9 @@
 </template>
 
 <style lang="scss" scoped>
-.page-header-description {
-  h1 {
-    margin: 0;
+  .page-header-description {
+    h1 {
+      margin: 0;
+    }
   }
-}
 </style>
