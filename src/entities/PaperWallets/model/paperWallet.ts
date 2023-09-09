@@ -4,7 +4,7 @@ import type {
   PaperWalletCanvasMode,
   PaperWalletItem,
 } from "@/entities/PaperWallets/types/PaperWallet.types";
-import getImage from "@/shared/lib/utils/getImage";
+import getImage from "@/shared/lib/images/getImage";
 import debounce from "lodash/debounce";
 
 export const usePaperWallet = defineStore("paperWallet", () => {

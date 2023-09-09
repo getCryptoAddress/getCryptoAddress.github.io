@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { NButton, NDrawer, NDrawerContent, NIcon, useMessage } from "naive-ui";
 import {
-  downloadPaperWallet,
   PaperWalletCanvas,
   PaperWalletDownloadForm,
 } from "@/entities/PaperWallets";
@@ -13,6 +12,7 @@ import type {
 } from "@/entities/PaperWallets/types/PaperWallet.types";
 import { ArrowDownload16Regular } from "@vicons/fluent";
 import mobile from "is-mobile";
+import downloadHtmlAsImage from "@/shared/lib/downloadHtmlAsImage";
 
 defineProps<{
   items: PaperWalletItem[];
@@ -44,7 +44,12 @@ async function handleDownload() {
       return;
     }
 
-    await downloadPaperWallet(targetElement, typeOfDownload.value);
+    await downloadHtmlAsImage(
+      targetElement,
+      typeOfDownload.value,
+      "paper-wallet",
+      true
+    );
   } catch (e) {
     message.error(typeof e === "string" ? e : "Something went wrong");
   } finally {
