@@ -1,5 +1,5 @@
 import convertHtmlToCanvas from "@/shared/lib/downloadHtmlAsImage/convertHtmlToCanvas";
-import isSafari from "@/shared/lib/browser/isSafari";
+import isSafariOrIos from "@/shared/lib/browser/isSafariOrIos";
 import getPngDataUrl from "@/shared/lib/downloadHtmlAsImage/getPngDataUrl";
 import getJpegDataUrl from "@/shared/lib/downloadHtmlAsImage/getJpegDataUrl";
 import download from "downloadjs";
@@ -11,7 +11,7 @@ export default async function downloadHtmlAsImage(
   hasImages = false
 ) {
   const canvas =
-    hasImages && isSafari()
+    hasImages && isSafariOrIos()
       ? await convertHtmlToCanvas(targetElement, 10, 150) // safari loves pain
       : await convertHtmlToCanvas(targetElement);
 

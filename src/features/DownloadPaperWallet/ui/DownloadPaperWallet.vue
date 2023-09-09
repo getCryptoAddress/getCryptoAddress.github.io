@@ -13,6 +13,7 @@ import type {
 import { ArrowDownload16Regular } from "@vicons/fluent";
 import mobile from "is-mobile";
 import downloadHtmlAsImage from "@/shared/lib/downloadHtmlAsImage";
+import isSafariOrIos from "@/shared/lib/browser/isSafariOrIos";
 
 defineProps<{
   items: PaperWalletItem[];
@@ -23,7 +24,7 @@ const isShown = ref(false);
 const isLoading = ref(false);
 const typeOfDownload = ref<DownloadPaperWalletType>("PNG");
 const canvasMode = ref<PaperWalletCanvasMode>("PRINT");
-
+const isSafariBrowser = isSafariOrIos();
 async function handleSubmitForm(payload: {
   typeOfDownload: DownloadPaperWalletType;
   canvasMode: PaperWalletCanvasMode;
@@ -74,6 +75,11 @@ async function handleDownload() {
         :loading="isLoading"
         @submit="handleSubmitForm"
       />
+      <p v-if="isSafariBrowser">
+        NB: <strong>IOS</strong> and <strong>Safari</strong> may not render
+        images as expected the first time. If you encounter with current
+        problem, just try downloading the image a second time.
+      </p>
     </NDrawerContent>
   </NDrawer>
 

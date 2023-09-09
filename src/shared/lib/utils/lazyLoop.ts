@@ -9,6 +9,7 @@ export default function lazyLoop(count: number, callback: () => Promise<void>) {
     function loop() {
       if (currentCount <= 0) {
         resolve();
+        return;
       }
 
       currentCount -= 1;
