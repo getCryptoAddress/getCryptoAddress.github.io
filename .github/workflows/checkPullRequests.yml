@@ -38,4 +38,4 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run e2e tests
-        run: npm run test:e2e
+        run: PLAYWRIGHT_DEV_SERVER=1 npm run test:e2e
