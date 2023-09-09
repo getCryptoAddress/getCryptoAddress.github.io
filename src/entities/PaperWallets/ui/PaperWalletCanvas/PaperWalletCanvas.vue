@@ -66,7 +66,7 @@ function handleTouchMove(e: TouchEvent) {
   const item = updatePositionInItem(
     xPosition + e.touches[0].clientX,
     yPosition + e.touches[0].clientY,
-    activeItem
+    activeItem,
   );
   emit("updateItem", item);
 }
@@ -91,7 +91,7 @@ function handleMouseMove(e: MouseEvent) {
   const item = updatePositionInItem(
     xPosition + e.clientX,
     yPosition + e.clientY,
-    activeItem
+    activeItem,
   );
   emit("updateItem", item);
 }
@@ -120,12 +120,14 @@ const loadedImages = ref<string[]>([]);
 const mapImagesIds = computed(
   () =>
     new Set(
-      props.items.filter((item) => item.type === "IMAGE").map((item) => item.id)
-    )
+      props.items
+        .filter((item) => item.type === "IMAGE")
+        .map((item) => item.id),
+    ),
 );
 function handleLoadedImage(item: PaperWalletItem) {
   loadedImages.value = [...loadedImages.value, item.id].filter((id) =>
-    mapImagesIds.value.has(id)
+    mapImagesIds.value.has(id),
   );
 }
 
@@ -138,7 +140,7 @@ watch(
       emit("load");
     }
   },
-  { immediate: true }
+  { immediate: true },
 );
 defineExpose({
   targetElement,
@@ -156,7 +158,10 @@ defineExpose({
     }"
     ref="targetElement"
   >
-    <template v-for="item in items" :key="item.id">
+    <template
+      v-for="item in items"
+      :key="item.id"
+    >
       <PaperWalletCanvasText
         v-if="item.type === 'TEXT'"
         :item="item"

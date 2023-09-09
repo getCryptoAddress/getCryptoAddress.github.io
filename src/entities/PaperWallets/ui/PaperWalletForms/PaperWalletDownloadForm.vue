@@ -10,7 +10,7 @@ const emit = defineEmits<{
     {
       typeOfDownload: DownloadPaperWalletType;
       canvasMode: PaperWalletCanvasMode;
-    }
+    },
   ];
 }>();
 
@@ -56,7 +56,10 @@ async function handleDownloadButton() {
       :consistent-menu-width="false"
       :style="{ minWidth: '170px' }"
     />
-    <NButton :loading="loading" @click="handleDownloadButton">
+    <NButton
+      :loading="loading"
+      @click="handleDownloadButton"
+    >
       <template #icon>
         <NIcon>
           <ArrowDownload16Regular />

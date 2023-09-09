@@ -22,7 +22,7 @@ watch(
   () => route.name,
   (name) => {
     selectedKey.value = name as string;
-  }
+  },
 );
 
 const menuOptions: MenuOption[] = [
@@ -35,7 +35,7 @@ const menuOptions: MenuOption[] = [
             name: "Home",
           },
         },
-        { default: () => "Home" }
+        { default: () => "Home" },
       ),
     key: "Home",
     icon: renderIcon(Home20Regular),
@@ -58,7 +58,7 @@ const menuOptions: MenuOption[] = [
             name: "CreateWallets",
           },
         },
-        { default: () => "Create Crypto Address" }
+        { default: () => "Create Crypto Address" },
       ),
     key: "CreateWallets",
   },
@@ -71,7 +71,7 @@ const menuOptions: MenuOption[] = [
             name: "PaperWallets",
           },
         },
-        { default: () => "Create Paper Wallet" }
+        { default: () => "Create Paper Wallet" },
       ),
     key: "PaperWallets",
   },
@@ -84,7 +84,7 @@ const menuOptions: MenuOption[] = [
             name: "PaperWalletEditor",
           },
         },
-        { default: () => "Paper Wallet Editor" }
+        { default: () => "Paper Wallet Editor" },
       ),
     key: "PaperWalletEditor",
   },
@@ -95,12 +95,18 @@ const { SSR } = import.meta.env;
 
 <template>
   <PageHeaderWrapper>
-    <PageHeaderLogo v-if="!SSR" :isParanoidModeEnabled="isParanoidMode" />
+    <PageHeaderLogo
+      v-if="!SSR"
+      :isParanoidModeEnabled="isParanoidMode"
+    />
     <PageHeaderDescription />
     <nav
       style="max-width: 250px; text-align: left; margin: 0 auto; width: 100%"
     >
-      <NMenu :options="menuOptions" v-model:value="selectedKey" />
+      <NMenu
+        :options="menuOptions"
+        v-model:value="selectedKey"
+      />
     </nav>
     <slot />
   </PageHeaderWrapper>

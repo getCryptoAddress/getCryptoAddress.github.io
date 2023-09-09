@@ -49,7 +49,7 @@ async function handleDownload() {
       targetElement,
       typeOfDownload.value,
       "paper-wallet",
-      true
+      true,
     );
   } catch (e) {
     message.error(typeof e === "string" ? e : "Something went wrong");
@@ -69,8 +69,15 @@ async function handleDownload() {
     Download Image
   </NButton>
 
-  <NDrawer v-model:show="isShown" :height="320" placement="bottom">
-    <NDrawerContent title="Download paper wallet" closable>
+  <NDrawer
+    v-model:show="isShown"
+    :height="320"
+    placement="bottom"
+  >
+    <NDrawerContent
+      title="Download paper wallet"
+      closable
+    >
       <PaperWalletDownloadForm
         :loading="isLoading"
         @submit="handleSubmitForm"

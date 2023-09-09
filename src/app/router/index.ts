@@ -85,10 +85,10 @@ if (!SSR) {
           getCreateWalletsPage(),
           getPaperWalletEditorPage(),
           getPaperWalletsPage(),
-        ])
+        ]),
       )
       // second priority
-      .then(() => getHomePage())
+      .then(() => getHomePage()),
   );
 }
 export default router;

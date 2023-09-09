@@ -15,7 +15,7 @@ const props = defineProps<{
 
 function handleUpdatePosition(
   key: keyof PaperWalletItemPosition,
-  value: number
+  value: number,
 ) {
   emit("update", {
     ...props.item,

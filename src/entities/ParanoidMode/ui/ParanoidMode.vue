@@ -50,16 +50,25 @@ onUnmounted(() => {
 </script>
 <template>
   <n-collapse-transition :show="!!showParanoidMode">
-    <n-space vertical :size="12">
+    <n-space
+      vertical
+      :size="12"
+    >
       <div>
-        <n-switch v-model:value="isParanoidMode" size="large">
+        <n-switch
+          v-model:value="isParanoidMode"
+          size="large"
+        >
           <template #checked>Paranoid Mode</template>
           <template #unchecked>Unsafe Mode</template>
         </n-switch>
       </div>
 
       <n-collapse-transition :show="isParanoidMode">
-        <n-space vertical :size="12">
+        <n-space
+          vertical
+          :size="12"
+        >
           <div>
             <div>Do you trust your device?</div>
             <n-switch v-model:value="isTrustDevice">
@@ -77,7 +86,10 @@ onUnmounted(() => {
           </n-collapse-transition>
           <n-collapse-transition :show="isIncognito">
             <div>Turn off internet</div>
-            <n-switch v-model:value="isOffline" disabled>
+            <n-switch
+              v-model:value="isOffline"
+              disabled
+            >
               <template #checked>Yes</template>
               <template #unchecked>No</template>
             </n-switch>

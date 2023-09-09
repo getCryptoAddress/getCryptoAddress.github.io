@@ -39,7 +39,10 @@ function handleForm({ count, payload }: FormCreateWalletsPayload) {
 
 <template>
   <FormCreateWallets @submit="handleForm" />
-  <simple-progress :total="totalCount" :count="count" />
+  <simple-progress
+    :total="totalCount"
+    :count="count"
+  />
   <CollapseTransition
     v-if="!SSR"
     :show="wallets.length > 0"
@@ -65,7 +68,10 @@ function handleForm({ count, payload }: FormCreateWalletsPayload) {
             :address="wallet.address"
             :platform="selectedPlatform"
           />
-          <ShowQrCodes :address="wallet.address" :secret="wallet.privateKey" />
+          <ShowQrCodes
+            :address="wallet.address"
+            :secret="wallet.privateKey"
+          />
         </template>
       </KeyAddressItem>
     </n-list>

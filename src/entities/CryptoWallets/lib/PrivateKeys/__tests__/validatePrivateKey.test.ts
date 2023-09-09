@@ -31,7 +31,7 @@ suite("validatePrivateKey", () => {
 
   test("should throw error for an oversized private key", async () => {
     await expect(validatePrivateKey(notValidKey2, 32)).rejects.toThrow(
-      "offset is out of bounds"
+      "offset is out of bounds",
     );
   });
 
@@ -42,7 +42,7 @@ suite("validatePrivateKey", () => {
 
   test("should throw error when key size argument is incorrect", async () => {
     await expect(validatePrivateKey(notValidKey2, 33 as any)).rejects.toThrow(
-      "Invalid key size"
+      "Invalid key size",
     );
   });
 });

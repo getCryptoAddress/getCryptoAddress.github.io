@@ -16,7 +16,7 @@ export default class WalletsEthereum extends WalletsAbstract<
 > {
   async makeWallet(
     payload: EthereumWalletPayload,
-    initialPrivateKey?: EthereumPrivateKey
+    initialPrivateKey?: EthereumPrivateKey,
   ): Promise<Wallet> {
     const privateKey = await this.#getPrivateKey(initialPrivateKey);
 

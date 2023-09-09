@@ -6,7 +6,10 @@ defineProps<{
 </script>
 
 <template>
-  <div class="simple-progress" :class="{ 'simple-progress__hidden': !total }">
+  <div
+    class="simple-progress"
+    :class="{ 'simple-progress__hidden': !total }"
+  >
     <div>{{ count }}</div>
     <div>/</div>
     <div>{{ total }}</div>

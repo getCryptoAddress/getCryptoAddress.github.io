@@ -22,18 +22,18 @@ export default abstract class WalletsAbstract<Payload, PrivateKey> {
   // should be implemented
   abstract makeWallet(
     payload: Payload,
-    privateKey?: PrivateKey
+    privateKey?: PrivateKey,
   ): Promise<Wallet>;
 
   makeWallets(
     count: number,
     payload: Payload,
-    callback?: (count: number, wallets: Wallet[]) => void
+    callback?: (count: number, wallets: Wallet[]) => void,
   ) {
     this.#callback = callback;
     // Calculate wallet is too slow, so we should use lazyLoop for clear stack
     return lazyLoop(count, async () =>
-      this.#saveWallet(await this.makeWallet(payload))
+      this.#saveWallet(await this.makeWallet(payload)),
     );
   }
 }

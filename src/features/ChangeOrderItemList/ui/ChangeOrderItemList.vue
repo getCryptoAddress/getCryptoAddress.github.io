@@ -13,7 +13,10 @@ function handleUpdateItems(items: []) {
 }
 </script>
 <template>
-  <Draggable :model-value="items" @update:model-value="handleUpdateItems">
+  <Draggable
+    :model-value="items"
+    @update:model-value="handleUpdateItems"
+  >
     <slot />
   </Draggable>
 </template>

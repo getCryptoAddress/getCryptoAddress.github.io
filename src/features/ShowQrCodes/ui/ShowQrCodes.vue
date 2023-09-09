@@ -50,11 +50,23 @@ const showModal = ref(false);
       aria-modal="true"
       style="max-width: 300px"
     >
-      <NThing title="Secret" :description="secret">
-        <QRCode :text="secret" @click="downloadSecretQrCode" />
+      <NThing
+        title="Secret"
+        :description="secret"
+      >
+        <QRCode
+          :text="secret"
+          @click="downloadSecretQrCode"
+        />
       </NThing>
-      <NThing title="Address" :description="address">
-        <QRCode :text="address" @click="downloadAddressQrCode" />
+      <NThing
+        title="Address"
+        :description="address"
+      >
+        <QRCode
+          :text="address"
+          @click="downloadAddressQrCode"
+        />
       </NThing>
     </NCard>
   </NModal>

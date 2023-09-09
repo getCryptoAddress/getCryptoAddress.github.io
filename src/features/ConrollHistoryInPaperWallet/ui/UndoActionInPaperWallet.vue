@@ -7,7 +7,10 @@ const store = usePaperWallet();
 </script>
 
 <template>
-  <NButton :disabled="!store.undoStack.length" @click="store.undo()">
+  <NButton
+    :disabled="!store.undoStack.length"
+    @click="store.undo()"
+  >
     <template #icon>
       <NIcon>
         <ArrowHookDownLeft16Regular />

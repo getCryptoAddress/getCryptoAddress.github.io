@@ -32,7 +32,10 @@ const formattedWalletDetails = computed(() => {
 });
 </script>
 <template>
-  <n-descriptions label-placement="top" title="Wallets">
+  <n-descriptions
+    label-placement="top"
+    title="Wallets"
+  >
     <n-descriptions-item label="Platform">
       {{ platform }}
     </n-descriptions-item>

@@ -70,7 +70,10 @@ async function handleSaveToClipboard() {
       aria-modal="true"
       style="max-width: 600px"
     >
-      <NSpace size="large" vertical>
+      <NSpace
+        size="large"
+        vertical
+      >
         <div>
           You can export design for
           <a
@@ -94,7 +97,11 @@ async function handleSaveToClipboard() {
         </div>
         <NConfigProvider :hljs="highlight">
           <div class="export-paper-wallet__code">
-            <NCode :code="code" language="json" show-line-numbers />
+            <NCode
+              :code="code"
+              language="json"
+              show-line-numbers
+            />
           </div>
         </NConfigProvider>
       </NSpace>

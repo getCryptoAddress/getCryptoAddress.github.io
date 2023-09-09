@@ -34,8 +34,15 @@ function handleAddImage(src: string) {
 <template>
   <PaperWalletFormAddItem @addItem="handleAddItem" />
 
-  <NDrawer v-model:show="isShown" :height="320" placement="bottom">
-    <NDrawerContent title="Add image" closable>
+  <NDrawer
+    v-model:show="isShown"
+    :height="320"
+    placement="bottom"
+  >
+    <NDrawerContent
+      title="Add image"
+      closable
+    >
       <PaperWalletFormAddImage @src="handleAddImage" />
     </NDrawerContent>
   </NDrawer>

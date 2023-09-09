@@ -56,14 +56,23 @@ function handleGeneratePaperWallets() {
     </ManualWalletForm>
     <NDivider />
     <NCollapseTransition :show="paperWalletPresets.loadedPresets.length > 0">
-      <NList :showDivider="false" hoverable>
+      <NList
+        :showDivider="false"
+        hoverable
+      >
         <NListItem
           v-for="preset in paperWalletPresets.loadedPresets"
           :key="preset.name"
         >
-          <NThing :title="preset.name" :description="preset.description">
+          <NThing
+            :title="preset.name"
+            :description="preset.description"
+          >
             <ResizablePaperWalletWrapper bordered>
-              <PaperWalletCanvas :items="preset.paperWalletItems" view="VIEW" />
+              <PaperWalletCanvas
+                :items="preset.paperWalletItems"
+                view="VIEW"
+              />
             </ResizablePaperWalletWrapper>
             <template #action>
               <NSpace>

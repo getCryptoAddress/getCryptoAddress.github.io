@@ -9,13 +9,13 @@ suite("[Util] generatePrivateKey (size 32)", () => {
     assert.equal(
       key.length,
       32,
-      "Generated key doesn't have the correct length"
+      "Generated key doesn't have the correct length",
     );
 
     const secp256k1 = await instantiateSecp256k1();
     assert.isTrue(
       secp256k1.validatePrivateKey(key),
-      "Generated key is not a valid private key"
+      "Generated key is not a valid private key",
     );
   });
 

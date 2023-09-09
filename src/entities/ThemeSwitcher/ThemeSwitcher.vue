@@ -17,8 +17,16 @@ const { SSR } = import.meta.env;
         <WeatherMoon24Regular v-show="!isDark" />
         <WeatherSunny24Regular v-show="isDark" />
       </NIcon>
-      <span class="theme-switcher__text" v-show="!isDark">Dark Theme</span>
-      <span class="theme-switcher__text" v-show="isDark">Light Theme</span>
+      <span
+        class="theme-switcher__text"
+        v-show="!isDark"
+        >Dark Theme</span
+      >
+      <span
+        class="theme-switcher__text"
+        v-show="isDark"
+        >Light Theme</span
+      >
     </NButton>
   </div>
 </template>

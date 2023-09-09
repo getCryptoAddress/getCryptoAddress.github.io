@@ -40,7 +40,7 @@ watch(
   () => currentSrc.value,
   () => {
     isLoaded.value = false;
-  }
+  },
 );
 </script>
 <template>

@@ -7,7 +7,10 @@ const store = usePaperWallet();
 </script>
 
 <template>
-  <NButton :disabled="!store.redoStack.length" @click="store.redo()">
+  <NButton
+    :disabled="!store.redoStack.length"
+    @click="store.redo()"
+  >
     <template #icon>
       <NIcon>
         <ArrowHookDownRight16Regular />

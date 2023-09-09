@@ -8,8 +8,14 @@ defineProps<{
 }>();
 </script>
 <template>
-  <NCard :title="title" class="donate-qr-code">
-    <QRCode :text="qrCodeText" :width="100" />
+  <NCard
+    :title="title"
+    class="donate-qr-code"
+  >
+    <QRCode
+      :text="qrCodeText"
+      :width="100"
+    />
     {{ qrCodeText }}
   </NCard>
 </template>

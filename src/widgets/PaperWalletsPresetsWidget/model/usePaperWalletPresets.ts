@@ -20,7 +20,7 @@ export const usePaperWalletPresets = defineStore("presets", () => {
   function setWallet(
     nextSecretKey: string,
     nextAddress: string,
-    nextPlatform: string
+    nextPlatform: string,
   ) {
     secretKey.value = nextSecretKey;
     address.value = nextAddress;
@@ -62,7 +62,7 @@ export const usePaperWalletPresets = defineStore("presets", () => {
 
   function _updatePreset(preset: Preset) {
     presets.value = presets.value.map((currentPreset) =>
-      currentPreset.name === preset.name ? preset : currentPreset
+      currentPreset.name === preset.name ? preset : currentPreset,
     );
   }
 

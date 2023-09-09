@@ -7,7 +7,10 @@ import { DonationList } from "@/entities/Donates/";
 
 <template>
   <CryptoDescription>
-    <NAlert title="Beta" type="info">
+    <NAlert
+      title="Beta"
+      type="info"
+    >
       We are in beta. If you find a bug, please report it to us on
       <GithubLink />
     </NAlert>

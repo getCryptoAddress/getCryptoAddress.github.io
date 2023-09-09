@@ -2,7 +2,7 @@ name: "Check Pull Requests"
 
 on:
   pull_request:
-    types: ['opened', 'edited', 'reopened', 'synchronize']
+    types: ["opened", "edited", "reopened", "synchronize"]
 
 jobs:
   check_pull_request:

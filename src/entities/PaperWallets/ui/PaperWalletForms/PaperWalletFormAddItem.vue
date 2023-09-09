@@ -36,7 +36,11 @@ function handleSelect(key: PaperWalletItemType) {
 </script>
 
 <template>
-  <NDropdown trigger="hover" :options="options" @select="handleSelect">
+  <NDropdown
+    trigger="hover"
+    :options="options"
+    @select="handleSelect"
+  >
     <NButton>Add Item</NButton>
   </NDropdown>
 </template>

@@ -8,7 +8,7 @@ export default async function downloadHtmlAsImage(
   targetElement: HTMLElement,
   type: "JPEG" | "PNG",
   fileName: string,
-  hasImages = false
+  hasImages = false,
 ) {
   const canvas =
     hasImages && isSafariOrIos()

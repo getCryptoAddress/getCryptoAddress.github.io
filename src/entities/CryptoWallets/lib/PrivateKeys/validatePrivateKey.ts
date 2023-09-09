@@ -4,7 +4,7 @@ type Size = 32;
 
 export default async function validatePrivateKey(
   key: Uint8Array,
-  size: Size
+  size: Size,
 ): Promise<boolean> {
   if (size === 32) {
     const secp256k1 = await instantiateSecp256k1();

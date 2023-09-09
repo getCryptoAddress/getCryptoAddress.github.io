@@ -34,7 +34,7 @@ const formModel = computed(() => {
 
 const options = computed<string[]>(() => {
   return ["Bitcoin", "Ethereum"].filter(
-    (item) => item.includes(props.platform) && item !== props.platform
+    (item) => item.includes(props.platform) && item !== props.platform,
   );
 });
 
@@ -87,14 +87,20 @@ function handleSubmit() {
     :rules="rules"
     ref="formRef"
   >
-    <NFormItem label="Platform" path="platform">
+    <NFormItem
+      label="Platform"
+      path="platform"
+    >
       <NAutoComplete
         :options="options"
         :value="platform"
         @update:value="emit('update:platform', $event)"
       />
     </NFormItem>
-    <NFormItem label="Secret key" path="secret">
+    <NFormItem
+      label="Secret key"
+      path="secret"
+    >
       <NInput
         :value="secret"
         @update:value="emit('update:secret', $event)"
@@ -108,7 +114,10 @@ function handleSubmit() {
         maxlength="154"
       />
     </NFormItem>
-    <NFormItem label="Address" path="address">
+    <NFormItem
+      label="Address"
+      path="address"
+    >
       <NInput
         :value="address"
         @update:value="emit('update:address', $event)"
@@ -123,7 +132,12 @@ function handleSubmit() {
       />
     </NFormItem>
     <NSpace>
-      <NButton type="primary" attr-type="submit"> Get Paper Wallets </NButton>
+      <NButton
+        type="primary"
+        attr-type="submit"
+      >
+        Get Paper Wallets
+      </NButton>
       <slot name="actions" />
     </NSpace>
   </NForm>

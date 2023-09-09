@@ -23,8 +23,8 @@ function getMaxWidthFromChildren(el: HTMLDivElement) {
   return Math.max(
     0,
     ...[...el.children].map((el) =>
-      el instanceof HTMLDivElement ? el.offsetWidth : 0
-    )
+      el instanceof HTMLDivElement ? el.offsetWidth : 0,
+    ),
   );
 }
 
@@ -56,7 +56,11 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="resizable-paper-wallet-wrapper">
-    <div ref="container" :class="containerStyles" :style="{ height: height }">
+    <div
+      ref="container"
+      :class="containerStyles"
+      :style="{ height: height }"
+    >
       <div
         class="resizable-paper-wallet-wrapper__area"
         ref="area"

@@ -25,20 +25,20 @@ export const usePaperWallet = defineStore("paperWallet", () => {
   function updateItem(item: PaperWalletItem) {
     prepareForChange();
     items.value = items.value.map((currentItem) =>
-      currentItem.id === item.id ? item : currentItem
+      currentItem.id === item.id ? item : currentItem,
     );
   }
 
   function removeItem(item: PaperWalletItem) {
     prepareForChange();
     items.value = items.value.filter(
-      (currentItem) => currentItem.id !== item.id
+      (currentItem) => currentItem.id !== item.id,
     );
   }
 
   function moveItemDown(item: PaperWalletItem) {
     const index = items.value.findIndex(
-      (currentItem) => currentItem.id === item.id
+      (currentItem) => currentItem.id === item.id,
     );
     if (index === 0) {
       return;
@@ -53,7 +53,7 @@ export const usePaperWallet = defineStore("paperWallet", () => {
 
   function moveItemUp(item: PaperWalletItem) {
     const index = items.value.findIndex(
-      (currentItem) => currentItem.id === item.id
+      (currentItem) => currentItem.id === item.id,
     );
     if (index === items.value.length - 1) {
       return;
@@ -149,7 +149,7 @@ export const usePaperWallet = defineStore("paperWallet", () => {
   const selectedItemId = ref<string | null>(null);
 
   const selectedItem = computed<PaperWalletItem | null>(
-    () => items.value.find((item) => item.id === selectedItemId.value) || null
+    () => items.value.find((item) => item.id === selectedItemId.value) || null,
   );
   function setSelectItem(item: PaperWalletItem | null) {
     if (!item) {

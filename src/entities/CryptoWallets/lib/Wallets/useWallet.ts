@@ -11,7 +11,7 @@ export default function useWallet() {
 
   async function makeWallets(
     countWallets: number,
-    walletPayload: WalletFactoryPayload
+    walletPayload: WalletFactoryPayload,
   ) {
     if (isLoading.value) {
       return;

@@ -17,7 +17,7 @@ export default class WalletsBitcoin extends WalletsAbstract<
 > {
   async makeWallet(
     { formatPrivateKey, formatAddress, isTestnet }: BitcoinWalletPayload,
-    initialPrivateKey?: BitcoinPrivateKey
+    initialPrivateKey?: BitcoinPrivateKey,
   ): Promise<Wallet> {
     const nextPrivateKey = await this.#getPrivateKey(initialPrivateKey);
 
@@ -28,7 +28,7 @@ export default class WalletsBitcoin extends WalletsAbstract<
     }
     const privateKey = await this.#getFormattedPrivateKey(
       nextPrivateKey,
-      formatPrivateKey
+      formatPrivateKey,
     );
 
     return {
@@ -49,7 +49,7 @@ export default class WalletsBitcoin extends WalletsAbstract<
 
   async #getFormattedPrivateKey(
     key: Uint8Array,
-    format: BitcoinPrivateKeyFormat
+    format: BitcoinPrivateKeyFormat,
   ): Promise<string> {
     if (format === "hex") {
       return convertUint8ArrayToHex(key);

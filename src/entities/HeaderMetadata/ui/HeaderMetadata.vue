@@ -7,6 +7,10 @@ defineProps<{
 <template>
   <Teleport to="head">
     <title>{{ title }}</title>
-    <meta v-if="description" name="description" :content="description" />
+    <meta
+      v-if="description"
+      name="description"
+      :content="description"
+    />
   </Teleport>
 </template>

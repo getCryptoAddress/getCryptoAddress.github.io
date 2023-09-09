@@ -34,7 +34,10 @@ function handleUpdate(item: PaperWalletItem) {
 
 <template>
   <div>
-    <PaperWalletFormPosition :item="item" @update="handleUpdate" />
+    <PaperWalletFormPosition
+      :item="item"
+      @update="handleUpdate"
+    />
     <PaperWalletFormText
       v-if="item.type === 'TEXT'"
       :item="item"
@@ -54,7 +57,10 @@ function handleUpdate(item: PaperWalletItem) {
         </template>
         Remove
       </NButton>
-      <NButton @click="emit('upItem', item)" :disabled="isLastItem">
+      <NButton
+        @click="emit('upItem', item)"
+        :disabled="isLastItem"
+      >
         <template #icon>
           <NIcon>
             <ChevronCircleUp20Regular />
@@ -62,7 +68,10 @@ function handleUpdate(item: PaperWalletItem) {
         </template>
         Up layer
       </NButton>
-      <NButton @click="emit('downItem', item)" :disabled="isFirstItem">
+      <NButton
+        @click="emit('downItem', item)"
+        :disabled="isFirstItem"
+      >
         <template #icon>
           <NIcon>
             <ChevronCircleDown20Regular />

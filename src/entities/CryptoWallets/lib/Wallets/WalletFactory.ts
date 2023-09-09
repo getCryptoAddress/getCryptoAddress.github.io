@@ -7,7 +7,7 @@ import type {
 } from "@/entities/CryptoWallets/lib/Wallets/WalletFactory.types";
 
 export default function WalletFactory(
-  payload: WalletFactoryPayload
+  payload: WalletFactoryPayload,
 ): WalletsAbstract<WalletFactoryPayload["payload"], WalletFactoryPrivateKey> {
   const { platform } = payload;
 

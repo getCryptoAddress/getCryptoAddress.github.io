@@ -8,7 +8,10 @@ defineProps<{
 </script>
 
 <template>
-  <IconLogo v-show="!isParanoidModeEnabled" class="page-header-logo" />
+  <IconLogo
+    v-show="!isParanoidModeEnabled"
+    class="page-header-logo"
+  />
   <IconParanoidLogo
     v-show="isParanoidModeEnabled"
     class="page-header-logo page-header-logo--paranoid"

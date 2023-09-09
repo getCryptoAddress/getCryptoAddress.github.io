@@ -43,10 +43,10 @@ function convertKeyFormat(format: BitcoinPrivateKeyFormat): PrivateKeyFormat {
 
 const isTestNet = ref(props.payload.isTestnet);
 const selectedKeyFormats = ref<PrivateKeyFormat>(
-  convertKeyFormat(props.payload.formatPrivateKey)
+  convertKeyFormat(props.payload.formatPrivateKey),
 );
 const selectedAddressFormats = ref<BitcoinAddressFormat>(
-  props.payload.formatAddress
+  props.payload.formatAddress,
 );
 
 const formattedSelectedKeyFormat = computed<BitcoinPrivateKeyFormat>(() => {
@@ -73,7 +73,10 @@ watchEffect(() => {
     <n-switch v-model:value="isTestNet" />
   </NFormItem>
   <NFormItem label="Key format">
-    <NSelect v-model:value="selectedKeyFormats" :options="keyFormatOptions" />
+    <NSelect
+      v-model:value="selectedKeyFormats"
+      :options="keyFormatOptions"
+    />
   </NFormItem>
   <NFormItem label="Address format">
     <NSelect

@@ -44,7 +44,10 @@ initTracker();
       <PageTemplate>
         <template #navigation>
           <PageHeader :is-paranoid-mode="isParanoidModeEnabled">
-            <ThemeSwitcher :is-dark="isDark" @switch="switchTheme" />
+            <ThemeSwitcher
+              :is-dark="isDark"
+              @switch="switchTheme"
+            />
             <div>
               <ParanoidMode
                 :showParanoidMode="showParanoidMode"

@@ -40,7 +40,7 @@ watch(
   () => props.text + props.width + props.color + props.background,
   () => {
     generateCanvasAddress();
-  }
+  },
 );
 </script>
 

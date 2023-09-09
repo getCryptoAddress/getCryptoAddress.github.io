@@ -32,7 +32,7 @@ const fontOptions: {
 
 function handleUpdateValue<K extends keyof PaperWalletItemText>(
   key: K,
-  value: PaperWalletItemText[K]
+  value: PaperWalletItemText[K],
 ) {
   emit("update", {
     ...props.item,

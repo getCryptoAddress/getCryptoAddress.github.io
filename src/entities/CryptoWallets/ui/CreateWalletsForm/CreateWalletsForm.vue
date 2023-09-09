@@ -69,15 +69,38 @@ function updateBitcoinPayload(data: BitcoinWalletPayload) {
 
 <template>
   <NForm>
-    <NFormItem label="Crypto wallet" path="type">
-      <n-space class="form-create-wallets__space" vertical>
-        <NSelect v-model:value="platform" :options="platforms" />
+    <NFormItem
+      label="Crypto wallet"
+      path="type"
+    >
+      <n-space
+        class="form-create-wallets__space"
+        vertical
+      >
+        <NSelect
+          v-model:value="platform"
+          :options="platforms"
+        />
       </n-space>
     </NFormItem>
-    <NFormItem label="Count tokens" path="count">
-      <n-space class="form-create-wallets__space" vertical>
-        <n-slider v-model:value="count" :step="10" :min="10" />
-        <NInputNumber v-model:value="count" :min="1" size="small" />
+    <NFormItem
+      label="Count tokens"
+      path="count"
+    >
+      <n-space
+        class="form-create-wallets__space"
+        vertical
+      >
+        <n-slider
+          v-model:value="count"
+          :step="10"
+          :min="10"
+        />
+        <NInputNumber
+          v-model:value="count"
+          :min="1"
+          size="small"
+        />
       </n-space>
     </NFormItem>
     <n-collapse-transition :show="isAdvancedPlatform">
@@ -94,7 +117,10 @@ function updateBitcoinPayload(data: BitcoinWalletPayload) {
         @update="updateBitcoinPayload"
       />
     </n-collapse-transition>
-    <n-button type="primary" @click="handleForm">
+    <n-button
+      type="primary"
+      @click="handleForm"
+    >
       Generate new addresses
     </n-button>
   </NForm>
