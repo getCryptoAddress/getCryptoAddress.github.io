@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { NButton, NDrawer, NDrawerContent, NIcon, useMessage } from "naive-ui";
 import {
-  downloadPaperWallet,
   PaperWalletCanvas,
   PaperWalletDownloadForm,
 } from "@/entities/PaperWallets";
@@ -13,6 +12,8 @@ import type {
 } from "@/entities/PaperWallets/types/PaperWallet.types";
 import { ArrowDownload16Regular } from "@vicons/fluent";
 import mobile from "is-mobile";
+import downloadHtmlAsImage from "@/shared/lib/downloadHtmlAsImage";
+import isSafariOrIos from "@/shared/lib/browser/isSafariOrIos";
 
 defineProps<{
   items: PaperWalletItem[];
@@ -23,7 +24,7 @@ const isShown = ref(false);
 const isLoading = ref(false);
 const typeOfDownload = ref<DownloadPaperWalletType>("PNG");
 const canvasMode = ref<PaperWalletCanvasMode>("PRINT");
-
+const isSafariBrowser = isSafariOrIos();
 async function handleSubmitForm(payload: {
   typeOfDownload: DownloadPaperWalletType;
   canvasMode: PaperWalletCanvasMode;
@@ -44,7 +45,12 @@ async function handleDownload() {
       return;
     }
 
-    await downloadPaperWallet(targetElement, typeOfDownload.value);
+    await downloadHtmlAsImage(
+      targetElement,
+      typeOfDownload.value,
+      "paper-wallet",
+      true
+    );
   } catch (e) {
     message.error(typeof e === "string" ? e : "Something went wrong");
   } finally {
@@ -69,6 +75,11 @@ async function handleDownload() {
         :loading="isLoading"
         @submit="handleSubmitForm"
       />
+      <p v-if="isSafariBrowser">
+        NB: <strong>IOS</strong> and <strong>Safari</strong> may not render
+        images as expected the first time. If you encounter with current
+        problem, just try downloading the image a second time.
+      </p>
     </NDrawerContent>
   </NDrawer>
 

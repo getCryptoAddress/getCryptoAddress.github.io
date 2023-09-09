@@ -25,11 +25,9 @@ export default function useWallet() {
         count.value = nextCount;
       })
       .then(() => {
-        setTimeout(() => {
-          wallets.value = instance.wallets;
-          count.value = instance.count;
-          isLoading.value = false;
-        }, 0);
+        wallets.value = instance.wallets;
+        count.value = instance.count;
+        isLoading.value = false;
       });
   }
 

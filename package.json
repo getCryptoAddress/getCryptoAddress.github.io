@@ -18,6 +18,7 @@
     "@bitauth/libauth": "^1.19.1",
     "@scure/btc-signer": "^1.0.1",
     "@vueuse/core": "^9.13.0",
+    "detect-browser": "^5.3.0",
     "downloadjs": "^1.4.7",
     "ethereum-cryptography": "^2.1.2",
     "highlight.js": "^11.8.0",

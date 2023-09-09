@@ -3,7 +3,7 @@ import { NButton, NCard, NIcon, NModal, NThing, useMessage } from "naive-ui";
 import { QrCode20Regular } from "@vicons/fluent";
 import { ref } from "vue";
 import QRCode from "@/shared/ui/QRCode/QRCode.vue";
-import downloadHtmlAsPng from "@/entities/PaperWallets/lib/download/downloadHtmlAsPng";
+import downloadHtmlAsImage from "@/shared/lib/downloadHtmlAsImage";
 
 defineProps<{
   address: string;
@@ -18,7 +18,7 @@ function downloadSecretQrCode($event: MouseEvent) {
     message.error("Something went wrong");
     return;
   }
-  downloadHtmlAsPng(currentTarget, "QRCodeSecret");
+  downloadHtmlAsImage(currentTarget, "PNG", "QRCodeSecret");
 }
 function downloadAddressQrCode($event: MouseEvent) {
   const { currentTarget } = $event;
@@ -26,7 +26,7 @@ function downloadAddressQrCode($event: MouseEvent) {
     message.error("Something went wrong");
     return;
   }
-  downloadHtmlAsPng(currentTarget, "QRCodeAddress");
+  downloadHtmlAsImage(currentTarget, "PNG", "QRCodeAddress");
 }
 
 const showModal = ref(false);
