@@ -1,7 +1,7 @@
 <script lang="ts" setup>
+  import { ArrowHookDownLeft16Regular } from "@vicons/fluent";
   import { NButton, NIcon } from "naive-ui";
   import { usePaperWallet } from "@/entities/PaperWallets";
-  import { ArrowHookDownLeft16Regular } from "@vicons/fluent";
 
   const store = usePaperWallet();
 </script>

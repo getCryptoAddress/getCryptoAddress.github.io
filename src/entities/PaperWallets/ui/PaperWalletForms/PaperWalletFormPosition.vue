@@ -3,7 +3,7 @@
   import type {
     PaperWalletItem,
     PaperWalletItemPosition,
-  } from "@/entities/PaperWallets/types/PaperWallet.types";
+  } from "../../types/PaperWallet.types";
 
   const emit = defineEmits<{
     update: [PaperWalletItem];

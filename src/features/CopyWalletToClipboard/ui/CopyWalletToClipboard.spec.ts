@@ -1,8 +1,8 @@
 import { mount } from "@vue/test-utils";
-import CopyWalletToClipboard from "./CopyWalletToClipboard.vue";
 import { NMessageProvider } from "naive-ui";
 import { afterEach, expect, suite, test, vi } from "vitest";
 import { h } from "vue";
+import CopyWalletToClipboard from "./CopyWalletToClipboard.vue";
 
 suite("features/CopyWalletToClipboard/ui/CopyWalletToClipboard", () => {
   afterEach(() => {

@@ -1,10 +1,10 @@
-import type WalletsAbstract from "@/entities/CryptoWallets/lib/Wallets/WalletsAbstract";
-import WalletsBitcoin from "@/entities/CryptoWallets/lib/Wallets/walletsBitcoin/WalletsBitcoin";
-import WalletsEthereum from "@/entities/CryptoWallets/lib/Wallets/walletsEthereum/WalletsEthereum";
 import type {
   WalletFactoryPayload,
   WalletFactoryPrivateKey,
-} from "@/entities/CryptoWallets/lib/Wallets/WalletFactory.types";
+} from "./WalletFactory.types";
+import type WalletsAbstract from "./WalletsAbstract";
+import WalletsBitcoin from "./walletsBitcoin/WalletsBitcoin";
+import WalletsEthereum from "./walletsEthereum/WalletsEthereum";
 
 export default function WalletFactory(
   payload: WalletFactoryPayload,

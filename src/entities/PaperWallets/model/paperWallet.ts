@@ -1,11 +1,11 @@
+import debounce from "lodash/debounce";
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
+import getImage from "@/shared/lib/images/getImage";
 import type {
   PaperWalletCanvasMode,
   PaperWalletItem,
-} from "@/entities/PaperWallets/types/PaperWallet.types";
-import getImage from "@/shared/lib/images/getImage";
-import debounce from "lodash/debounce";
+} from "../types/PaperWallet.types";
 
 export const usePaperWallet = defineStore("paperWallet", () => {
   // todo temp place

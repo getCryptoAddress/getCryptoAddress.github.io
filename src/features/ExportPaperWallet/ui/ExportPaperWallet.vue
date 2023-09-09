@@ -1,5 +1,13 @@
 <script lang="ts" setup>
   import {
+    ArrowExportUp20Regular,
+    ClipboardCheckmark24Regular,
+    ClipboardError24Regular,
+    ClipboardTextRtl24Regular,
+  } from "@vicons/fluent";
+  import highlight from "highlight.js/lib/core";
+  import jsonStyle from "highlight.js/lib/languages/json";
+  import {
     NButton,
     NCard,
     NCode,
@@ -9,16 +17,8 @@
     NSpace,
     useMessage,
   } from "naive-ui";
-  import {
-    ArrowExportUp20Regular,
-    ClipboardCheckmark24Regular,
-    ClipboardError24Regular,
-    ClipboardTextRtl24Regular,
-  } from "@vicons/fluent";
   import { computed, ref } from "vue";
   import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
-  import highlight from "highlight.js/lib/core";
-  import jsonStyle from "highlight.js/lib/languages/json";
   import copyToClipboard from "@/shared/lib/utils/copyToClipboard";
 
   // todo simplify this component, move templates to entities

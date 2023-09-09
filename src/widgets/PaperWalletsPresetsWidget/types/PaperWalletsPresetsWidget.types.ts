@@ -1,5 +1,5 @@
+import type { WalletFactoryCryptoPlatform } from "@/entities/CryptoWallets";
 import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
-import type { WalletFactoryCryptoPlatform } from "@/entities/CryptoWallets/lib/Wallets/WalletFactory.types";
 
 export type Preset = {
   name: string;

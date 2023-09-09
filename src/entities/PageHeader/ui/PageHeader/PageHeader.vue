@@ -1,11 +1,11 @@
 <script setup lang="ts">
-  import PageHeaderDescription from "@/entities/PageHeader/ui/PageHeaderDescription/PageHeaderDescription.vue";
-  import { RouterLink, useRoute } from "vue-router";
-  import PageHeaderWrapper from "@/entities/PageHeader/ui/PageHeaderWrapper/PageHeaderWrapper.vue";
-  import PageHeaderLogo from "@/entities/PageHeader/ui/PageHeaderLogo/PageHeaderLogo.vue";
+  import { Home20Regular } from "@vicons/fluent";
   import { type MenuOption, NIcon, NMenu } from "naive-ui";
   import { type Component, h, ref, watch } from "vue";
-  import { Home20Regular } from "@vicons/fluent";
+  import { RouterLink, useRoute } from "vue-router";
+  import PageHeaderDescription from "../PageHeaderDescription/PageHeaderDescription.vue";
+  import PageHeaderLogo from "../PageHeaderLogo/PageHeaderLogo.vue";
+  import PageHeaderWrapper from "../PageHeaderWrapper/PageHeaderWrapper.vue";
 
   defineProps<{
     isParanoidMode: boolean;

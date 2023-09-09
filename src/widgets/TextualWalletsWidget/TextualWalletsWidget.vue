@@ -1,7 +1,9 @@
 <script setup lang="ts">
   import { NDivider, NList } from "naive-ui";
-  import SimpleProgress from "@/shared/ui/SimpleProgress/SimpleProgress.vue";
-  import CollapseTransition from "@/shared/ui/CollapseTransition/CollapseTransition.vue";
+  import { ref } from "vue";
+  import { CopyWalletToClipboard } from "@/features/CopyWalletToClipboard";
+  import { RedirectWalletToPaperWallet } from "@/features/RedirectWalletToPaperWallet";
+  import { ShowQrCodes } from "@/features/ShowQrCodes";
   import {
     FormCreateWallets,
     type FormCreateWalletsPayload,
@@ -9,10 +11,8 @@
     useWallet,
     WalletDetails,
   } from "@/entities/CryptoWallets";
-  import { CopyWalletToClipboard } from "@/features/CopyWalletToClipboard";
-  import { RedirectWalletToPaperWallet } from "@/features/RedirectWalletToPaperWallet";
-  import { ref } from "vue";
-  import { ShowQrCodes } from "@/features/ShowQrCodes";
+  import CollapseTransition from "@/shared/ui/CollapseTransition/CollapseTransition.vue";
+  import SimpleProgress from "@/shared/ui/SimpleProgress/SimpleProgress.vue";
 
   const { SSR } = import.meta.env;
 

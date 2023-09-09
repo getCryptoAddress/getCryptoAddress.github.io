@@ -1,5 +1,5 @@
-import { suite, test, expect } from "vitest";
-import validatePrivateKey from "@/entities/CryptoWallets/lib/PrivateKeys/validatePrivateKey";
+import { expect, suite, test } from "vitest";
+import validatePrivateKey from "../validatePrivateKey";
 
 const validKey1 = new Uint8Array([
   130, 205, 117, 44, 180, 113, 245, 200, 213, 19, 97, 187, 70, 157, 86, 111, 19,

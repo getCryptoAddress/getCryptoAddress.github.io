@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-  import { computed, ref, watchEffect } from "vue";
   import { NFormItem, NSelect, NSwitch } from "naive-ui";
+  import { computed, ref, watchEffect } from "vue";
   import type {
     BitcoinAddressFormat,
     BitcoinPrivateKeyFormat,
     BitcoinWalletPayload,
-  } from "@/entities/CryptoWallets/lib/Wallets/walletsBitcoin/WalletsBitcoin.types";
+  } from "../../lib/Wallets/walletsBitcoin/WalletsBitcoin.types";
 
   // todo need to refactor this component
 

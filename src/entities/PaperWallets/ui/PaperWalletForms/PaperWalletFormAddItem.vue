@@ -1,11 +1,11 @@
 <script lang="ts" setup>
+  import { NButton, NDropdown } from "naive-ui";
   import type {
     PaperWalletItemType,
     PaperWalletItemTypeImage,
     PaperWalletItemTypeQRCode,
     PaperWalletItemTypeText,
-  } from "@/entities/PaperWallets/types/PaperWallet.types";
-  import { NButton, NDropdown } from "naive-ui";
+  } from "../../types/PaperWallet.types";
 
   const TYPE_TEXT: PaperWalletItemTypeText = "TEXT";
   const TYPE_QR_CODE: PaperWalletItemTypeQRCode = "QR_CODE";

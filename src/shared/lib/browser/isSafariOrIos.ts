@@ -1,4 +1,4 @@
-import getUserAgent from "@/shared/lib/browser/getUserAgent";
+import getUserAgent from "./getUserAgent";
 
 export default function isSafariOrIos() {
   const userAgent = getUserAgent();

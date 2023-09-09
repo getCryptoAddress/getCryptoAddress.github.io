@@ -1,8 +1,8 @@
-import convertHtmlToCanvas from "@/shared/lib/downloadHtmlAsImage/convertHtmlToCanvas";
-import isSafariOrIos from "@/shared/lib/browser/isSafariOrIos";
-import getPngDataUrl from "@/shared/lib/downloadHtmlAsImage/getPngDataUrl";
-import getJpegDataUrl from "@/shared/lib/downloadHtmlAsImage/getJpegDataUrl";
 import download from "downloadjs";
+import isSafariOrIos from "../browser/isSafariOrIos";
+import convertHtmlToCanvas from "./convertHtmlToCanvas";
+import getJpegDataUrl from "./getJpegDataUrl";
+import getPngDataUrl from "./getPngDataUrl";
 
 export default async function downloadHtmlAsImage(
   targetElement: HTMLElement,

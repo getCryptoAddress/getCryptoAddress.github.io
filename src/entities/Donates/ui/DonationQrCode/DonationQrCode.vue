@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-  import QRCode from "@/shared/ui/QRCode/QRCode.vue";
   import { NCard } from "naive-ui";
+  import QRCode from "@/shared/ui/QRCode/QRCode.vue";
 
   defineProps<{
     title: string;

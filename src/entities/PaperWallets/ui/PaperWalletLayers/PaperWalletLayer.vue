@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-  import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
-  import { NCard, NEllipsis, NIcon, NSpace } from "naive-ui";
   import {
     Image20Regular,
     QrCode20Regular,
     TextChangeCase20Regular,
   } from "@vicons/fluent";
+  import { NCard, NEllipsis, NIcon, NSpace } from "naive-ui";
   import { computed } from "vue";
+  import type { PaperWalletItem } from "../../types/PaperWallet.types";
 
   const emit = defineEmits<{
     selectItem: [PaperWalletItem];

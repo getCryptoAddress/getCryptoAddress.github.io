@@ -1,7 +1,7 @@
 <script setup lang="ts">
-  import { computed, onBeforeUnmount, onMounted, type Ref, ref } from "vue";
-  import throttle from "lodash/throttle";
   import { useDark } from "@vueuse/core";
+  import throttle from "lodash/throttle";
+  import { computed, onBeforeUnmount, onMounted, type Ref, ref } from "vue";
 
   const area = ref<HTMLDivElement>();
 

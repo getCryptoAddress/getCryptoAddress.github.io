@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+  import { ArrowDownload16Regular } from "@vicons/fluent";
+  import mobile from "is-mobile";
   import {
     NButton,
     NDrawer,
@@ -6,20 +8,18 @@
     NIcon,
     useMessage,
   } from "naive-ui";
+  import { nextTick, ref } from "vue";
   import {
     PaperWalletCanvas,
     PaperWalletDownloadForm,
   } from "@/entities/PaperWallets";
-  import { nextTick, ref } from "vue";
   import type {
     DownloadPaperWalletType,
     PaperWalletCanvasMode,
     PaperWalletItem,
   } from "@/entities/PaperWallets/types/PaperWallet.types";
-  import { ArrowDownload16Regular } from "@vicons/fluent";
-  import mobile from "is-mobile";
-  import downloadHtmlAsImage from "@/shared/lib/downloadHtmlAsImage";
   import isSafariOrIos from "@/shared/lib/browser/isSafariOrIos";
+  import downloadHtmlAsImage from "@/shared/lib/downloadHtmlAsImage";
 
   defineProps<{
     items: PaperWalletItem[];

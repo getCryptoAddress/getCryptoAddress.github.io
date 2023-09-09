@@ -1,15 +1,14 @@
 <script setup lang="ts">
-  import { RouterView, useRoute } from "vue-router";
-  import PageTemplate from "@/shared/ui/PageTemplate/PageTemplate.vue";
-  import { computed, type Ref, ref } from "vue";
-  import { darkTheme, NConfigProvider, NMessageProvider } from "naive-ui";
-
   import { useDark, useToggle } from "@vueuse/core";
-  import ThemeSwitcher from "@/entities/ThemeSwitcher/ThemeSwitcher.vue";
-  import ParanoidMode from "@/entities/ParanoidMode/ui/ParanoidMode.vue";
-  import { PageHeader } from "@/entities/PageHeader";
+  import { darkTheme, NConfigProvider, NMessageProvider } from "naive-ui";
+  import { computed, type Ref, ref } from "vue";
+  import { RouterView, useRoute } from "vue-router";
   import { HeaderMetadata } from "@/entities/HeaderMetadata";
+  import { PageHeader } from "@/entities/PageHeader";
+  import { ParanoidMode } from "@/entities/ParanoidMode";
+  import ThemeSwitcher from "@/entities/ThemeSwitcher/ThemeSwitcher.vue";
   import initTracker from "@/shared/lib/tracker/initTracker";
+  import PageTemplate from "@/shared/ui/PageTemplate/PageTemplate.vue";
 
   const isDark = useDark() as Ref<boolean>;
   const themeProvider = computed(() => (isDark.value ? darkTheme : null));

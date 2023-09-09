@@ -1,7 +1,7 @@
 import { ref } from "vue";
-import type { WalletFactoryPayload } from "@/entities/CryptoWallets/lib/Wallets/WalletFactory.types";
-import type { Wallet } from "@/entities/CryptoWallets/lib/Wallets/useWallet.types";
-import WalletFactory from "@/entities/CryptoWallets/lib/Wallets/WalletFactory";
+import type { Wallet } from "./useWallet.types";
+import WalletFactory from "./WalletFactory";
+import type { WalletFactoryPayload } from "./WalletFactory.types";
 
 export default function useWallet() {
   const wallets = ref<Wallet[]>([]);

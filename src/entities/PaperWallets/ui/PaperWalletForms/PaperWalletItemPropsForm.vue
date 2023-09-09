@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-  import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
-  import PaperWalletFormPosition from "@/entities/PaperWallets/ui/PaperWalletForms/PaperWalletFormPosition.vue";
-  import PaperWalletFormText from "@/entities/PaperWallets/ui/PaperWalletForms/PaperWalletFormText.vue";
-  import PaperWalletFormQRCode from "@/entities/PaperWallets/ui/PaperWalletForms/PaperWalletFormQRCode.vue";
-  import { NButton, NIcon, NSpace } from "naive-ui";
   import {
     ChevronCircleDown20Regular,
     ChevronCircleUp20Regular,
     Delete20Regular,
   } from "@vicons/fluent";
+  import { NButton, NIcon, NSpace } from "naive-ui";
   import { computed } from "vue";
+  import type { PaperWalletItem } from "../../types/PaperWallet.types";
+  import PaperWalletFormPosition from "./PaperWalletFormPosition.vue";
+  import PaperWalletFormQRCode from "./PaperWalletFormQRCode.vue";
+  import PaperWalletFormText from "./PaperWalletFormText.vue";
 
   const emit = defineEmits<{
     updateItem: [PaperWalletItem];

@@ -1,12 +1,12 @@
 <script lang="ts" setup>
+  import { computed, onUnmounted, ref, watch } from "vue";
   import type {
     PaperWalletCanvasMode,
     PaperWalletItem,
-  } from "@/entities/PaperWallets/types/PaperWallet.types";
-  import { computed, onUnmounted, ref, watch } from "vue";
-  import PaperWalletCanvasText from "@/entities/PaperWallets/ui/PaperWalletCanvas/PaperWalletCanvasText.vue";
-  import PaperWalletCanvasImage from "@/entities/PaperWallets/ui/PaperWalletCanvas/PaperWalletCanvasImage.vue";
-  import PaperWalletCanvasQrCode from "@/entities/PaperWallets/ui/PaperWalletCanvas/PaperWalletCanvasQrCode.vue";
+  } from "../../types/PaperWallet.types";
+  import PaperWalletCanvasImage from "./PaperWalletCanvasImage.vue";
+  import PaperWalletCanvasQrCode from "./PaperWalletCanvasQrCode.vue";
+  import PaperWalletCanvasText from "./PaperWalletCanvasText.vue";
 
   const emit = defineEmits<{
     updateItem: [PaperWalletItem];

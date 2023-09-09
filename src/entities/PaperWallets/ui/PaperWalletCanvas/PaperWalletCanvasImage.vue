@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-  import type { PaperWalletItemImage } from "@/entities/PaperWallets/types/PaperWallet.types";
   import { computed, type StyleValue } from "vue";
+  import type { PaperWalletItemImage } from "../../types/PaperWallet.types";
 
   const emit = defineEmits<{
     load: [PaperWalletItemImage];

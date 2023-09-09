@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-  import { NButton, NCard, NIcon, NModal, NThing, useMessage } from "naive-ui";
   import { QrCode20Regular } from "@vicons/fluent";
+  import { NButton, NCard, NIcon, NModal, NThing, useMessage } from "naive-ui";
   import { ref } from "vue";
-  import QRCode from "@/shared/ui/QRCode/QRCode.vue";
   import downloadHtmlAsImage from "@/shared/lib/downloadHtmlAsImage";
+  import QRCode from "@/shared/ui/QRCode/QRCode.vue";
 
   defineProps<{
     address: string;

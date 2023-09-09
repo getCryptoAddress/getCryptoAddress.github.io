@@ -1,11 +1,10 @@
-import { suite, test, expect } from "vitest";
-
+import { expect, suite, test } from "vitest";
 import WalletsBitcoin from "./WalletsBitcoin";
 import type {
   BitcoinAddressFormat,
   BitcoinPrivateKeyFormat,
   BitcoinWalletPayload,
-} from "@/entities/CryptoWallets/lib/Wallets/walletsBitcoin/WalletsBitcoin.types";
+} from "./WalletsBitcoin.types";
 
 const key1 = new Uint8Array([
   132, 205, 117, 44, 180, 113, 245, 200, 213, 19, 97, 187, 70, 157, 86, 111, 19,

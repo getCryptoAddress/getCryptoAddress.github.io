@@ -1,14 +1,14 @@
-import WalletsAbstract from "@/entities/CryptoWallets/lib/Wallets/WalletsAbstract";
-import generatePrivateKey from "@/entities/CryptoWallets/lib/PrivateKeys/generatePrivateKey";
-import convertUint8ArrayToHex from "@/entities/CryptoWallets/lib/PrivateKeys/convertUint8ArrayToHex";
+import { keccak256 } from "ethereum-cryptography/keccak";
+import { publicKeyCreate } from "ethereum-cryptography/secp256k1-compat";
+import convertUint8ArrayToHex from "../../PrivateKeys/convertUint8ArrayToHex";
+import generatePrivateKey from "../../PrivateKeys/generatePrivateKey";
+import validatePrivateKey from "../../PrivateKeys/validatePrivateKey";
+import type { Wallet } from "../useWallet.types";
+import WalletsAbstract from "../WalletsAbstract";
 import type {
   EthereumPrivateKey,
   EthereumWalletPayload,
 } from "./WalletsEthereum.types";
-import type { Wallet } from "@/entities/CryptoWallets/lib/Wallets/useWallet.types";
-import validatePrivateKey from "@/entities/CryptoWallets/lib/PrivateKeys/validatePrivateKey";
-import { publicKeyCreate } from "ethereum-cryptography/secp256k1-compat";
-import { keccak256 } from "ethereum-cryptography/keccak";
 
 export default class WalletsEthereum extends WalletsAbstract<
   EthereumWalletPayload,

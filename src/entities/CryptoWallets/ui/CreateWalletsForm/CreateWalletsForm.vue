@@ -11,10 +11,10 @@
     NSpace,
   } from "naive-ui";
   import { computed, ref } from "vue";
-  import type { FormCreateWalletsPayload } from "@/entities/CryptoWallets/ui/CreateWalletsForm/types/CreateWalletsForm.types";
-  import FormCreateWalletsBitcoin from "@/entities/CryptoWallets/ui/CreateWalletsForm/CreateWalletsFormBitcoin.vue";
-  import type { BitcoinWalletPayload } from "@/entities/CryptoWallets/lib/Wallets/walletsBitcoin/WalletsBitcoin.types";
-  import type { WalletFactoryCryptoPlatform } from "@/entities/CryptoWallets/lib/Wallets/WalletFactory.types";
+  import type { WalletFactoryCryptoPlatform } from "../../lib/Wallets/WalletFactory.types";
+  import type { BitcoinWalletPayload } from "../../lib/Wallets/walletsBitcoin/WalletsBitcoin.types";
+  import FormCreateWalletsBitcoin from "./CreateWalletsFormBitcoin.vue";
+  import type { FormCreateWalletsPayload } from "./types/CreateWalletsForm.types";
 
   // todo need to refactor this component
   const count = ref(20);

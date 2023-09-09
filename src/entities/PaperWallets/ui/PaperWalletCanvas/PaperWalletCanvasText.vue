@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-  import type { PaperWalletItemText } from "@/entities/PaperWallets/types/PaperWallet.types";
   import { computed, nextTick, ref, type StyleValue } from "vue";
+  import type { PaperWalletItemText } from "../../types/PaperWallet.types";
 
   // todo Vue.js is not supporting contenteditable="plaintext-only" yet
   const CONTENTEDITABLE_PLAINTEXT: any = "plaintext-only";

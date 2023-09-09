@@ -1,6 +1,6 @@
+import { instantiateSecp256k1 } from "@bitauth/libauth";
 import { assert, suite, test } from "vitest";
 import generatePrivateKey from "../generatePrivateKey";
-import { instantiateSecp256k1 } from "@bitauth/libauth";
 
 suite("[Util] generatePrivateKey (size 32)", () => {
   test("Should generate a valid private key with correct length", async () => {

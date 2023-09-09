@@ -8,6 +8,7 @@ module.exports = {
     "eslint:recommended",
     "@vue/eslint-config-typescript",
     "@vue/eslint-config-prettier/skip-formatting",
+    "plugin:@conarti/feature-sliced/recommended"
   ],
   parserOptions: {
     ecmaVersion: "latest",

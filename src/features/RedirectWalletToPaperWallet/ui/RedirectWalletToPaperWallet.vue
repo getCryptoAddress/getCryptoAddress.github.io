@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-  import { NButton, NIcon } from "naive-ui";
   import { Print24Regular } from "@vicons/fluent";
+  import { NButton, NIcon } from "naive-ui";
   import { useRouter } from "vue-router";
 
   const props = defineProps<{

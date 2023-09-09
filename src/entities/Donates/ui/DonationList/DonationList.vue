@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import BitcoinQrCode from "@/entities/Donates/ui/BitcoinQrCode/BitcoinQrCode.vue";
-  import EthereumQrCode from "@/entities/Donates/ui/EthereumQrCode/EthereumQrCode.vue";
+  import BitcoinQrCode from "../BitcoinQrCode/BitcoinQrCode.vue";
+  import EthereumQrCode from "../EthereumQrCode/EthereumQrCode.vue";
 </script>
 
 <template>

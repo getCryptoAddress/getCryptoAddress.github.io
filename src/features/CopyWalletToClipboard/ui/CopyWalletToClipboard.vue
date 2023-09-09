@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-  import { NButton, NIcon, useMessage } from "naive-ui";
   import {
     ClipboardCheckmark24Regular,
     ClipboardError24Regular,
     ClipboardTextRtl24Regular,
   } from "@vicons/fluent";
-  import type { Wallet } from "@/entities/CryptoWallets/lib/Wallets/useWallet.types";
+  import { NButton, NIcon, useMessage } from "naive-ui";
   import { ref } from "vue";
+  import type { Wallet } from "@/entities/CryptoWallets";
   import copyToClipboard from "@/shared/lib/utils/copyToClipboard";
 
   const props = defineProps<{

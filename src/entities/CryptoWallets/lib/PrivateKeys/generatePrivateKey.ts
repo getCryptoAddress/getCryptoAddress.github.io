@@ -1,4 +1,4 @@
-import validatePrivateKey from "@/entities/CryptoWallets/lib/PrivateKeys/validatePrivateKey";
+import validatePrivateKey from "./validatePrivateKey";
 
 type Size = 32;
 

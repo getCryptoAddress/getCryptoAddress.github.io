@@ -1,11 +1,5 @@
 <script lang="ts" setup>
   import {
-    PaperWalletCanvas,
-    ResizablePaperWalletWrapper,
-  } from "@/entities/PaperWallets";
-  import { usePaperWalletPresets } from "@/widgets/PaperWalletsPresetsWidget/model/usePaperWalletPresets";
-  import { ref } from "vue";
-  import {
     NCollapseTransition,
     NDivider,
     NList,
@@ -13,10 +7,16 @@
     NSpace,
     NThing,
   } from "naive-ui";
+  import { ref } from "vue";
   import { DownloadPaperWallet } from "@/features/DownloadPaperWallet";
   import { EditPaperWalletPreset } from "@/features/EditPaperWalletPreset";
-  import { ManualWalletForm } from "@/entities/CryptoWallets";
   import { RedirectWalletToCreateWallet } from "@/features/RedirectWalletToCreateWallet";
+  import { ManualWalletForm } from "@/entities/CryptoWallets";
+  import {
+    PaperWalletCanvas,
+    ResizablePaperWalletWrapper,
+  } from "@/entities/PaperWallets";
+  import { usePaperWalletPresets } from "./model/usePaperWalletPresets";
 
   const paperWalletPresets = usePaperWalletPresets();
 

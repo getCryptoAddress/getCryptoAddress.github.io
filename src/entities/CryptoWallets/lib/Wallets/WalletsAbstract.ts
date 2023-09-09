@@ -1,5 +1,5 @@
-import type { Wallet } from "@/entities/CryptoWallets/lib/Wallets/useWallet.types";
 import lazyLoop from "@/shared/lib/utils/lazyLoop";
+import type { Wallet } from "./useWallet.types";
 
 export default abstract class WalletsAbstract<Payload, PrivateKey> {
   #wallets: Wallet[] = [];

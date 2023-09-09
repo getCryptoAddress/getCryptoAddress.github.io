@@ -5,6 +5,6 @@ export { default as PaperWalletFormAddImage } from "./ui/PaperWalletForms/PaperW
 export { default as PaperWalletFormAddItem } from "./ui/PaperWalletForms/PaperWalletFormAddItem.vue";
 export { default as PaperWalletItemPropsForm } from "./ui/PaperWalletForms/PaperWalletItemPropsForm.vue";
 export { default as PaperWalletDownloadForm } from "./ui/PaperWalletForms/PaperWalletDownloadForm.vue";
-export { default as PaperWalletLayers } from "@/entities/PaperWallets/ui/PaperWalletLayers/PaperWalletLayers.vue";
-export { default as PaperWalletEditorWrapper } from "@/entities/PaperWallets/ui/PaperWalletEditorWrapper/PaperWalletEditorWrapper.vue";
-export { default as ResizablePaperWalletWrapper } from "@/entities/PaperWallets/ui/ResizablePaperWalletWrapper/ResizablePaperWalletWrapper.vue";
+export { default as PaperWalletLayers } from "./ui/PaperWalletLayers/PaperWalletLayers.vue";
+export { default as PaperWalletEditorWrapper } from "./ui/PaperWalletEditorWrapper/PaperWalletEditorWrapper.vue";
+export { default as ResizablePaperWalletWrapper } from "./ui/ResizablePaperWalletWrapper/ResizablePaperWalletWrapper.vue";

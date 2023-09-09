@@ -1,13 +1,13 @@
 import type {
-  CryptoPlatformEthereum,
-  EthereumPrivateKey,
-  EthereumWalletPayload,
-} from "@/entities/CryptoWallets/lib/Wallets/walletsEthereum/WalletsEthereum.types";
-import type {
   BitcoinPrivateKey,
   BitcoinWalletPayload,
   CryptoPlatformBitcoin,
-} from "@/entities/CryptoWallets/lib/Wallets/walletsBitcoin/WalletsBitcoin.types";
+} from "./walletsBitcoin/WalletsBitcoin.types";
+import type {
+  CryptoPlatformEthereum,
+  EthereumPrivateKey,
+  EthereumWalletPayload,
+} from "./walletsEthereum/WalletsEthereum.types";
 
 export type WalletFactoryPayload =
   | {

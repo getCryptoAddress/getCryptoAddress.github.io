@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-  import type { PaperWalletItemQRCode } from "@/entities/PaperWallets/types/PaperWallet.types";
   import { computed } from "vue";
   import QRCode from "@/shared/ui/QRCode/QRCode.vue";
+  import type { PaperWalletItemQRCode } from "../../types/PaperWallet.types";
 
   const props = defineProps<{
     item: PaperWalletItemQRCode;

@@ -7,7 +7,7 @@
     NInputNumber,
     NSelect,
   } from "naive-ui";
-  import type { PaperWalletItemText } from "@/entities/PaperWallets/types/PaperWallet.types";
+  import type { PaperWalletItemText } from "../../types/PaperWallet.types";
 
   const emit = defineEmits<{
     update: [PaperWalletItemText];

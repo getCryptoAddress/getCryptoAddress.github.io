@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { NColorPicker, NForm, NFormItem, NInput } from "naive-ui";
-  import type { PaperWalletItemQRCode } from "@/entities/PaperWallets/types/PaperWallet.types";
+  import type { PaperWalletItemQRCode } from "../../types/PaperWallet.types";
 
   const emit = defineEmits<{
     update: [PaperWalletItemQRCode];

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-  import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
-  import PaperWalletLayer from "@/entities/PaperWallets/ui/PaperWalletLayers/PaperWalletLayer.vue";
+  import type { PaperWalletItem } from "../../types/PaperWallet.types";
+  import PaperWalletLayer from "./PaperWalletLayer.vue";
 
   const emit = defineEmits<{
     selectItem: [PaperWalletItem];
