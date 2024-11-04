@@ -35,4 +35,4 @@ for (const routerPath of routerPaths) {
   console.log("Generated:", path.join(pageFolder, "index.html"));
   await new Promise((resolve) => setTimeout(resolve, 300));
 }
-vite.close();
+await vite.close();
