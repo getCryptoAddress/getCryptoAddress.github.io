@@ -1,15 +1,13 @@
 <script lang="ts" setup>
   import { VueDraggableNext as Draggable } from "vue-draggable-next";
+  import { usePaperWallet } from "@/entities/PaperWallets";
+  import type { PaperWalletItem } from "@/entities/PaperWallets/types/PaperWallet.types";
 
-  const emit = defineEmits<{
-    update: [unknown[]];
-  }>();
-  defineProps<{
-    items: unknown[];
-  }>();
+  const paperWalletStore = usePaperWallet();
+  const items = paperWalletStore.revertedItems;
 
-  function handleUpdateItems(items: []) {
-    emit("update", items);
+  function handleUpdateItems(items: PaperWalletItem[]) {
+    paperWalletStore.setRevertedItems(items);
   }
 </script>
 <template>

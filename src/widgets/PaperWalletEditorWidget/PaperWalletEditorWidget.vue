@@ -47,10 +47,7 @@
       />
     </template>
     <template #items>
-      <ChangeOrderItemList
-        :items="paperWalletStore.revertedItems"
-        @update="paperWalletStore.setRevertedItems"
-      >
+      <ChangeOrderItemList>
         <PaperWalletLayers
           :items="paperWalletStore.revertedItems"
           :selectedItemId="paperWalletStore.selectedItemId"
