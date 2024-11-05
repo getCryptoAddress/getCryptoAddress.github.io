@@ -157,6 +157,7 @@
       'paper-wallet-canvas--print-mode': view === 'PRINT',
     }"
     ref="targetElement"
+    data-test-el="paper-wallet-canvas"
   >
     <template
       v-for="item in items"

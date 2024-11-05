@@ -104,6 +104,7 @@
       style="max-width: 250px; text-align: left; margin: 0 auto; width: 100%"
     >
       <NMenu
+        data-test-id="page-header-menu"
         :options="menuOptions"
         v-model:value="selectedKey"
       />
