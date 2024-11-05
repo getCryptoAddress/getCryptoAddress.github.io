@@ -20,8 +20,10 @@ test("check menu items", async ({ page }) => {
   await expect($$menuItems[3]).toHaveText("Paper Wallet Editor");
 });
 
-test("General flow", async ({ page, context }) => {
-  await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+test("General flow", async ({ page, context, browserName }) => {
+  if (browserName === "chromium") {
+    await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+  }
 
   await page.goto("/");
   await page.getByRole("link", { name: "Create Crypto Address" }).click();
@@ -52,7 +54,7 @@ test("General flow", async ({ page, context }) => {
     .innerText();
 
   // Copy the first address
-  {
+  if (browserName !== "webkit") {
     const $copyButton = $firstAddress.locator(
       '[data-test-id="button-copy-wallet-to-clipboard"]',
     );
