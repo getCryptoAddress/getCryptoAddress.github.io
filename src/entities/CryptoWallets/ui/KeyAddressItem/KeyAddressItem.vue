@@ -8,14 +8,19 @@
 </script>
 
 <template>
-  <n-list-item>
+  <n-list-item data-test-el="key-address-item">
     <n-timeline>
       <n-timeline-item title="Private Key">
         <n-space
           vertical
           :size="12"
         >
-          <div style="word-break: break-all">{{ keyFormatted }}</div>
+          <div
+            style="word-break: break-all"
+            data-test-el="private-key"
+          >
+            {{ keyFormatted }}
+          </div>
         </n-space>
       </n-timeline-item>
       <n-timeline-item
@@ -26,7 +31,12 @@
           vertical
           :size="12"
         >
-          <div style="word-break: break-all">{{ address }}</div>
+          <div
+            style="word-break: break-all"
+            data-test-el="address"
+          >
+            {{ address }}
+          </div>
         </n-space>
       </n-timeline-item>
     </n-timeline>

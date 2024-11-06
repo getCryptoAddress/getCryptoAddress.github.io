@@ -33,7 +33,10 @@
 </script>
 
 <template>
-  <NButton @click="showModal = true">
+  <NButton
+    @click="showModal = true"
+    data-test-el="button-show-qr-codes"
+  >
     <template #icon>
       <NIcon>
         <QrCode20Regular />
@@ -53,6 +56,7 @@
       <NThing
         title="Secret"
         :description="secret"
+        data-test-id="dialog-qr-code-secret"
       >
         <QRCode
           :text="secret"
@@ -62,6 +66,7 @@
       <NThing
         title="Address"
         :description="address"
+        data-test-id="dialog-qr-code-address"
       >
         <QRCode
           :text="address"

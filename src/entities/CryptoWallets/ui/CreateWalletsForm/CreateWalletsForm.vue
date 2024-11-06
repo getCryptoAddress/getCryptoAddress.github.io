@@ -99,6 +99,7 @@
           :min="10"
         />
         <NInputNumber
+          data-test-id="input-count-tokens"
           v-model:value="count"
           :min="1"
           size="small"

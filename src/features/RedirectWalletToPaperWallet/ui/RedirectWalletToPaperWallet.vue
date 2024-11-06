@@ -23,7 +23,10 @@
 </script>
 
 <template>
-  <NButton @click="handleGeneratePaperWallets">
+  <NButton
+    @click="handleGeneratePaperWallets"
+    data-test-el="button-generate-paper-wallet"
+  >
     <template #icon>
       <NIcon>
         <Print24Regular />

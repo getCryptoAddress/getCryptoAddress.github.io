@@ -32,7 +32,10 @@
 </script>
 
 <template>
-  <NButton @click="handleSaveToClipboard">
+  <NButton
+    @click="handleSaveToClipboard"
+    data-test-id="button-copy-wallet-to-clipboard"
+  >
     <template #icon>
       <NIcon>
         <ClipboardTextRtl24Regular v-show="status === 'initial'" />

@@ -112,6 +112,7 @@
         }"
         @keydown.enter.space.prevent="handleKeydown"
         maxlength="154"
+        data-test-id="input-manual-secret"
       />
     </NFormItem>
     <NFormItem
@@ -129,12 +130,14 @@
           maxRows: 3,
         }"
         maxlength="154"
+        data-test-id="input-manual-address"
       />
     </NFormItem>
     <NSpace>
       <NButton
         type="primary"
         attr-type="submit"
+        data-test-id="button-submit-manual-wallet"
       >
         Get Paper Wallets
       </NButton>
