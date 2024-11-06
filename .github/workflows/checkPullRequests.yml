@@ -2,7 +2,7 @@ name: "Check Pull Requests"
 
 on:
   pull_request:
-    types: ["opened", "edited", "reopened", "synchronize"]
+    types: [ "opened", "edited", "reopened", "synchronize" ]
 
 jobs:
   check_pull_request:
@@ -11,6 +11,9 @@ jobs:
       group: ${{ github.head_ref }}
       cancel-in-progress: true
     runs-on: ubuntu-24.04
+    env:
+      # https://github.blog/changelog/2024-03-07-github-actions-all-actions-will-run-on-node20-instead-of-node16-by-default/
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE20: true
     steps:
       - uses: actions/checkout@v3
 
@@ -38,4 +41,4 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run e2e tests
-        run: PLAYWRIGHT_DEV_SERVER=1 npm run test:e2e
+        run: npm run test:e2e
