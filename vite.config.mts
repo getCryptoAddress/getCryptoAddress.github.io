@@ -13,7 +13,7 @@ export default defineConfig({
         outlierSupport: ["vue"],
       },
       policy: {
-        "style-src": ["'unsafe-inline'"], // todo remove when naive-ui will be fixed
+        "style-src": ["'self'", "'unsafe-inline'"], // todo remove when naive-ui will be fixed
         "style-src-elem": ["'unsafe-inline'"], // todo remove when naive-ui will be fixed
         "img-src": ["data:", "blob:"],
         "script-src": ["'wasm-unsafe-eval'"],

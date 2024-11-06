@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - master
-  workflow_dispatch: {}
+  workflow_dispatch: { }
 
 jobs:
   build_and_deploy:
@@ -13,6 +13,9 @@ jobs:
       group: build-and-deploy
       cancel-in-progress: true
     runs-on: ubuntu-24.04
+    env:
+      # https://github.blog/changelog/2024-03-07-github-actions-all-actions-will-run-on-node20-instead-of-node16-by-default/
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE20: true
     steps:
       - uses: actions/checkout@v3
 
@@ -43,7 +46,7 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run e2e tests
-        run: npm run test:e2e
+        run: PLAYWRIGHT_USE_BUILD=1 npm run test:e2e
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

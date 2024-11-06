@@ -6,6 +6,9 @@ jobs:
   make_artifact_with_test_screenshots:
     name: Make artifact with Test Screenshots
     runs-on: ubuntu-24.04
+    env:
+      # https://github.blog/changelog/2024-03-07-github-actions-all-actions-will-run-on-node20-instead-of-node16-by-default/
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE20: true
     steps:
       - uses: actions/checkout@v3
 
@@ -20,8 +23,8 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - name: Run e2e tests
-        run: PLAYWRIGHT_DEV_SERVER=1 npm run test:e2e:update-snapshots
+      - name: Run e2e tests with snapshots update
+        run: npm run test:e2e:update-snapshots
 
       - name: Upload test screenshots
         uses: actions/upload-artifact@v4
