@@ -1,13 +1,10 @@
-name: "Get test screenshots"
+name: "Make artifact with Test Screenshots"
 
 on: workflow_dispatch
 
 jobs:
-  get_test_screenshots:
-    name: Get test screenshots
-    concurrency:
-      group: ${{ github.head_ref }}
-      cancel-in-progress: true
+  make_artifact_with_test_screenshots:
+    name: Make artifact with Test Screenshots
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v3
