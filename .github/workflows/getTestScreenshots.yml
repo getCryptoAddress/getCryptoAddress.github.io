@@ -1,0 +1,35 @@
+name: "Get test screenshots"
+
+on: workflow_dispatch
+
+jobs:
+  get_test_screenshots:
+    name: Get test screenshots
+    concurrency:
+      group: ${{ github.head_ref }}
+      cancel-in-progress: true
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run e2e tests
+        run: PLAYWRIGHT_DEV_SERVER=1 npm run test:e2e:update-snapshots
+
+      - name: Upload test screenshots
+        uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: test-screenshots
+          path: ./e2e/vue.spec.ts-snapshots
+          retention-days: 1
