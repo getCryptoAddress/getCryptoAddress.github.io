@@ -31,6 +31,7 @@
     alt=""
     draggable="false"
     :style="styles"
+    decoding="sync"
     @load="emit('load', item)"
   />
 </template>
