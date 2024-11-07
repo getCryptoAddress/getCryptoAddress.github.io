@@ -6,16 +6,19 @@ test("visits the app root url, sitemap.txt and robots.txt", async ({
   page,
 }) => {
   await page.goto("/");
+  await page.waitForTimeout(500);
   await expect(page.locator("h1")).toHaveText("Get Crypto Address");
 
   if (process.env.PLAYWRIGHT_USE_BUILD) {
     await page.goto("/sitemap.txt");
+    await page.waitForTimeout(500);
     expect(await page.locator("pre").innerText()).toMatchSnapshot(
       "sitemap.txt",
     );
   }
 
   await page.goto("/robots.txt");
+  await page.waitForTimeout(500);
   expect(await page.locator("pre").innerText()).toMatchSnapshot("robots.txt");
 });
 
