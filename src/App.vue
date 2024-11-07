@@ -7,8 +7,15 @@
   import { PageHeader } from "@/entities/PageHeader";
   import { ParanoidMode } from "@/entities/ParanoidMode";
   import ThemeSwitcher from "@/entities/ThemeSwitcher/ThemeSwitcher.vue";
+  import { addNonceToStyles } from "@/shared/lib/csp/addNonceToStyles";
   import initTracker from "@/shared/lib/tracker/initTracker";
   import PageTemplate from "@/shared/ui/PageTemplate/PageTemplate.vue";
+
+  // [tag-nonce]
+  // Some libs doesn't support nonce, part of logic with workaround
+  // Search by tag in the code
+  const chunksWithoutNonce = ["naive-ui"];
+  addNonceToStyles(import.meta.env.VITE_NONCE, chunksWithoutNonce);
 
   const isDark = useDark() as Ref<boolean>;
   const themeProvider = computed(() => (isDark.value ? darkTheme : null));

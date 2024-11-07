@@ -12,6 +12,7 @@ test("check menu items", async ({ page }) => {
   const $menu = page.locator('[data-test-id="page-header-menu"]');
   const menuItems = $menu.getByRole("menuitem");
   const $$menuItems = await menuItems.all();
+  await page.waitForTimeout(500);
   await expect(menuItems).toHaveCount(4);
 
   await expect($$menuItems[0]).toHaveText("Home");
@@ -26,6 +27,7 @@ test("General flow", async ({ page, context, browserName }) => {
   }
 
   await page.goto("/");
+  await page.waitForTimeout(500);
   await page.getByRole("link", { name: "Create Crypto Address" }).click();
   await page.waitForURL("/create-wallets/", { timeout: 1000 });
 

@@ -3,8 +3,13 @@ import vue from "@vitejs/plugin-vue";
 import { defineConfig } from "vite";
 import csp from "vite-plugin-csp-guard";
 
+process.env.VITE_NONCE = Math.random().toString(36).slice(2);
+
 // https://vitejs.dev/config/
 export default defineConfig({
+  html: {
+    cspNonce: process.env.VITE_NONCE,
+  },
   plugins: [
     vue(),
     csp({
@@ -13,8 +18,8 @@ export default defineConfig({
         outlierSupport: ["vue"],
       },
       policy: {
-        "style-src": ["'self'", "'unsafe-inline'"], // todo remove when naive-ui will be fixed
-        "style-src-elem": ["'unsafe-inline'"], // todo remove when naive-ui will be fixed
+        "style-src": ["'self'"],
+        "style-src-elem": ["'self'", `'nonce-${process.env.VITE_NONCE}'`],
         "img-src": ["data:", "blob:"],
         "script-src": ["'wasm-unsafe-eval'"],
         "script-src-elem": ["https://analytics.umami.is/script.js"],
@@ -30,6 +35,19 @@ export default defineConfig({
   build: {
     target: "es2022",
     assetsInlineLimit: 0,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          // [tag-nonce]
+          // Naive-ui doesn't support nonce, part of logic with workaround
+          // Search by tag in the code
+          const nativeUiPath = process.cwd() + "/node_modules/naive-ui/";
+          if (id.startsWith(nativeUiPath)) {
+            return "naive-ui"; // https://github.com/tusen-ai/naive-ui/issues/6356
+          }
+        },
+      },
+    },
   },
   resolve: {
     alias: {
