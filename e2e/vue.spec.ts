@@ -2,9 +2,21 @@ import { expect, test } from "@playwright/test";
 
 // See here how to get started:
 // https://playwright.dev/docs/intro
-test("visits the app root url", async ({ page }) => {
+test("visits the app root url, sitemap.txt and robots.txt", async ({
+  page,
+}) => {
   await page.goto("/");
   await expect(page.locator("h1")).toHaveText("Get Crypto Address");
+
+  if (process.env.PLAYWRIGHT_USE_BUILD) {
+    await page.goto("/sitemap.txt");
+    expect(await page.locator("pre").innerText()).toMatchSnapshot(
+      "sitemap.txt",
+    );
+  }
+
+  await page.goto("/robots.txt");
+  expect(await page.locator("pre").innerText()).toMatchSnapshot("robots.txt");
 });
 
 test("check menu items", async ({ page }) => {
