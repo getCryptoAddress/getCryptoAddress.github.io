@@ -19,7 +19,18 @@ function isSelectedChunk(chunksWithoutNonce: string[]) {
 
   return !!stack
     ?.split("\n")
-    .map((line) => line.match(/at.*\((http.+?)\)$/)?.[1])
+    .map((line) => {
+      const chromeMatch = line.match(/at.*\((http.+?)\)$/);
+      if (chromeMatch) {
+        return chromeMatch[1];
+      }
+
+      const safariMatch = line.match(/@(http.+?):\d+:\d+/);
+      if (safariMatch) {
+        return safariMatch[1];
+      }
+      return null;
+    })
     .filter((line) => line && pathOfChunks.some((path) => line.includes(path)))
     .length;
 }
