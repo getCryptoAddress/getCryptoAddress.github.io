@@ -39,7 +39,6 @@ for (const routerPath of routerPaths) {
     recursive: true,
   });
   fs.writeFileSync(path.join(pageFolder, "index.html"), pageHtml);
-  console.log("Generated:", path.join(pageFolder, "index.html"));
   await new Promise((resolve) => setTimeout(resolve, 300));
 }
 await vite.close();

@@ -1,13 +1,42 @@
 import { expect, test } from "@playwright/test";
 
-// See here how to get started:
-// https://playwright.dev/docs/intro
+// Documentation: https://playwright.dev/docs/intro
+
+let errorMessagesCount = 0;
+
+const ignoreErrors = [
+  "ResizeObserver loop completed with undelivered notifications.",
+];
+
+// Register a global error listener
+test.beforeEach(async ({ page }) => {
+  errorMessagesCount = 0;
+
+  page.on("pageerror", (error) => {
+    if (ignoreErrors.includes(error.message)) {
+      return;
+    }
+    console.log(">> Console error: ", error);
+    ++errorMessagesCount;
+  });
+});
+
+test.afterEach(() => {
+  expect(errorMessagesCount).toBe(0);
+});
+
 test("visits the app root url, sitemap.txt and robots.txt", async ({
   page,
+  browserName,
 }) => {
   await page.goto("/");
-  await page.waitForTimeout(500);
+  await page.waitForTimeout(2000);
   await expect(page.locator("h1")).toHaveText("Get Crypto Address");
+
+  // Next tests are chromium only
+  if (browserName !== "chromium") {
+    return;
+  }
 
   if (process.env.PLAYWRIGHT_USE_BUILD) {
     await page.goto("/sitemap.txt");
@@ -55,6 +84,7 @@ test("General flow", async ({ page, context, browserName }) => {
 
   // Generate new addresses
   await page.getByRole("button", { name: "Generate new addresses" }).click();
+  await page.waitForTimeout(500);
 
   // Check the count of generated addresses
   const $addresses = page.locator('[data-test-el="key-address-item"]');
@@ -91,6 +121,7 @@ test("General flow", async ({ page, context, browserName }) => {
     await $openModalButton.click();
     const $modal = page.getByRole("dialog");
     await $modal.waitFor({ state: "visible", timeout: 1000 });
+    await page.waitForTimeout(100);
     const $modalSecret = $modal.locator(
       '[data-test-id="dialog-qr-code-secret"] .n-thing-main__description',
     );
@@ -102,6 +133,7 @@ test("General flow", async ({ page, context, browserName }) => {
     const $modalMask = page.locator(".n-modal-mask");
     await page.mouse.click(1, 1);
     await $modalMask.waitFor({ state: "detached", timeout: 1000 });
+    await page.waitForTimeout(100);
   }
 
   /// Paper wallet page

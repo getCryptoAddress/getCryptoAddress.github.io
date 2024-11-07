@@ -14,12 +14,10 @@ import crypto from "crypto";
  * @returns {string}
  */
 function calculateStyleHash(styleContent) {
-  console.log(styleContent);
   const hash = crypto
     .createHash("sha256")
     .update(styleContent, "utf8")
     .digest("base64");
-  console.log(`sha256-${hash}`);
   return `sha256-${hash}`;
 }
 
