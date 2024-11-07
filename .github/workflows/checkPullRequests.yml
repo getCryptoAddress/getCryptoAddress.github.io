@@ -11,14 +11,11 @@ jobs:
       group: ${{ github.head_ref }}
       cancel-in-progress: true
     runs-on: ubuntu-24.04
-    env:
-      # https://github.blog/changelog/2024-03-07-github-actions-all-actions-will-run-on-node20-instead-of-node16-by-default/
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE20: true
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
