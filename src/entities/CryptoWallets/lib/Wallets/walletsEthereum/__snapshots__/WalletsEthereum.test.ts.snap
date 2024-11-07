@@ -1,0 +1,5 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`WalletsEthereum > should generate wallet correctly 1`] = `"{"privateKey":"0x84cd752cb471f5c8d51361bb469d566f13830e12c43909cb40c4131a49237e50","address":"0x4a1bab2023db29cc924e475ceffafb81645f1ab5"}"`;
+
+exports[`WalletsEthereum > should generate wallet correctly 2`] = `"{"privateKey":"0x85cd752cb471f5c8d51361bb469d566f13830e12c43909cb40c4131a49237e50","address":"0xd715914e3592c611d0614e4ad53bed7a09755326"}"`;
