@@ -1,10 +1,11 @@
-const originalAppendChild = Node.prototype.appendChild;
-const originalInsertBefore = Node.prototype.insertBefore;
+const { SSR, MODE } = import.meta.env;
+
+const globalNode = !SSR ? Node : ({ prototype: {} } as typeof Node);
+const originalAppendChild = globalNode.prototype.appendChild;
+const originalInsertBefore = globalNode.prototype.insertBefore;
 
 const assetsFolder =
-  import.meta.env.MODE === "production"
-    ? "/assets/"
-    : "/node_modules/.vite/deps/";
+  MODE === "production" ? "/assets/" : "/node_modules/.vite/deps/";
 
 /**
  * Check if the current chunk is one of those that do not support nonce
@@ -39,6 +40,9 @@ function isSelectedChunk(chunksWithoutNonce: string[]) {
  * Add nonce to style elements that do not have it yet for the selected chunks
  */
 export function addNonceToStyles(nonce: string, chunksWithoutNonce: string[]) {
+  if (SSR) {
+    return;
+  }
   const addNonceToStyle = (element: Node) => {
     const isStyleElement = element instanceof HTMLStyleElement;
     if (!isStyleElement) {
@@ -57,12 +61,12 @@ export function addNonceToStyles(nonce: string, chunksWithoutNonce: string[]) {
     element.setAttribute("nonce", nonce);
   };
 
-  Node.prototype.appendChild = function <T extends Node>(node: T): T {
+  globalNode.prototype.appendChild = function <T extends Node>(node: T): T {
     addNonceToStyle(node);
     return originalAppendChild.call(this, node) as T;
   };
 
-  Node.prototype.insertBefore = function <T extends Node>(
+  globalNode.prototype.insertBefore = function <T extends Node>(
     node: T,
     referenceNode: Node | null,
   ): T {
