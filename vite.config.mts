@@ -2,6 +2,7 @@ import { fileURLToPath, URL } from "node:url";
 import vue from "@vitejs/plugin-vue";
 import { defineConfig } from "vite";
 import csp from "vite-plugin-csp-guard";
+import { cjsInterop } from "vite-plugin-cjs-interop";
 
 process.env.VITE_NONCE = Math.random().toString(36).slice(2);
 
@@ -30,6 +31,10 @@ export default defineConfig({
           "blob:",
         ],
       },
+    }),
+    // https://github.com/vitejs/vite/discussions/14697#discussioncomment-11170750
+    cjsInterop({
+      dependencies: ["naive-ui"],
     }),
   ],
   build: {
@@ -64,9 +69,5 @@ export default defineConfig({
         api: "modern-compiler",
       },
     },
-  },
-  legacy: {
-    // todo  https:// github. com/ vitejs/ vite/ discussions/ 14697 needs for prerender.mjs
-    proxySsrExternalModules: true,
   },
 });
