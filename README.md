@@ -12,23 +12,23 @@ open-source.
 
 ### What Sets Us Apart?
 
-1. **Supports Additional Bitcoin Address Formats**:
+1. **Supports Bitcoin Address Formats**:
    - P2PKH
    - P2WPKH
    - Taproot
 
 2. **Ethereum Support**:
-   - Generate Ethereum addresses alongside Bitcoin.
+   - Generate Ethereum addresses and private keys.
 
 3. **Custom Paper Wallet Designs**:
    - Create a unique, personalized design for your paper wallet.
 
 ---
 
+## Contributing
+
 We welcome feedback, contributions, and suggestions to help us improve and
 expand Get Crypto Address. Your support and ideas are greatly appreciated!
-
-## Contributing
 
 - [CONTRIBUTING.md](docs/CONTRIBUTING.md)
 
