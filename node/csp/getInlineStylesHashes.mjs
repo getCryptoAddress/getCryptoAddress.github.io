@@ -30,7 +30,7 @@ function calculateStyleHash(styleContent) {
 function getInlineStyles(appHtml) {
   return (
     appHtml
-      .match(/ style=".*?"/g)
+      .match(/ style="([\s\S]*?)"/g)
       ?.map((line) => line.replace(/^ style="/, "").replace(/"$/, "")) || []
   );
 }

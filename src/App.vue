@@ -14,7 +14,7 @@
   // [tag-nonce]
   // Some libs doesn't support nonce, part of logic with workaround
   // Search by tag in the code
-  const chunksWithoutNonce = ["naive-ui"];
+  const chunksWithoutNonce = ["naive-ui", "@vueuse"];
   addNonceToStyles(import.meta.env.VITE_NONCE, chunksWithoutNonce);
 
   const isDark = useDark() as Ref<boolean>;

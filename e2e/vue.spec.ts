@@ -6,22 +6,56 @@ let errorMessagesCount = 0;
 
 const ignoreErrors = [
   "ResizeObserver loop completed with undelivered notifications.",
+  // Blocked by AdBlocker
+  "api-gateway.umami.dev",
+];
+const ignoreConsoleErrors = [
+  // Blocked by AdBlocker
+  "api-gateway.umami.dev",
+  "Failed to load resource: net::ERR_FAILED",
 ];
 
 // Register a global error listener
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ page, browserName }) => {
   errorMessagesCount = 0;
 
-  page.on("pageerror", (error) => {
-    if (ignoreErrors.includes(error.message)) {
+  page.on("console", (consoleMessage) => {
+    if (consoleMessage.type() !== "error") {
       return;
     }
-    console.log(">> Console error: ", error);
+
+    // Webkit again have strange behavior.
+    // It doesn't provide location for CSP error.
+    // And not reproducible in Safari browser.
+    if (browserName === "webkit") {
+      return;
+    }
+
+    for (const ignoreError of ignoreConsoleErrors) {
+      if (consoleMessage.text().includes(ignoreError)) {
+        return;
+      }
+    }
+    console.log(
+      ">> Console log (error): ",
+      consoleMessage.text(),
+      consoleMessage.location(),
+    );
+    ++errorMessagesCount;
+  });
+
+  page.on("pageerror", (error) => {
+    for (const ignoreError of ignoreErrors) {
+      if (error.message.includes(ignoreError)) {
+        return;
+      }
+    }
+    console.log(">> Console error: ", error, error.stack);
     ++errorMessagesCount;
   });
 });
 
-test.afterEach(() => {
+test.afterEach(async () => {
   expect(errorMessagesCount).toBe(0);
 });
 
@@ -51,7 +85,7 @@ test("visits the app root url, sitemap.txt and robots.txt", async ({
   expect(await page.locator("pre").innerText()).toMatchSnapshot("robots.txt");
 });
 
-test("check menu items", async ({ page }) => {
+test("check menu items and each page", async ({ page }) => {
   await page.goto("/");
   const $menu = page.locator('[data-test-id="page-header-menu"]');
   const menuItems = $menu.getByRole("menuitem");
@@ -59,10 +93,32 @@ test("check menu items", async ({ page }) => {
   await page.waitForTimeout(500);
   await expect(menuItems).toHaveCount(4);
 
-  await expect($$menuItems[0]).toHaveText("Home");
-  await expect($$menuItems[1]).toHaveText("Create Crypto Address");
-  await expect($$menuItems[2]).toHaveText("Create Paper Wallet");
-  await expect($$menuItems[3]).toHaveText("Paper Wallet Editor");
+  const pages = [
+    { index: 0, url: "/", title: "Home" },
+    { index: 1, url: "/create-wallets/", title: "Create Crypto Address" },
+    { index: 2, url: "/paper-wallets/", title: "Create Paper Wallet" },
+    { index: 3, url: "/paper-wallet-editor/", title: "Paper Wallet Editor" },
+  ];
+
+  for (const { index, title } of pages) {
+    await expect($$menuItems[index]).toHaveText(title);
+  }
+
+  // Check Content-Security-Policy.
+  // Need to refresh the page to check the CSP for each page separately.
+  if (process.env.PLAYWRIGHT_USE_BUILD) {
+    for (const { index, url } of pages) {
+      if (index === 0) {
+        continue;
+      }
+      const $item = $$menuItems[index];
+      await $item.click();
+      await page.waitForURL(url, { timeout: 5000 });
+      await page.waitForTimeout(500);
+      await page.reload();
+      await page.waitForTimeout(1000);
+    }
+  }
 });
 
 test("General flow", async ({ page, context, browserName }) => {
