@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import { NCollapseTransition, NSpace, NSwitch } from "naive-ui";
+  import { NCollapseTransition, NSpace, NSwitch, NAlert } from "naive-ui";
   import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 
   const emit = defineEmits<{
@@ -13,6 +13,7 @@
 
   const { SSR } = import.meta.env;
 
+  const isShownTip = ref(false);
   const isParanoidMode = ref(false);
   const isTrustDevice = ref(false);
   const isIncognito = ref(false);
@@ -88,11 +89,24 @@
             <div>Turn off internet</div>
             <n-switch
               v-model:value="isOffline"
+              @click="isShownTip = true"
               disabled
             >
               <template #checked>Yes</template>
               <template #unchecked>No</template>
             </n-switch>
+          </n-collapse-transition>
+          <n-collapse-transition :show="!isParanoidModeEnabled && isShownTip">
+            <n-alert
+              title="Disconnect from the Internet"
+              type="info"
+              closable
+              @close="isShownTip = false"
+            >
+              Actually, you’ll need to fully disconnect from the internet, like
+              <b>turning off WiFi</b>.<br />
+              This switch will toggle automatically.
+            </n-alert>
           </n-collapse-transition>
           <n-collapse-transition :show="isParanoidModeEnabled">
             <div>
