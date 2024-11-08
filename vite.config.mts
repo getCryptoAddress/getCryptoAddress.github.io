@@ -45,6 +45,10 @@ export default defineConfig({
           if (id.startsWith(nativeUiPath)) {
             return "naive-ui"; // https://github.com/tusen-ai/naive-ui/issues/6356
           }
+          const vueUsePath = process.cwd() + "/node_modules/@vueuse/";
+          if (id.startsWith(vueUsePath)) {
+            return "@vueuse"; // only locale files, but any way
+          }
         },
       },
     },
