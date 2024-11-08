@@ -1,0 +1,9 @@
+/* TEAM */
+  Developer: Get Crypto Address
+  Site: https://getcryptoaddress.github.io
+  GitHub: https://github.com/getCryptoAddress/
+
+/* SITE */
+  Last build: Fri, 08 Nov 2024 23:56:52 GMT
+  Programming languages: JavaScript, TypeScript
+  Technologies: Vite, Vue, Playwright, Vitest
