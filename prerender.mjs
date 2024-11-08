@@ -3,6 +3,7 @@ import path from "node:path";
 import { createServer } from "vite";
 import { addInlineStylesHashesToHtml } from "./node/csp/addInlineStylesHashesToHtml.mjs";
 import { getInlineStylesHashes } from "./node/csp/getInlineStylesHashes.mjs";
+import generateHumans from "./node/humans/generateHumans.mjs";
 import generateSitemap from "./node/sitemap/generateSitemap.mjs";
 
 // todo refactor file, separate into functions
@@ -19,6 +20,7 @@ const { render, routes } = await vite.ssrLoadModule("/src/entry-server.ts");
 const routerPaths = routes.map((route) => route.path);
 
 generateSitemap(routerPaths, "https://getcryptoaddress.github.io", "dist");
+generateHumans("dist");
 
 for (const routerPath of routerPaths) {
   const { appHtml, ctx } = await render(routerPath);
