@@ -2,57 +2,33 @@
 
 https://getcryptoaddress.github.io/
 
-
-
 https://github.com/user-attachments/assets/6f1da5d9-89b0-4f50-a6e5-951d7f7ff3c9
 
+## Description
 
+Get Crypto Address is an open-source tool that allows you to generate
+cryptocurrency addresses and create paper wallets. It's free, offline, and
+open-source.
 
-## Project Setup
+### What Sets Us Apart?
 
-```sh
-npm install
-```
+1. **Supports Additional Bitcoin Address Formats**:
+   - P2PKH
+   - P2WPKH
+   - Taproot
 
-### Compile and Hot-Reload for Development
+2. **Ethereum Support**:
+   - Generate Ethereum addresses alongside Bitcoin.
 
-```sh
-npm run dev
-```
+3. **Custom Paper Wallet Designs**:
+   - Create a unique, personalized design for your paper wallet.
 
-### Type-Check, Compile and Minify for Production
+---
 
-```sh
-npm run build
-```
+We welcome feedback, contributions, and suggestions to help us improve and
+expand Get Crypto Address. Your support and ideas are greatly appreciated!
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+## Contributing
 
-```sh
-npm run test:unit
-```
+- [CONTRIBUTING.md](docs/CONTRIBUTING.md)
 
-### Run End-to-End Tests with [Playwright](https://playwright.dev)
-
-```sh
-# Install browsers for the first run
-npx playwright install
-
-# When testing on CI, must build the project first
-npm run build
-
-# Runs the end-to-end tests
-npm run test:e2e
-# Runs the tests only on Chromium
-npm run test:e2e -- --project=chromium
-# Runs the tests of a specific file
-npm run test:e2e -- tests/example.spec.ts
-# Runs the tests in debug mode
-npm run test:e2e -- --debug
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
